@@ -1,0 +1,156 @@
+[
+  {
+    "name": "Pasta bolognese",
+    "category": "pasta",
+    "estimated_price": 110,
+    "calories_per_portion": 700,
+    "ingredients": {
+      "pasta": 500,
+      "kjottdeig": 400,
+      "hakkede_tomater": 2,
+      "lok": 1,
+      "gulrot": 2
+    }
+  },
+  {
+    "name": "Taco",
+    "category": "texmex",
+    "estimated_price": 180,
+    "calories_per_portion": 800,
+    "ingredients": {
+      "tacolefser": 1,
+      "kjottdeig": 600,
+      "mais": 1,
+      "ost": 200,
+      "romme": 1,
+      "tacokrydder": 1,
+      "salat": 1
+    }
+  },
+  {
+    "name": "Kyllingwok med ris",
+    "category": "asiatisk",
+    "estimated_price": 140,
+    "calories_per_portion": 650,
+    "ingredients": {
+      "kyllingfilet": 600,
+      "ris": 400,
+      "wokgronnsaker": 1,
+      "soyasaus": 1
+    }
+  },
+  {
+    "name": "Fiskekaker med potet og gulrot",
+    "category": "fisk",
+    "estimated_price": 120,
+    "calories_per_portion": 550,
+    "ingredients": {
+      "fiskekaker": 800,
+      "poteter": 1000,
+      "gulrot": 4,
+      "brunsaus": 1
+    }
+  },
+  {
+    "name": "Omelett med brød",
+    "category": "egg",
+    "estimated_price": 80,
+    "calories_per_portion": 500,
+    "ingredients": {
+      "egg": 8,
+      "ost": 150,
+      "skinke": 1,
+      "brod": 1,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Laksefilet med ris og grønnsaker",
+    "category": "fisk",
+    "estimated_price": 190,
+    "calories_per_portion": 700,
+    "ingredients": {
+      "laks": 600,
+      "ris": 400,
+      "brokkoli": 1,
+      "gulrot": 3
+    }
+  },
+  {
+    "name": "Kjøttdeig og spaghetti",
+    "category": "pasta",
+    "estimated_price": 100,
+    "calories_per_portion": 720,
+    "ingredients": {
+      "spaghetti": 500,
+      "kjottdeig": 400,
+      "pastasaus": 1,
+      "ost": 100
+    }
+  },
+  {
+    "name": "Kyllinggryte med ris",
+    "category": "kylling",
+    "estimated_price": 150,
+    "calories_per_portion": 750,
+    "ingredients": {
+      "kyllingfilet": 600,
+      "ris": 400,
+      "flote": 1,
+      "paprika": 2,
+      "lok": 1,
+      "buljong": 1
+    }
+  },
+  {
+    "name": "Pytt i panne med egg",
+    "category": "billig",
+    "estimated_price": 90,
+    "calories_per_portion": 600,
+    "ingredients": {
+      "poteter": 1000,
+      "polse": 500,
+      "egg": 6,
+      "lok": 1
+    }
+  },
+  {
+    "name": "Tomatsuppe med makaroni og egg",
+    "category": "billig",
+    "estimated_price": 70,
+    "calories_per_portion": 500,
+    "ingredients": {
+      "tomatsuppe": 2,
+      "makaroni": 300,
+      "egg": 6,
+      "brod": 1
+    }
+  },
+  {
+    "name": "Kyllingwraps",
+    "category": "kylling",
+    "estimated_price": 150,
+    "calories_per_portion": 680,
+    "ingredients": {
+      "tortillalefser": 1,
+      "kyllingfilet": 600,
+      "salat": 1,
+      "mais": 1,
+      "romme": 1,
+      "ost": 150
+    }
+  },
+  {
+    "name": "Pølsegrateng",
+    "category": "grateng",
+    "estimated_price": 110,
+    "calories_per_portion": 750,
+    "ingredients": {
+      "makaroni": 500,
+      "polse": 600,
+      "ost": 200,
+      "melk": 1,
+      "egg": 3
+    }
+  }
+]
