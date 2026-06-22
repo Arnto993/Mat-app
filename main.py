@@ -1,14 +1,12 @@
 from menu_generator import generate_week_menu
-from shopping_list import create_shopping_list
+from shopping_list import create_rounded_shopping_list
 
 
-def calculate_total_price(menu, number_of_people):
+def calculate_total_price_from_shopping_list(shopping_list):
     total_price = 0
 
-    for recipe in menu.values():
-        base_servings = recipe.get("servings", 4)
-        scale_factor = number_of_people / base_servings
-        total_price += recipe["estimated_price"] * scale_factor
+    for item in shopping_list.values():
+        total_price += item["estimated_total_price"]
 
     return total_price
 
@@ -29,9 +27,9 @@ def main():
     taco_friday = taco_answer == "ja"
 
     menu = generate_week_menu(taco_friday)
-    shopping_list = create_shopping_list(menu, number_of_people)
+    shopping_list = create_rounded_shopping_list(menu, number_of_people)
 
-    total_price = calculate_total_price(menu, number_of_people)
+    total_price = calculate_total_price_from_shopping_list(shopping_list)
     average_calories = calculate_average_calories(menu)
 
     print("\nUkesmeny:")
@@ -39,8 +37,13 @@ def main():
         print(f"{day}: {recipe['name']}")
 
     print("\nHandleliste:")
-    for item, amount in shopping_list.items():
-        print(f"{item}: {amount:.1f}")
+    for item in shopping_list.values():
+        print(
+            f"{item['display_name']}: "
+            f"{item['packages_needed']} {item['package_unit']} "
+            f"(trenger {item['needed_amount']:.1f} {item['unit']}) "
+            f"- ca. {item['estimated_total_price']} kr"
+        )
 
     print(f"\nAnslått totalpris: {total_price:.0f} kr")
     print(f"Snitt kalorier per person per middag: {average_calories:.0f} kcal")
