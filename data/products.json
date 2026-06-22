@@ -1,0 +1,233 @@
+{
+  "pasta": {
+    "display_name": "Pasta",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pakke",
+    "estimated_package_price": 25
+  },
+  "spaghetti": {
+    "display_name": "Spaghetti",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pakke",
+    "estimated_package_price": 25
+  },
+  "makaroni": {
+    "display_name": "Makaroni",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pakke",
+    "estimated_package_price": 25
+  },
+  "ris": {
+    "display_name": "Ris",
+    "unit": "g",
+    "package_size": 1000,
+    "package_unit": "pose",
+    "estimated_package_price": 35
+  },
+  "kjottdeig": {
+    "display_name": "Kjøttdeig",
+    "unit": "g",
+    "package_size": 400,
+    "package_unit": "pakke",
+    "estimated_package_price": 65
+  },
+  "kyllingfilet": {
+    "display_name": "Kyllingfilet",
+    "unit": "g",
+    "package_size": 600,
+    "package_unit": "pakke",
+    "estimated_package_price": 120
+  },
+  "laks": {
+    "display_name": "Laks",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pakke",
+    "estimated_package_price": 130
+  },
+  "fiskekaker": {
+    "display_name": "Fiskekaker",
+    "unit": "g",
+    "package_size": 800,
+    "package_unit": "pakke",
+    "estimated_package_price": 70
+  },
+  "polse": {
+    "display_name": "Pølse",
+    "unit": "g",
+    "package_size": 600,
+    "package_unit": "pakke",
+    "estimated_package_price": 60
+  },
+  "hakkede_tomater": {
+    "display_name": "Hakkede tomater",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 15
+  },
+  "pastasaus": {
+    "display_name": "Pastasaus",
+    "unit": "glass",
+    "package_size": 1,
+    "package_unit": "glass",
+    "estimated_package_price": 25
+  },
+  "tomatsuppe": {
+    "display_name": "Tomatsuppe",
+    "unit": "pose",
+    "package_size": 1,
+    "package_unit": "pose",
+    "estimated_package_price": 18
+  },
+  "tacolefser": {
+    "display_name": "Tacolefser",
+    "unit": "pakke",
+    "package_size": 1,
+    "package_unit": "pakke",
+    "estimated_package_price": 30
+  },
+  "tortillalefser": {
+    "display_name": "Tortillalefser",
+    "unit": "pakke",
+    "package_size": 1,
+    "package_unit": "pakke",
+    "estimated_package_price": 30
+  },
+  "tacokrydder": {
+    "display_name": "Tacokrydder",
+    "unit": "pose",
+    "package_size": 1,
+    "package_unit": "pose",
+    "estimated_package_price": 10
+  },
+  "mais": {
+    "display_name": "Mais",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 15
+  },
+  "ost": {
+    "display_name": "Ost",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pakke",
+    "estimated_package_price": 80
+  },
+  "romme": {
+    "display_name": "Rømme",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 25
+  },
+  "salat": {
+    "display_name": "Salat",
+    "unit": "stk",
+    "package_size": 1,
+    "package_unit": "stk",
+    "estimated_package_price": 25
+  },
+  "poteter": {
+    "display_name": "Poteter",
+    "unit": "g",
+    "package_size": 2500,
+    "package_unit": "pose",
+    "estimated_package_price": 45
+  },
+  "gulrot": {
+    "display_name": "Gulrot",
+    "unit": "stk",
+    "package_size": 8,
+    "package_unit": "pose",
+    "estimated_package_price": 25
+  },
+  "lok": {
+    "display_name": "Løk",
+    "unit": "stk",
+    "package_size": 4,
+    "package_unit": "pose",
+    "estimated_package_price": 25
+  },
+  "paprika": {
+    "display_name": "Paprika",
+    "unit": "stk",
+    "package_size": 1,
+    "package_unit": "stk",
+    "estimated_package_price": 15
+  },
+  "brokkoli": {
+    "display_name": "Brokkoli",
+    "unit": "stk",
+    "package_size": 1,
+    "package_unit": "stk",
+    "estimated_package_price": 25
+  },
+  "wokgronnsaker": {
+    "display_name": "Wokgrønnsaker",
+    "unit": "pose",
+    "package_size": 1,
+    "package_unit": "pose",
+    "estimated_package_price": 35
+  },
+  "egg": {
+    "display_name": "Egg",
+    "unit": "stk",
+    "package_size": 12,
+    "package_unit": "kartong",
+    "estimated_package_price": 45
+  },
+  "skinke": {
+    "display_name": "Skinke",
+    "unit": "pakke",
+    "package_size": 1,
+    "package_unit": "pakke",
+    "estimated_package_price": 30
+  },
+  "brod": {
+    "display_name": "Brød",
+    "unit": "stk",
+    "package_size": 1,
+    "package_unit": "stk",
+    "estimated_package_price": 35
+  },
+  "brunsaus": {
+    "display_name": "Brunsaus",
+    "unit": "pose",
+    "package_size": 1,
+    "package_unit": "pose",
+    "estimated_package_price": 15
+  },
+  "soyasaus": {
+    "display_name": "Soyasaus",
+    "unit": "flaske",
+    "package_size": 1,
+    "package_unit": "flaske",
+    "estimated_package_price": 30
+  },
+  "flote": {
+    "display_name": "Fløte",
+    "unit": "kartong",
+    "package_size": 1,
+    "package_unit": "kartong",
+    "estimated_package_price": 25
+  },
+  "melk": {
+    "display_name": "Melk",
+    "unit": "liter",
+    "package_size": 1,
+    "package_unit": "kartong",
+    "estimated_package_price": 25
+  },
+  "buljong": {
+    "display_name": "Buljong",
+    "unit": "pakke",
+    "package_size": 1,
+    "package_unit": "pakke",
+    "estimated_package_price": 25
+  }
+}
