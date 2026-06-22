@@ -1,6 +1,7 @@
 [
   {
     "name": "Pasta bolognese",
+    "servings": 4,
     "category": "pasta",
     "estimated_price": 110,
     "calories_per_portion": 700,
@@ -14,6 +15,7 @@
   },
   {
     "name": "Taco",
+    "servings": 4,
     "category": "texmex",
     "estimated_price": 180,
     "calories_per_portion": 800,
@@ -29,6 +31,7 @@
   },
   {
     "name": "Kyllingwok med ris",
+    "servings": 4,
     "category": "asiatisk",
     "estimated_price": 140,
     "calories_per_portion": 650,
@@ -41,6 +44,7 @@
   },
   {
     "name": "Fiskekaker med potet og gulrot",
+    "servings": 4,
     "category": "fisk",
     "estimated_price": 120,
     "calories_per_portion": 550,
@@ -53,6 +57,7 @@
   },
   {
     "name": "Omelett med brød",
+    "servings": 4,
     "category": "egg",
     "estimated_price": 80,
     "calories_per_portion": 500,
@@ -66,6 +71,7 @@
   },
   {
     "name": "Laksefilet med ris og grønnsaker",
+    "servings": 4,
     "category": "fisk",
     "estimated_price": 190,
     "calories_per_portion": 700,
@@ -78,6 +84,7 @@
   },
   {
     "name": "Kjøttdeig og spaghetti",
+    "servings": 4,
     "category": "pasta",
     "estimated_price": 100,
     "calories_per_portion": 720,
@@ -90,6 +97,7 @@
   },
   {
     "name": "Kyllinggryte med ris",
+    "servings": 4,
     "category": "kylling",
     "estimated_price": 150,
     "calories_per_portion": 750,
@@ -104,6 +112,7 @@
   },
   {
     "name": "Pytt i panne med egg",
+    "servings": 4,
     "category": "billig",
     "estimated_price": 90,
     "calories_per_portion": 600,
@@ -116,6 +125,7 @@
   },
   {
     "name": "Tomatsuppe med makaroni og egg",
+    "servings": 4,
     "category": "billig",
     "estimated_price": 70,
     "calories_per_portion": 500,
@@ -128,6 +138,7 @@
   },
   {
     "name": "Kyllingwraps",
+    "servings": 4,
     "category": "kylling",
     "estimated_price": 150,
     "calories_per_portion": 680,
@@ -142,6 +153,7 @@
   },
   {
     "name": "Pølsegrateng",
+    "servings": 4,
     "category": "grateng",
     "estimated_price": 110,
     "calories_per_portion": 750,
