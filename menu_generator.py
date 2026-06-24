@@ -1,6 +1,8 @@
 import random
+
 from recipes import get_recipes
-from shopping_list import create_rounded_shopping_list, calculate_total_price_from_shopping_list
+from shopping_list import create_rounded_shopping_list
+from price_calculator import calculate_total_price_from_shopping_list
 
 
 DAYS = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"]
@@ -13,29 +15,74 @@ def find_recipe_by_name(recipes, name):
 
     return None
 
+
+def recipe_contains_fish(recipe):
+    return recipe.get("contains_fish", False) or recipe.get("category") == "fisk"
+
+
 def has_fish(menu):
     return any(
-        recipe.get("category") == "fisk"
+        recipe_contains_fish(recipe)
         for recipe in menu.values()
     )
 
-def generate_week_menu(taco_friday=True):
-    recipes = get_recipes()
-    menu = {}
 
+def filter_recipes(recipes, preferences):
+    filtered_recipes = []
+
+    for recipe in recipes:
+        # Hvis brukeren IKKE vil ha fisk, filtrer bort fiskeretter
+        if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
+            continue
+
+        # Hvis brukeren bare vil ha vegetar
+        if preferences.get("vegetarian_only") and not recipe.get("vegetarian", False):
+            continue
+
+        # Hvis brukeren har maks tid per middag
+        max_time = preferences.get("max_time_minutes")
+        if max_time is not None and recipe.get("time_minutes", 999) > max_time:
+            continue
+
+        # Hvis brukeren vil unngå bestemte kategorier
+        avoid_categories = preferences.get("avoid_categories", [])
+        if recipe.get("category") in avoid_categories:
+            continue
+
+        filtered_recipes.append(recipe)
+
+    return filtered_recipes
+
+
+def menu_matches_preferences(menu, preferences):
+    # Hvis brukeren vil ha fisk, må menyen inneholde minst én fiskerett
+    if preferences.get("wants_fish") is True and not has_fish(menu):
+        return False
+
+    # Hvis brukeren ikke vil ha fisk, skal menyen ikke ha fisk
+    if preferences.get("wants_fish") is False and has_fish(menu):
+        return False
+
+    return True
+
+
+def generate_week_menu(recipes, taco_friday=True):
+    menu = {}
     available_recipes = recipes.copy()
 
     if taco_friday:
         taco = find_recipe_by_name(available_recipes, "Taco")
 
-        if taco is not None:
-            menu["Fredag"] = taco
-            available_recipes.remove(taco)
+        if taco is None:
+            return None
+
+        menu["Fredag"] = taco
+        available_recipes.remove(taco)
 
     days_to_fill = [day for day in DAYS if day not in menu]
 
     if len(available_recipes) < len(days_to_fill):
-        raise ValueError("Ikke nok oppskrifter til å lage ukesmeny.")
+        return None
 
     selected_recipes = random.sample(available_recipes, len(days_to_fill))
 
@@ -44,17 +91,24 @@ def generate_week_menu(taco_friday=True):
 
     return menu
 
+
 def generate_menu_with_budget(
     number_of_people,
     taco_friday,
     max_budget,
-    wants_fish,
+    preferences,
     max_attempts=100
 ):
-    for attempt in range(max_attempts):
-        menu = generate_week_menu(taco_friday)
+    recipes = get_recipes()
+    available_recipes = filter_recipes(recipes, preferences)
 
-        if has_fish(menu) != wants_fish:
+    for attempt in range(max_attempts):
+        menu = generate_week_menu(available_recipes, taco_friday)
+
+        if menu is None:
+            return None, None, None
+
+        if not menu_matches_preferences(menu, preferences):
             continue
 
         shopping_list = create_rounded_shopping_list(menu, number_of_people)

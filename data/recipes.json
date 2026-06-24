@@ -1,24 +1,16 @@
 [
   {
-    "name": "Pasta bolognese",
-    "servings": 4,
-    "category": "pasta",
-    "estimated_price": 110,
-    "calories_per_portion": 700,
-    "ingredients": {
-      "pasta": 500,
-      "kjottdeig": 400,
-      "hakkede_tomater": 2,
-      "lok": 1,
-      "gulrot": 2
-    }
-  },
-  {
     "name": "Taco",
     "servings": 4,
     "category": "texmex",
-    "estimated_price": 180,
+    "tags": ["fredag", "student", "kjott", "populaer"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 25,
     "calories_per_portion": 800,
+    "estimated_price": 180,
     "ingredients": {
       "tacolefser": 1,
       "kjottdeig": 600,
@@ -32,9 +24,15 @@
   {
     "name": "Kyllingwok med ris",
     "servings": 4,
-    "category": "asiatisk",
-    "estimated_price": 140,
+    "category": "kylling",
+    "tags": ["rask", "sunn", "student", "ris"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
     "calories_per_portion": 650,
+    "estimated_price": 140,
     "ingredients": {
       "kyllingfilet": 600,
       "ris": 400,
@@ -43,51 +41,38 @@
     }
   },
   {
-    "name": "Fiskekaker med potet og gulrot",
-    "servings": 4,
-    "category": "fisk",
-    "estimated_price": 120,
-    "calories_per_portion": 550,
-    "ingredients": {
-      "fiskekaker": 800,
-      "poteter": 1000,
-      "gulrot": 4,
-      "brunsaus": 1
-    }
-  },
-  {
-    "name": "Omelett med brød",
-    "servings": 4,
-    "category": "egg",
-    "estimated_price": 80,
-    "calories_per_portion": 500,
-    "ingredients": {
-      "egg": 8,
-      "ost": 150,
-      "skinke": 1,
-      "brod": 1,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Laksefilet med ris og grønnsaker",
-    "servings": 4,
-    "category": "fisk",
-    "estimated_price": 190,
-    "calories_per_portion": 700,
-    "ingredients": {
-      "laks": 600,
-      "ris": 400,
-      "brokkoli": 1,
-      "gulrot": 3
-    }
-  },
-  {
-    "name": "Kjøttdeig og spaghetti",
+    "name": "Pasta bolognese",
     "servings": 4,
     "category": "pasta",
-    "estimated_price": 100,
+    "tags": ["student", "kjott", "mettende"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 700,
+    "estimated_price": 110,
+    "ingredients": {
+      "pasta": 500,
+      "kjottdeig": 400,
+      "hakkede_tomater": 2,
+      "lok": 1,
+      "gulrot": 2,
+      "ost": 100
+    }
+  },
+  {
+    "name": "Spaghetti med kjøttsaus",
+    "servings": 4,
+    "category": "pasta",
+    "tags": ["billig", "student", "kjott"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 25,
     "calories_per_portion": 720,
+    "estimated_price": 100,
     "ingredients": {
       "spaghetti": 500,
       "kjottdeig": 400,
@@ -96,11 +81,74 @@
     }
   },
   {
+    "name": "Fiskekaker med potet og gulrot",
+    "servings": 4,
+    "category": "fisk",
+    "tags": ["fisk", "norsk", "billig", "enkel"],
+    "contains_fish": true,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 550,
+    "estimated_price": 120,
+    "ingredients": {
+      "fiskekaker": 800,
+      "poteter": 1000,
+      "gulrot": 4,
+      "brunsaus": 1
+    }
+  },
+  {
+    "name": "Laks med ris og brokkoli",
+    "servings": 4,
+    "category": "fisk",
+    "tags": ["fisk", "sunn", "dyrere", "ris"],
+    "contains_fish": true,
+    "vegetarian": false,
+    "healthy_score": 5,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 700,
+    "estimated_price": 190,
+    "ingredients": {
+      "laks": 600,
+      "ris": 400,
+      "brokkoli": 1,
+      "gulrot": 3
+    }
+  },
+  {
+    "name": "Laks med poteter og grønnsaker",
+    "servings": 4,
+    "category": "fisk",
+    "tags": ["fisk", "sunn", "norsk"],
+    "contains_fish": true,
+    "vegetarian": false,
+    "healthy_score": 5,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 680,
+    "estimated_price": 190,
+    "ingredients": {
+      "laks": 600,
+      "poteter": 1000,
+      "brokkoli": 1,
+      "gulrot": 4
+    }
+  },
+  {
     "name": "Kyllinggryte med ris",
     "servings": 4,
     "category": "kylling",
-    "estimated_price": 150,
+    "tags": ["mettende", "gryte", "student"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "middels",
+    "time_minutes": 40,
     "calories_per_portion": 750,
+    "estimated_price": 150,
     "ingredients": {
       "kyllingfilet": 600,
       "ris": 400,
@@ -111,37 +159,38 @@
     }
   },
   {
-    "name": "Pytt i panne med egg",
+    "name": "Kremet kyllingpasta",
     "servings": 4,
-    "category": "billig",
-    "estimated_price": 90,
-    "calories_per_portion": 600,
+    "category": "pasta",
+    "tags": ["kylling", "pasta", "mettende"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 780,
+    "estimated_price": 150,
     "ingredients": {
-      "poteter": 1000,
-      "polse": 500,
-      "egg": 6,
-      "lok": 1
-    }
-  },
-  {
-    "name": "Tomatsuppe med makaroni og egg",
-    "servings": 4,
-    "category": "billig",
-    "estimated_price": 70,
-    "calories_per_portion": 500,
-    "ingredients": {
-      "tomatsuppe": 2,
-      "makaroni": 300,
-      "egg": 6,
-      "brod": 1
+      "pasta": 500,
+      "kyllingfilet": 600,
+      "flote": 1,
+      "paprika": 1,
+      "ost": 150,
+      "buljong": 1
     }
   },
   {
     "name": "Kyllingwraps",
     "servings": 4,
     "category": "kylling",
-    "estimated_price": 150,
+    "tags": ["rask", "wraps", "student"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 25,
     "calories_per_portion": 680,
+    "estimated_price": 150,
     "ingredients": {
       "tortillalefser": 1,
       "kyllingfilet": 600,
@@ -152,17 +201,341 @@
     }
   },
   {
+    "name": "Omelett med brød",
+    "servings": 4,
+    "category": "egg",
+    "tags": ["billig", "rask", "vegetar", "enkel"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 20,
+    "calories_per_portion": 500,
+    "estimated_price": 80,
+    "ingredients": {
+      "egg": 8,
+      "ost": 150,
+      "brod": 1,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Potetomelett",
+    "servings": 4,
+    "category": "egg",
+    "tags": ["billig", "vegetar", "mettende"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 600,
+    "estimated_price": 90,
+    "ingredients": {
+      "egg": 8,
+      "poteter": 800,
+      "lok": 1,
+      "ost": 150,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Tomatsuppe med makaroni og egg",
+    "servings": 4,
+    "category": "suppe",
+    "tags": ["billig", "rask", "vegetar", "student"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 20,
+    "calories_per_portion": 500,
+    "estimated_price": 70,
+    "ingredients": {
+      "tomatsuppe": 2,
+      "makaroni": 300,
+      "egg": 6,
+      "brod": 1
+    }
+  },
+  {
+    "name": "Grønnsakspasta med tomatsaus",
+    "servings": 4,
+    "category": "pasta",
+    "tags": ["vegetar", "billig", "sunn"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 620,
+    "estimated_price": 90,
+    "ingredients": {
+      "pasta": 500,
+      "hakkede_tomater": 2,
+      "lok": 1,
+      "gulrot": 3,
+      "paprika": 1,
+      "ost": 100
+    }
+  },
+  {
+    "name": "Riswok med egg",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "rask", "sunn", "billig"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 600,
+    "estimated_price": 85,
+    "ingredients": {
+      "ris": 400,
+      "egg": 6,
+      "wokgronnsaker": 1,
+      "soyasaus": 1
+    }
+  },
+  {
     "name": "Pølsegrateng",
     "servings": 4,
     "category": "grateng",
-    "estimated_price": 110,
+    "tags": ["student", "mettende", "billig"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 2,
+    "difficulty": "lett",
+    "time_minutes": 40,
     "calories_per_portion": 750,
+    "estimated_price": 110,
     "ingredients": {
       "makaroni": 500,
       "polse": 600,
       "ost": 200,
       "melk": 1,
       "egg": 3
+    }
+  },
+  {
+    "name": "Pytt i panne med egg",
+    "servings": 4,
+    "category": "potet",
+    "tags": ["billig", "student", "mettende"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 2,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 650,
+    "estimated_price": 90,
+    "ingredients": {
+      "poteter": 1000,
+      "polse": 500,
+      "egg": 6,
+      "lok": 1
+    }
+  },
+  {
+    "name": "Pølser med potetmos og gulrot",
+    "servings": 4,
+    "category": "potet",
+    "tags": ["billig", "enkel", "student"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 2,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 680,
+    "estimated_price": 100,
+    "ingredients": {
+      "polse": 600,
+      "poteter": 1200,
+      "melk": 1,
+      "gulrot": 4,
+      "brunsaus": 1
+    }
+  },
+  {
+    "name": "Makaroniform med skinke og ost",
+    "servings": 4,
+    "category": "grateng",
+    "tags": ["student", "mettende", "enkel"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 2,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 720,
+    "estimated_price": 110,
+    "ingredients": {
+      "makaroni": 500,
+      "skinke": 1,
+      "ost": 250,
+      "melk": 1,
+      "egg": 3
+    }
+  },
+  {
+    "name": "Eggesmørbrød med salat",
+    "servings": 4,
+    "category": "egg",
+    "tags": ["rask", "billig", "vegetar", "lett"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 15,
+    "calories_per_portion": 480,
+    "estimated_price": 75,
+    "ingredients": {
+      "brod": 1,
+      "egg": 8,
+      "salat": 1,
+      "ost": 100,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Fiskekaker i wraps",
+    "servings": 4,
+    "category": "fisk",
+    "tags": ["fisk", "rask", "wraps"],
+    "contains_fish": true,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 20,
+    "calories_per_portion": 620,
+    "estimated_price": 130,
+    "ingredients": {
+      "fiskekaker": 800,
+      "tortillalefser": 1,
+      "salat": 1,
+      "romme": 1,
+      "mais": 1
+    }
+  },
+  {
+    "name": "Kylling med poteter og brokkoli",
+    "servings": 4,
+    "category": "kylling",
+    "tags": ["sunn", "norsk", "protein"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 5,
+    "difficulty": "lett",
+    "time_minutes": 40,
+    "calories_per_portion": 650,
+    "estimated_price": 150,
+    "ingredients": {
+      "kyllingfilet": 600,
+      "poteter": 1000,
+      "brokkoli": 1,
+      "gulrot": 4,
+      "brunsaus": 1
+    }
+  },
+  {
+    "name": "Rask kyllingris",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["rask", "kylling", "student"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 670,
+    "estimated_price": 130,
+    "ingredients": {
+      "kyllingfilet": 600,
+      "ris": 400,
+      "mais": 1,
+      "paprika": 1,
+      "soyasaus": 1
+    }
+  },
+  {
+    "name": "Pasta med skinke og ostesaus",
+    "servings": 4,
+    "category": "pasta",
+    "tags": ["student", "rask", "mettende"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 2,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 760,
+    "estimated_price": 100,
+    "ingredients": {
+      "pasta": 500,
+      "skinke": 1,
+      "ost": 200,
+      "melk": 1,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Vegetargrateng med makaroni",
+    "servings": 4,
+    "category": "grateng",
+    "tags": ["vegetar", "mettende", "student"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 40,
+    "calories_per_portion": 700,
+    "estimated_price": 100,
+    "ingredients": {
+      "makaroni": 500,
+      "ost": 250,
+      "melk": 1,
+      "egg": 4,
+      "brokkoli": 1,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Potetform med egg og ost",
+    "servings": 4,
+    "category": "potet",
+    "tags": ["vegetar", "billig", "mettende"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 3,
+    "difficulty": "middels",
+    "time_minutes": 45,
+    "calories_per_portion": 650,
+    "estimated_price": 95,
+    "ingredients": {
+      "poteter": 1200,
+      "egg": 6,
+      "ost": 200,
+      "melk": 1,
+      "lok": 1
+    }
+  },
+  {
+    "name": "Tomatpasta med egg",
+    "servings": 4,
+    "category": "pasta",
+    "tags": ["vegetar", "billig", "protein"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 640,
+    "estimated_price": 90,
+    "ingredients": {
+      "pasta": 500,
+      "hakkede_tomater": 2,
+      "egg": 6,
+      "lok": 1,
+      "gulrot": 2
     }
   }
 ]

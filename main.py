@@ -16,15 +16,23 @@ def main():
 
     max_budget = int(input("Hva er maks budsjett for uken? (i kr): "))
 
-    taco_answer = input("Vil du ha taco på fredag? ja/nei: ").lower()
-    taco_friday = taco_answer == "ja"
+    taco_friday = input("Vil du ha taco på fredag? ja/nei: ").lower() == "ja"
     wants_fish = input("Vil du ha fisk i ukesmenyen? ja/nei: ").lower() == "ja"
+    max_time_minutes = int(input("Hva er maks tid du vil bruke på middag? (i minutter): "))
+    vegetarian_only = input("Vil du ha kun vegetariske retter? ja/nei: ").lower() == "ja"
+
+    preferences = {
+        "wants_fish": wants_fish,
+        "vegetarian_only": vegetarian_only,
+        "max_time_minutes": max_time_minutes,
+        "avoid_categories": []
+    }
 
     menu, shopping_list, total_price = generate_menu_with_budget(
         number_of_people,
         taco_friday,
         max_budget,
-        wants_fish
+        preferences
     )
 
     if menu is None:
