@@ -3,6 +3,7 @@ import random
 from src.recipes import get_recipes
 from src.shopping_list import create_rounded_shopping_list
 from src.price_calculator import calculate_total_price_from_shopping_list
+from src.allergens import recipe_has_excluded_allergens
 
 
 DAYS = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"]
@@ -31,22 +32,22 @@ def filter_recipes(recipes, preferences):
     filtered_recipes = []
 
     for recipe in recipes:
-        # Hvis brukeren IKKE vil ha fisk, filtrer bort fiskeretter
         if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
             continue
 
-        # Hvis brukeren bare vil ha vegetar
         if preferences.get("vegetarian_only") and not recipe.get("vegetarian", False):
             continue
 
-        # Hvis brukeren har maks tid per middag
         max_time = preferences.get("max_time_minutes")
         if max_time is not None and recipe.get("time_minutes", 999) > max_time:
             continue
 
-        # Hvis brukeren vil unngå bestemte kategorier
         avoid_categories = preferences.get("avoid_categories", [])
         if recipe.get("category") in avoid_categories:
+            continue
+
+        excluded_allergens = preferences.get("excluded_allergens", [])
+        if recipe_has_excluded_allergens(recipe, excluded_allergens):
             continue
 
         filtered_recipes.append(recipe)
