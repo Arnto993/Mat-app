@@ -1,14 +1,5 @@
-from menu_generator import generate_week_menu
-from shopping_list import create_rounded_shopping_list
+from menu_generator import generate_menu_with_budget, has_fish
 
-
-def calculate_total_price_from_shopping_list(shopping_list):
-    total_price = 0
-
-    for item in shopping_list.values():
-        total_price += item["estimated_total_price"]
-
-    return total_price
 
 
 def calculate_average_calories(menu):
@@ -23,13 +14,23 @@ def calculate_average_calories(menu):
 def main():
     number_of_people = int(input("Hvor mange personer skal spise middag? "))
 
+    max_budget = int(input("Hva er maks budsjett for uken? (i kr): "))
+
     taco_answer = input("Vil du ha taco på fredag? ja/nei: ").lower()
     taco_friday = taco_answer == "ja"
+    wants_fish = input("Vil du ha fisk i ukesmenyen? ja/nei: ").lower() == "ja"
 
-    menu = generate_week_menu(taco_friday)
-    shopping_list = create_rounded_shopping_list(menu, number_of_people)
+    menu, shopping_list, total_price = generate_menu_with_budget(
+        number_of_people,
+        taco_friday,
+        max_budget,
+        wants_fish
+    )
 
-    total_price = calculate_total_price_from_shopping_list(shopping_list)
+    if menu is None:
+        print("Kunne ikke generere en ukesmeny innenfor budsjettet og preferansene.")
+        return
+    
     average_calories = calculate_average_calories(menu)
 
     print("\nUkesmeny:")
