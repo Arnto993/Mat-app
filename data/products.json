@@ -4,230 +4,263 @@
     "unit": "g",
     "package_size": 500,
     "package_unit": "pakke",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": ["gluten"]
   },
   "spaghetti": {
     "display_name": "Spaghetti",
     "unit": "g",
     "package_size": 500,
     "package_unit": "pakke",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": ["gluten"]
   },
   "makaroni": {
     "display_name": "Makaroni",
     "unit": "g",
     "package_size": 500,
     "package_unit": "pakke",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": ["gluten"]
   },
   "ris": {
     "display_name": "Ris",
     "unit": "g",
     "package_size": 1000,
     "package_unit": "pose",
-    "estimated_package_price": 35
+    "estimated_package_price": 35,
+    "allergens": []
   },
   "kjottdeig": {
     "display_name": "Kjøttdeig",
     "unit": "g",
     "package_size": 400,
     "package_unit": "pakke",
-    "estimated_package_price": 65
+    "estimated_package_price": 65,
+    "allergens": []
   },
   "kyllingfilet": {
     "display_name": "Kyllingfilet",
     "unit": "g",
     "package_size": 600,
     "package_unit": "pakke",
-    "estimated_package_price": 120
+    "estimated_package_price": 120,
+    "allergens": []
   },
   "laks": {
     "display_name": "Laks",
     "unit": "g",
     "package_size": 500,
     "package_unit": "pakke",
-    "estimated_package_price": 130
+    "estimated_package_price": 130,
+    "allergens": ["fish"]
   },
   "fiskekaker": {
     "display_name": "Fiskekaker",
     "unit": "g",
     "package_size": 800,
     "package_unit": "pakke",
-    "estimated_package_price": 70
+    "estimated_package_price": 70,
+    "allergens": ["fish", "milk", "lactose"]
   },
   "polse": {
     "display_name": "Pølse",
     "unit": "g",
     "package_size": 600,
     "package_unit": "pakke",
-    "estimated_package_price": 60
+    "estimated_package_price": 60,
+    "allergens": []
   },
   "hakkede_tomater": {
     "display_name": "Hakkede tomater",
     "unit": "boks",
     "package_size": 1,
     "package_unit": "boks",
-    "estimated_package_price": 15
+    "estimated_package_price": 15,
+    "allergens": []
   },
   "pastasaus": {
     "display_name": "Pastasaus",
     "unit": "glass",
     "package_size": 1,
     "package_unit": "glass",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": []
   },
   "tomatsuppe": {
     "display_name": "Tomatsuppe",
     "unit": "pose",
     "package_size": 1,
     "package_unit": "pose",
-    "estimated_package_price": 18
+    "estimated_package_price": 18,
+    "allergens": ["gluten", "milk", "lactose"]
   },
   "tacolefser": {
     "display_name": "Tacolefser",
     "unit": "pakke",
     "package_size": 1,
     "package_unit": "pakke",
-    "estimated_package_price": 30
+    "estimated_package_price": 30,
+    "allergens": ["gluten"]
   },
   "tortillalefser": {
     "display_name": "Tortillalefser",
     "unit": "pakke",
     "package_size": 1,
     "package_unit": "pakke",
-    "estimated_package_price": 30
+    "estimated_package_price": 30,
+    "allergens": ["gluten"]
   },
   "tacokrydder": {
     "display_name": "Tacokrydder",
     "unit": "pose",
     "package_size": 1,
     "package_unit": "pose",
-    "estimated_package_price": 10
+    "estimated_package_price": 10,
+    "allergens": []
   },
   "mais": {
     "display_name": "Mais",
     "unit": "boks",
     "package_size": 1,
     "package_unit": "boks",
-    "estimated_package_price": 15
+    "estimated_package_price": 15,
+    "allergens": []
   },
   "ost": {
     "display_name": "Ost",
     "unit": "g",
     "package_size": 500,
     "package_unit": "pakke",
-    "estimated_package_price": 80
+    "estimated_package_price": 80,
+    "allergens": ["milk", "lactose"]
   },
   "romme": {
     "display_name": "Rømme",
     "unit": "boks",
     "package_size": 1,
     "package_unit": "boks",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": ["milk", "lactose"]
   },
   "salat": {
     "display_name": "Salat",
     "unit": "stk",
     "package_size": 1,
     "package_unit": "stk",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": []
   },
   "poteter": {
     "display_name": "Poteter",
     "unit": "g",
     "package_size": 2500,
     "package_unit": "pose",
-    "estimated_package_price": 45
+    "estimated_package_price": 45,
+    "allergens": []
   },
   "gulrot": {
     "display_name": "Gulrot",
     "unit": "stk",
     "package_size": 8,
     "package_unit": "pose",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": []
   },
   "lok": {
     "display_name": "Løk",
     "unit": "stk",
     "package_size": 4,
     "package_unit": "pose",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": []
   },
   "paprika": {
     "display_name": "Paprika",
     "unit": "stk",
     "package_size": 1,
     "package_unit": "stk",
-    "estimated_package_price": 15
+    "estimated_package_price": 15,
+    "allergens": []
   },
   "brokkoli": {
     "display_name": "Brokkoli",
     "unit": "stk",
     "package_size": 1,
     "package_unit": "stk",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": []
   },
   "wokgronnsaker": {
     "display_name": "Wokgrønnsaker",
     "unit": "pose",
     "package_size": 1,
     "package_unit": "pose",
-    "estimated_package_price": 35
+    "estimated_package_price": 35,
+    "allergens": []
   },
   "egg": {
     "display_name": "Egg",
     "unit": "stk",
     "package_size": 12,
     "package_unit": "kartong",
-    "estimated_package_price": 45
+    "estimated_package_price": 45,
+    "allergens": ["egg"]
   },
   "skinke": {
     "display_name": "Skinke",
     "unit": "pakke",
     "package_size": 1,
     "package_unit": "pakke",
-    "estimated_package_price": 30
+    "estimated_package_price": 30,
+    "allergens": []
   },
   "brod": {
     "display_name": "Brød",
     "unit": "stk",
     "package_size": 1,
     "package_unit": "stk",
-    "estimated_package_price": 35
+    "estimated_package_price": 35,
+    "allergens": ["gluten"]
   },
   "brunsaus": {
     "display_name": "Brunsaus",
     "unit": "pose",
     "package_size": 1,
     "package_unit": "pose",
-    "estimated_package_price": 15
+    "estimated_package_price": 15,
+    "allergens": ["gluten", "milk", "lactose"]
   },
   "soyasaus": {
     "display_name": "Soyasaus",
     "unit": "flaske",
     "package_size": 1,
     "package_unit": "flaske",
-    "estimated_package_price": 30
+    "estimated_package_price": 30,
+    "allergens": ["soy", "gluten"]
   },
   "flote": {
     "display_name": "Fløte",
     "unit": "kartong",
     "package_size": 1,
     "package_unit": "kartong",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": ["milk", "lactose"]
   },
   "melk": {
     "display_name": "Melk",
     "unit": "liter",
     "package_size": 1,
     "package_unit": "kartong",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": ["milk", "lactose"]
   },
   "buljong": {
     "display_name": "Buljong",
     "unit": "pakke",
     "package_size": 1,
     "package_unit": "pakke",
-    "estimated_package_price": 25
+    "estimated_package_price": 25,
+    "allergens": []
   }
 }

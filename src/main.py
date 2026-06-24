@@ -1,5 +1,4 @@
-from src.menu_generator import generate_menu_with_budget, has_fish
-
+from src.menu_generator import generate_menu_with_budget
 
 
 def calculate_average_calories(menu):
@@ -27,6 +26,9 @@ def main():
         "max_time_minutes": max_time_minutes,
         "avoid_categories": []
     }
+
+    if taco_friday and vegetarian_only:
+        print("Vanlig taco fredag passer ikke med bare vegetarmat ennå.")
 
     menu, shopping_list, total_price = generate_menu_with_budget(
         number_of_people,
