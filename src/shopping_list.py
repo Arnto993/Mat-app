@@ -1,5 +1,5 @@
 import math
-from products import get_products
+from src.products import get_products
 
 
 def create_raw_shopping_list(menu, number_of_people):

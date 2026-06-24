@@ -1,4 +1,4 @@
-from menu_generator import generate_menu_with_budget, has_fish
+from src.menu_generator import generate_menu_with_budget, has_fish
 
 
 

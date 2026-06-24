@@ -1,8 +1,8 @@
 import random
 
-from recipes import get_recipes
-from shopping_list import create_rounded_shopping_list
-from price_calculator import calculate_total_price_from_shopping_list
+from src.recipes import get_recipes
+from src.shopping_list import create_rounded_shopping_list
+from src.price_calculator import calculate_total_price_from_shopping_list
 
 
 DAYS = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"]
