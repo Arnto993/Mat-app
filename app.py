@@ -2,6 +2,16 @@ import streamlit as st
 
 from src.menu_generator import generate_menu_with_budget
 
+def validate_preferences(preferences, taco_friday):
+    errors = []
+
+    if preferences["wants_fish"] and "fish" in preferences["excluded_allergens"]:
+        errors.append("Du har valgt minst én fiskemiddag, men også valgt å unngå fisk.")
+
+    if taco_friday and preferences["vegetarian_only"]:
+        errors.append("Du har valgt taco fredag, men også bare vegetarmat. Vegetartaco er ikke støttet ennå.")
+
+    return errors
 
 def format_amount(amount):
     if amount == int(amount):
@@ -75,6 +85,11 @@ max_time_minutes = st.slider(
     step=5
 )
 
+menu_style = st.selectbox(
+    "Hva ønsker du å prioritere?",
+    ["Ingen spesiell prioritering", "Billigst mulig", "Raskest mulig", "Sunnere uke"]
+)
+
 preferences = {
     "wants_fish": wants_fish,
     "vegetarian_only": vegetarian_only,
@@ -89,7 +104,12 @@ if taco_friday and vegetarian_only:
 if wants_fish and "fish" in excluded_allergens:
     st.warning("Du har valgt minst én fiskemiddag, men også valgt å unngå fisk.")
 
-if st.button("Generer ukesmeny"):
+errors =validate_preferences(preferences, taco_friday)
+
+if st.button("Generer ukesmeny") and errors:
+    for error in errors:
+        st.warning(error)
+else:
     menu, shopping_list, total_price = generate_menu_with_budget(
         number_of_people,
         taco_friday,
@@ -107,7 +127,10 @@ if st.button("Generer ukesmeny"):
         for day in DAYS:
             if day in menu:
                 recipe = menu[day]
-                st.write(f"**{day}:** {recipe['name']}")
+                with st.expander(f"**{day}:** {recipe['name']}"):
+                    st.write(f"Tid: {recipe['time']} minutter")
+                    st.write(f"Kalorier: {recipe['calories']} kcal per porsjon")
+                    st.write(f"Kategori: {recipe['category']}")
 
         st.subheader("Handleliste")
 
