@@ -2,8 +2,27 @@ import math
 from src.products import get_products
 
 
-def create_raw_shopping_list(menu, number_of_people):
+def normalize_pantry_items(pantry_items):
+    if pantry_items is None:
+        return {}
+
+    if hasattr(pantry_items, "items"):
+        return {
+            item: max(0, float(amount))
+            for item, amount in pantry_items.items()
+            if item and amount
+        }
+
+    return {
+        item: math.inf
+        for item in pantry_items
+        if item
+    }
+
+
+def create_raw_shopping_list(menu, number_of_people, pantry_items=None):
     shopping_list = {}
+    pantry_items = normalize_pantry_items(pantry_items)
 
     for recipe in menu.values():
         base_servings = recipe.get("servings", 4)
@@ -17,11 +36,20 @@ def create_raw_shopping_list(menu, number_of_people):
             else:
                 shopping_list[ingredient] = scaled_amount
 
+    for ingredient, pantry_amount in pantry_items.items():
+        if ingredient not in shopping_list:
+            continue
+
+        if pantry_amount >= shopping_list[ingredient]:
+            del shopping_list[ingredient]
+        else:
+            shopping_list[ingredient] -= pantry_amount
+
     return shopping_list
 
 
-def create_rounded_shopping_list(menu, number_of_people):
-    raw_list = create_raw_shopping_list(menu, number_of_people)
+def create_rounded_shopping_list(menu, number_of_people, pantry_items=None):
+    raw_list = create_raw_shopping_list(menu, number_of_people, pantry_items)
     products = get_products()
 
     rounded_list = {}

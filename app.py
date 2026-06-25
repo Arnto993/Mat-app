@@ -1,6 +1,13 @@
 import streamlit as st
 
-from src.menu_generator import generate_menu_with_budget
+from src.menu_generator import (
+    MENU_PRIORITY_CHEAPEST,
+    MENU_PRIORITY_FASTEST,
+    MENU_PRIORITY_HEALTHIER,
+    MENU_PRIORITY_NONE,
+    generate_menu_with_budget
+)
+from src.products import get_products
 
 def validate_preferences(preferences, taco_friday):
     errors = []
@@ -33,6 +40,24 @@ def format_package_unit(amount, unit):
         return "l"
     if unit == "g":
         return "g"
+    return unit
+
+
+def get_product_display_options(products):
+    return {
+        product["display_name"]: product_key
+        for product_key, product in sorted(
+            products.items(),
+            key=lambda item: item[1]["display_name"]
+        )
+    }
+
+
+def get_pantry_amount_step(product):
+    if product["unit"] == "g":
+        return 50.0
+
+    return 1.0
 
 
 st.title("MatApp")
@@ -85,17 +110,53 @@ max_time_minutes = st.slider(
     step=5
 )
 
+menu_priority_options = {
+    "Ingen spesiell prioritering": MENU_PRIORITY_NONE,
+    "Billigst mulig": MENU_PRIORITY_CHEAPEST,
+    "Raskest mulig": MENU_PRIORITY_FASTEST,
+    "Sunnere uke": MENU_PRIORITY_HEALTHIER
+}
+
 menu_style = st.selectbox(
     "Hva ønsker du å prioritere?",
-    ["Ingen spesiell prioritering", "Billigst mulig", "Raskest mulig", "Sunnere uke"]
+    list(menu_priority_options.keys())
 )
+
+products = get_products()
+product_display_options = get_product_display_options(products)
+
+st.subheader("Varer hjemme")
+selected_pantry_display_names = st.multiselect(
+    "Velg varer du allerede har hjemme",
+    options=list(product_display_options.keys())
+)
+
+pantry_items = {}
+
+for display_name in selected_pantry_display_names:
+    product_key = product_display_options[display_name]
+    product = products[product_key]
+    amount = st.number_input(
+        f"{display_name} hjemme ({product['unit']})",
+        min_value=0.0,
+        value=float(product["package_size"]),
+        step=get_pantry_amount_step(product),
+        key=f"pantry_amount_{product_key}"
+    )
+
+    if amount > 0:
+        pantry_items[product_key] = amount
+
+if pantry_items:
+    st.caption(f"{len(pantry_items)} varer blir trukket fra handlelisten.")
 
 preferences = {
     "wants_fish": wants_fish,
     "vegetarian_only": vegetarian_only,
     "max_time_minutes": max_time_minutes,
     "avoid_categories": [],
-    "excluded_allergens": excluded_allergens
+    "excluded_allergens": excluded_allergens,
+    "menu_priority": menu_priority_options[menu_style]
 }
 
 if taco_friday and vegetarian_only:
@@ -104,17 +165,21 @@ if taco_friday and vegetarian_only:
 if wants_fish and "fish" in excluded_allergens:
     st.warning("Du har valgt minst én fiskemiddag, men også valgt å unngå fisk.")
 
-errors =validate_preferences(preferences, taco_friday)
+errors = validate_preferences(preferences, taco_friday)
 
-if st.button("Generer ukesmeny") and errors:
+generate_menu = st.button("Generer ukesmeny")
+
+if generate_menu and errors:
     for error in errors:
         st.warning(error)
-else:
+
+if generate_menu and not errors:
     menu, shopping_list, total_price = generate_menu_with_budget(
         number_of_people,
         taco_friday,
         max_budget,
-        preferences
+        preferences,
+        pantry_items=pantry_items
     )
 
     if menu is None:
@@ -128,19 +193,22 @@ else:
             if day in menu:
                 recipe = menu[day]
                 with st.expander(f"**{day}:** {recipe['name']}"):
-                    st.write(f"Tid: {recipe['time']} minutter")
-                    st.write(f"Kalorier: {recipe['calories']} kcal per porsjon")
+                    st.write(f"Tid: {recipe['time_minutes']} minutter")
+                    st.write(f"Kalorier: {recipe['calories_per_portion']} kcal per porsjon")
                     st.write(f"Kategori: {recipe['category']}")
 
         st.subheader("Handleliste")
 
-        for item in shopping_list.values():
-            st.write(
-                f"- **{item['display_name']}**: "
-                f"{item['packages_needed']} {format_package_unit(item['packages_needed'], item['package_unit'])} "
-                f"(trenger {format_amount(item['needed_amount'])} {format_package_unit(item['needed_amount'], item['unit'])}) "
-                f"– ca. {item['estimated_total_price']} kr"
-            )
+        if not shopping_list:
+            st.info("Du har allerede alle varene som trengs til denne menyen.")
+        else:
+            for item in shopping_list.values():
+                st.write(
+                    f"- **{item['display_name']}**: "
+                    f"{item['packages_needed']} {format_package_unit(item['packages_needed'], item['package_unit'])} "
+                    f"(trenger {format_amount(item['needed_amount'])} {format_package_unit(item['needed_amount'], item['unit'])}) "
+                    f"– ca. {item['estimated_total_price']} kr"
+                )
 
         st.subheader("Pris")
         st.success(f"Anslått handlepris: {total_price:.0f} kr")
