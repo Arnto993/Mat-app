@@ -4,7 +4,8 @@ from src.menu_generator import (
     MENU_PRIORITY_HEALTHIER,
     get_prioritized_recipe_pool,
     get_recipe_priority_score,
-    has_fish
+    has_fish,
+    recipe_is_vegetarian
 )
 
 
@@ -12,13 +13,19 @@ def test_has_fish_returns_true_when_menu_contains_fish():
     menu = {
         "Mandag": {
             "name": "Laks med ris",
-            "category": "fisk",
-            "contains_fish": True
+            "tags": ["fisk"],
+            "allergens": ["fish"],
+            "ingredients": [
+                {"product_id": "salmon_fillet_500", "amount": 500, "unit": "g"}
+            ]
         },
         "Tirsdag": {
             "name": "Pasta",
-            "category": "pasta",
-            "contains_fish": False
+            "tags": ["vegetar"],
+            "allergens": ["gluten"],
+            "ingredients": [
+                {"product_id": "pasta_spaghetti_500", "amount": 400, "unit": "g"}
+            ]
         }
     }
 
@@ -29,8 +36,11 @@ def test_has_fish_returns_false_when_menu_has_no_fish():
     menu = {
         "Mandag": {
             "name": "Pasta",
-            "category": "pasta",
-            "contains_fish": False
+            "tags": ["vegetar"],
+            "allergens": ["gluten"],
+            "ingredients": [
+                {"product_id": "pasta_spaghetti_500", "amount": 400, "unit": "g"}
+            ]
         }
     }
 
@@ -41,12 +51,16 @@ def test_recipe_priority_score_uses_price_and_cheap_tag():
     cheap_recipe = {
         "name": "Billig middag",
         "tags": ["billig"],
-        "estimated_price": 90
+        "ingredients": [
+            {"product_id": "rice_jasmin_1000", "amount": 200, "unit": "g"}
+        ]
     }
     expensive_recipe = {
         "name": "Dyr middag",
         "tags": [],
-        "estimated_price": 130
+        "ingredients": [
+            {"product_id": "salmon_fillet_500", "amount": 500, "unit": "g"}
+        ]
     }
 
     cheap_score = get_recipe_priority_score(cheap_recipe, MENU_PRIORITY_CHEAPEST)
@@ -76,15 +90,11 @@ def test_recipe_priority_score_uses_time_and_fast_tag():
 def test_recipe_priority_score_uses_health_score_and_healthy_tag():
     healthy_recipe = {
         "name": "Sunn middag",
-        "tags": ["sunn"],
-        "healthy_score": 5,
-        "calories_per_portion": 550
+        "tags": ["sunnere", "vegetar"]
     }
     less_healthy_recipe = {
         "name": "Mindre sunn middag",
-        "tags": [],
-        "healthy_score": 3,
-        "calories_per_portion": 700
+        "tags": []
     }
 
     healthy_score = get_recipe_priority_score(healthy_recipe, MENU_PRIORITY_HEALTHIER)
@@ -114,3 +124,15 @@ def test_prioritized_recipe_pool_keeps_more_than_only_the_top_recipes():
 
     assert len(recipe_pool) > 4
     assert recipe_pool[0]["name"] == "Rett 1"
+
+
+def test_recipe_is_vegetarian_uses_new_tags():
+    recipe = {
+        "name": "Vegetarrett",
+        "tags": ["vegetar"],
+        "ingredients": [
+            {"product_id": "red_lentils_400", "amount": 300, "unit": "g"}
+        ]
+    }
+
+    assert recipe_is_vegetarian(recipe) is True

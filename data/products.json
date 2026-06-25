@@ -1,410 +1,953 @@
 {
-  "pasta": {
-    "display_name": "Pasta",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pakke",
-    "estimated_package_price": 25,
-    "allergens": ["gluten"]
-  },
-  "spaghetti": {
-    "display_name": "Spaghetti",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pakke",
-    "estimated_package_price": 25,
-    "allergens": ["gluten"]
-  },
-  "makaroni": {
-    "display_name": "Makaroni",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pakke",
-    "estimated_package_price": 25,
-    "allergens": ["gluten"]
-  },
-  "ris": {
-    "display_name": "Ris",
-    "unit": "g",
-    "package_size": 1000,
-    "package_unit": "pose",
-    "estimated_package_price": 35,
-    "allergens": []
-  },
-  "kjottdeig": {
-    "display_name": "Kjøttdeig",
-    "unit": "g",
-    "package_size": 400,
-    "package_unit": "pakke",
-    "estimated_package_price": 65,
-    "allergens": []
-  },
-  "kyllingfilet": {
-    "display_name": "Kyllingfilet",
-    "unit": "g",
-    "package_size": 600,
-    "package_unit": "pakke",
-    "estimated_package_price": 120,
-    "allergens": []
-  },
-  "laks": {
-    "display_name": "Laks",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pakke",
-    "estimated_package_price": 130,
-    "allergens": ["fish"]
-  },
-  "fiskekaker": {
-    "display_name": "Fiskekaker",
-    "unit": "g",
-    "package_size": 800,
-    "package_unit": "pakke",
-    "estimated_package_price": 70,
-    "allergens": ["fish", "milk", "lactose"]
-  },
-  "polse": {
-    "display_name": "Pølse",
-    "unit": "g",
-    "package_size": 600,
-    "package_unit": "pakke",
-    "estimated_package_price": 60,
-    "allergens": []
-  },
-  "hakkede_tomater": {
-    "display_name": "Hakkede tomater",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 15,
-    "allergens": []
-  },
-  "pastasaus": {
-    "display_name": "Pastasaus",
-    "unit": "glass",
-    "package_size": 1,
-    "package_unit": "glass",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "tomatsuppe": {
-    "display_name": "Tomatsuppe",
-    "unit": "pose",
-    "package_size": 1,
-    "package_unit": "pose",
-    "estimated_package_price": 18,
-    "allergens": ["gluten", "milk", "lactose"]
-  },
-  "tacolefser": {
-    "display_name": "Tacolefser",
-    "unit": "pakke",
-    "package_size": 1,
-    "package_unit": "pakke",
-    "estimated_package_price": 30,
-    "allergens": ["gluten"]
-  },
-  "tortillalefser": {
-    "display_name": "Tortillalefser",
-    "unit": "pakke",
-    "package_size": 1,
-    "package_unit": "pakke",
-    "estimated_package_price": 30,
-    "allergens": ["gluten"]
-  },
-  "tacokrydder": {
-    "display_name": "Tacokrydder",
-    "unit": "pose",
-    "package_size": 1,
-    "package_unit": "pose",
-    "estimated_package_price": 10,
-    "allergens": []
-  },
-  "mais": {
-    "display_name": "Mais",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 15,
-    "allergens": []
-  },
-  "ost": {
-    "display_name": "Ost",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pakke",
-    "estimated_package_price": 80,
-    "allergens": ["milk", "lactose"]
-  },
-  "romme": {
-    "display_name": "Rømme",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 25,
-    "allergens": ["milk", "lactose"]
-  },
-  "salat": {
-    "display_name": "Salat",
-    "unit": "stk",
-    "package_size": 1,
-    "package_unit": "stk",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "poteter": {
-    "display_name": "Poteter",
-    "unit": "g",
-    "package_size": 2500,
-    "package_unit": "pose",
-    "estimated_package_price": 45,
-    "allergens": []
-  },
-  "gulrot": {
-    "display_name": "Gulrot",
-    "unit": "stk",
-    "package_size": 8,
-    "package_unit": "pose",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "lok": {
-    "display_name": "Løk",
-    "unit": "stk",
-    "package_size": 4,
-    "package_unit": "pose",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "paprika": {
-    "display_name": "Paprika",
-    "unit": "stk",
-    "package_size": 1,
-    "package_unit": "stk",
-    "estimated_package_price": 15,
-    "allergens": []
-  },
-  "brokkoli": {
-    "display_name": "Brokkoli",
-    "unit": "stk",
-    "package_size": 1,
-    "package_unit": "stk",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "wokgronnsaker": {
-    "display_name": "Wokgrønnsaker",
-    "unit": "pose",
-    "package_size": 1,
-    "package_unit": "pose",
-    "estimated_package_price": 35,
-    "allergens": []
-  },
-  "egg": {
-    "display_name": "Egg",
-    "unit": "stk",
-    "package_size": 12,
-    "package_unit": "kartong",
-    "estimated_package_price": 45,
-    "allergens": ["egg"]
-  },
-  "skinke": {
-    "display_name": "Skinke",
-    "unit": "pakke",
-    "package_size": 1,
-    "package_unit": "pakke",
-    "estimated_package_price": 30,
-    "allergens": []
-  },
-  "brod": {
-    "display_name": "Brød",
-    "unit": "stk",
-    "package_size": 1,
-    "package_unit": "stk",
-    "estimated_package_price": 35,
-    "allergens": ["gluten"]
-  },
-  "brunsaus": {
-    "display_name": "Brunsaus",
-    "unit": "pose",
-    "package_size": 1,
-    "package_unit": "pose",
-    "estimated_package_price": 15,
-    "allergens": ["gluten", "milk", "lactose"]
-  },
-  "soyasaus": {
-    "display_name": "Soyasaus",
-    "unit": "flaske",
-    "package_size": 1,
-    "package_unit": "flaske",
-    "estimated_package_price": 30,
-    "allergens": ["soy", "gluten"]
-  },
-  "flote": {
-    "display_name": "Fløte",
-    "unit": "kartong",
-    "package_size": 1,
-    "package_unit": "kartong",
-    "estimated_package_price": 25,
-    "allergens": ["milk", "lactose"]
-  },
-  "melk": {
-    "display_name": "Melk",
-    "unit": "liter",
-    "package_size": 1,
-    "package_unit": "kartong",
-    "estimated_package_price": 25,
-    "allergens": ["milk", "lactose"]
-  },
-  "buljong": {
-    "display_name": "Buljong",
-    "unit": "pakke",
-    "package_size": 1,
-    "package_unit": "pakke",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "kidneybonner": {
-    "display_name": "Kidneybønner",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 15,
-    "allergens": []
-  },
-  "svarte_bonner": {
-    "display_name": "Svarte bønner",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 15,
-    "allergens": []
-  },
-  "kikerter": {
-    "display_name": "Kikerter",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 15,
-    "allergens": []
-  },
-  "rode_linser": {
-    "display_name": "Røde linser",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pose",
-    "estimated_package_price": 35,
-    "allergens": []
-  },
-  "kokosmelk": {
-    "display_name": "Kokosmelk",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "currypaste": {
-    "display_name": "Currypaste",
-    "unit": "glass",
-    "package_size": 1,
-    "package_unit": "glass",
-    "estimated_package_price": 35,
-    "allergens": []
-  },
-  "torsk": {
-    "display_name": "Torsk",
-    "unit": "g",
-    "package_size": 600,
-    "package_unit": "pakke",
-    "estimated_package_price": 100,
-    "allergens": ["fish"]
-  },
-  "tunfisk": {
-    "display_name": "Tunfisk",
-    "unit": "boks",
-    "package_size": 1,
-    "package_unit": "boks",
-    "estimated_package_price": 20,
-    "allergens": ["fish"]
-  },
-  "risnudler": {
-    "display_name": "Risnudler",
-    "unit": "g",
-    "package_size": 400,
-    "package_unit": "pakke",
-    "estimated_package_price": 35,
-    "allergens": []
-  },
-  "sweet_chili_saus": {
-    "display_name": "Sweet chili-saus",
-    "unit": "flaske",
-    "package_size": 1,
-    "package_unit": "flaske",
-    "estimated_package_price": 30,
-    "allergens": []
-  },
-  "tamari_glutenfri": {
-    "display_name": "Glutenfri soyasaus/tamari",
-    "unit": "flaske",
-    "package_size": 1,
-    "package_unit": "flaske",
-    "estimated_package_price": 45,
-    "allergens": ["soy"]
-  },
-  "tofu": {
-    "display_name": "Tofu",
-    "unit": "g",
-    "package_size": 400,
-    "package_unit": "pakke",
-    "estimated_package_price": 45,
-    "allergens": ["soy"]
-  },
-  "frosne_erter": {
-    "display_name": "Frosne erter",
-    "unit": "pose",
-    "package_size": 1,
-    "package_unit": "pose",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "tomatpure": {
-    "display_name": "Tomatpuré",
-    "unit": "tube",
-    "package_size": 1,
-    "package_unit": "tube",
-    "estimated_package_price": 20,
-    "allergens": []
-  },
-  "salsa": {
-    "display_name": "Salsa",
-    "unit": "glass",
-    "package_size": 1,
-    "package_unit": "glass",
-    "estimated_package_price": 25,
-    "allergens": []
-  },
-  "glutenfrie_tortillalefser": {
-    "display_name": "Glutenfrie tortillalefser",
-    "unit": "pakke",
-    "package_size": 1,
-    "package_unit": "pakke",
-    "estimated_package_price": 45,
-    "allergens": []
-  },
-  "glutenfri_pasta": {
-    "display_name": "Glutenfri pasta",
-    "unit": "g",
-    "package_size": 500,
-    "package_unit": "pakke",
-    "estimated_package_price": 45,
-    "allergens": []
-  },
-  "sopp": {
-    "display_name": "Sopp",
-    "unit": "g",
-    "package_size": 250,
-    "package_unit": "pakke",
-    "estimated_package_price": 25,
-    "allergens": []
+  "schema_version": "2.0",
+  "currency": "NOK",
+  "pricing_basis": "Omtrentlige lavpris-/studentpriser i norske dagligvarebutikker. price_nok er pris per pakning. cost_mode=package betyr at handlelisten bør runde opp til hele pakninger. cost_mode=pantry_prorated betyr at varen normalt er basisvare og kan kostnadsberegnes proporsjonalt uten å tvinge nytt kjøp hver uke.",
+  "products": {
+    "bacon_diced_200": {
+      "name": "Baconterninger",
+      "category": "Kjøtt",
+      "price_nok": 39.9,
+      "package_size": 200,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "basil_10": {
+      "name": "Basilikum tørket",
+      "category": "Krydder",
+      "price_nok": 19.9,
+      "package_size": 10,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "beef_stock_10": {
+      "name": "Kjøttbuljong terninger",
+      "category": "Basisvarer",
+      "price_nok": 22.9,
+      "package_size": 10,
+      "unit": "stk",
+      "allergens": [
+        "celery"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "bell_pepper_2": {
+      "name": "Paprika 2-pakning",
+      "category": "Frukt og grønt",
+      "price_nok": 34.9,
+      "package_size": 2,
+      "unit": "stk",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "black_beans_400": {
+      "name": "Svarte bønner hermetiske",
+      "category": "Hermetikk",
+      "price_nok": 15.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "black_pepper_50": {
+      "name": "Sort pepper",
+      "category": "Krydder",
+      "price_nok": 24.9,
+      "package_size": 50,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "breadcrumbs_400": {
+      "name": "Griljermel/paneringsmel",
+      "category": "Tørrvarer",
+      "price_nok": 24.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "broccoli_400": {
+      "name": "Brokkoli",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "brown_sauce_mix_2": {
+      "name": "Brunsaus pose 2-pakning",
+      "category": "Saus og dressing",
+      "price_nok": 22.9,
+      "package_size": 2,
+      "unit": "stk",
+      "allergens": [
+        "gluten",
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "butter_500": {
+      "name": "Smør/margarin",
+      "category": "Meieri og egg",
+      "price_nok": 39.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": true,
+      "is_fresh": true,
+      "cost_mode": "pantry_prorated"
+    },
+    "canned_tuna_170": {
+      "name": "Tunfisk i vann",
+      "category": "Fisk",
+      "price_nok": 18.9,
+      "package_size": 170,
+      "unit": "g",
+      "allergens": [
+        "fish"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "carrot_1000": {
+      "name": "Gulrøtter",
+      "category": "Frukt og grønt",
+      "price_nok": 25.9,
+      "package_size": 1000,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "cauliflower_1": {
+      "name": "Blomkål",
+      "category": "Frukt og grønt",
+      "price_nok": 29.9,
+      "package_size": 1,
+      "unit": "stk",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "chicken_fillet_600": {
+      "name": "Kyllingfilet naturell",
+      "category": "Kjøtt",
+      "price_nok": 119.9,
+      "package_size": 600,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "chicken_stock_10": {
+      "name": "Kyllingbuljong terninger",
+      "category": "Basisvarer",
+      "price_nok": 22.9,
+      "package_size": 10,
+      "unit": "stk",
+      "allergens": [
+        "celery"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "chicken_thigh_600": {
+      "name": "Kylling lårfilet/lårbiff",
+      "category": "Kjøtt",
+      "price_nok": 104.9,
+      "package_size": 600,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "chickpeas_400": {
+      "name": "Kikerter hermetiske",
+      "category": "Hermetikk",
+      "price_nok": 12.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "chili_flakes_30": {
+      "name": "Chiliflak",
+      "category": "Krydder",
+      "price_nok": 24.9,
+      "package_size": 30,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "chopped_tomatoes_400": {
+      "name": "Hakkede tomater",
+      "category": "Hermetikk",
+      "price_nok": 12.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "coconut_milk_400": {
+      "name": "Kokosmelk",
+      "category": "Hermetikk",
+      "price_nok": 22.9,
+      "package_size": 400,
+      "unit": "ml",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "cod_fillet_400": {
+      "name": "Torskefilet naturell",
+      "category": "Fisk",
+      "price_nok": 89.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [
+        "fish"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "corn_340": {
+      "name": "Mais hermetisk",
+      "category": "Hermetikk",
+      "price_nok": 12.9,
+      "package_size": 340,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "couscous_500": {
+      "name": "Couscous",
+      "category": "Tørrvarer",
+      "price_nok": 29.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "cream_300": {
+      "name": "Matfløte",
+      "category": "Meieri og egg",
+      "price_nok": 24.9,
+      "package_size": 300,
+      "unit": "ml",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "cucumber_1": {
+      "name": "Agurk",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 1,
+      "unit": "stk",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "cumin_50": {
+      "name": "Spisskummen",
+      "category": "Krydder",
+      "price_nok": 24.9,
+      "package_size": 50,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "curry_powder_65": {
+      "name": "Karripulver",
+      "category": "Krydder",
+      "price_nok": 24.9,
+      "package_size": 65,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "egg_noodles_250": {
+      "name": "Eggnudler",
+      "category": "Tørrvarer",
+      "price_nok": 24.9,
+      "package_size": 250,
+      "unit": "g",
+      "allergens": [
+        "gluten",
+        "egg"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "eggs_12": {
+      "name": "Egg 12-pakning",
+      "category": "Meieri og egg",
+      "price_nok": 49.9,
+      "package_size": 12,
+      "unit": "stk",
+      "allergens": [
+        "egg"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "feta_200": {
+      "name": "Fetaost/salatost",
+      "category": "Meieri og egg",
+      "price_nok": 34.9,
+      "package_size": 200,
+      "unit": "g",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "fish_cakes_800": {
+      "name": "Fiskekaker",
+      "category": "Fisk",
+      "price_nok": 69.9,
+      "package_size": 800,
+      "unit": "g",
+      "allergens": [
+        "fish",
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "flour_wheat_1000": {
+      "name": "Hvetemel",
+      "category": "Tørrvarer",
+      "price_nok": 22.9,
+      "package_size": 1000,
+      "unit": "g",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "fresh_chili_50": {
+      "name": "Rød chili",
+      "category": "Frukt og grønt",
+      "price_nok": 14.9,
+      "package_size": 50,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": true,
+      "cost_mode": "pantry_prorated"
+    },
+    "frozen_falafel_450": {
+      "name": "Falafel fryst",
+      "category": "Vegetarprotein",
+      "price_nok": 49.9,
+      "package_size": 450,
+      "unit": "g",
+      "allergens": [
+        "gluten",
+        "sesame"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "frozen_peas_600": {
+      "name": "Erter fryst",
+      "category": "Frukt og grønt",
+      "price_nok": 22.9,
+      "package_size": 600,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "frozen_spinach_450": {
+      "name": "Spinat fryst",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 450,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "frozen_wok_500": {
+      "name": "Wokgrønnsaker fryst",
+      "category": "Frukt og grønt",
+      "price_nok": 29.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "garlic_2": {
+      "name": "Hvitløk 2-pakning",
+      "category": "Frukt og grønt",
+      "price_nok": 14.9,
+      "package_size": 2,
+      "unit": "stk",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": true,
+      "cost_mode": "pantry_prorated"
+    },
+    "ginger_100": {
+      "name": "Ingefær",
+      "category": "Frukt og grønt",
+      "price_nok": 12.9,
+      "package_size": 100,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": true,
+      "cost_mode": "pantry_prorated"
+    },
+    "grated_cheese_500": {
+      "name": "Revet ost",
+      "category": "Meieri og egg",
+      "price_nok": 69.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "ground_beef_400": {
+      "name": "Kjøttdeig av storfe 14%",
+      "category": "Kjøtt",
+      "price_nok": 64.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "ham_diced_200": {
+      "name": "Skinke i terninger",
+      "category": "Kjøtt",
+      "price_nok": 34.9,
+      "package_size": 200,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "kidney_beans_400": {
+      "name": "Kidneybønner hermetiske",
+      "category": "Hermetikk",
+      "price_nok": 13.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "lasagne_sheets_500": {
+      "name": "Lasagneplater",
+      "category": "Tørrvarer",
+      "price_nok": 32.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "gluten",
+        "egg"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "leek_300": {
+      "name": "Purre",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 300,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "lettuce_1": {
+      "name": "Isbergsalat/hjertesalat",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 1,
+      "unit": "stk",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "light_sour_cream_300": {
+      "name": "Lettrømme",
+      "category": "Meieri og egg",
+      "price_nok": 24.9,
+      "package_size": 300,
+      "unit": "g",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "milk_1000": {
+      "name": "Lettmelk",
+      "category": "Meieri og egg",
+      "price_nok": 21.9,
+      "package_size": 1000,
+      "unit": "ml",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "mushroom_250": {
+      "name": "Sjampinjong",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 250,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "mustard_275": {
+      "name": "Sennep",
+      "category": "Saus og dressing",
+      "price_nok": 19.9,
+      "package_size": 275,
+      "unit": "g",
+      "allergens": [
+        "mustard"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "olive_oil_500": {
+      "name": "Olivenolje",
+      "category": "Basisvarer",
+      "price_nok": 69.9,
+      "package_size": 500,
+      "unit": "ml",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "onion_1000": {
+      "name": "Gul løk",
+      "category": "Frukt og grønt",
+      "price_nok": 24.9,
+      "package_size": 1000,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "oregano_10": {
+      "name": "Oregano tørket",
+      "category": "Krydder",
+      "price_nok": 19.9,
+      "package_size": 10,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "paprika_spice_60": {
+      "name": "Paprikakrydder",
+      "category": "Krydder",
+      "price_nok": 24.9,
+      "package_size": 60,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "pasta_makaroni_500": {
+      "name": "Makaroni",
+      "category": "Tørrvarer",
+      "price_nok": 18.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "pasta_penne_500": {
+      "name": "Penne pasta",
+      "category": "Tørrvarer",
+      "price_nok": 24.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "pasta_spaghetti_500": {
+      "name": "Spaghetti",
+      "category": "Tørrvarer",
+      "price_nok": 19.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "pizza_bases_2": {
+      "name": "Ferdig pizzabunn 2 stk",
+      "category": "Tørrvarer",
+      "price_nok": 39.9,
+      "package_size": 2,
+      "unit": "stk",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "plain_yogurt_500": {
+      "name": "Naturell yoghurt",
+      "category": "Meieri og egg",
+      "price_nok": 29.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "pork_mince_400": {
+      "name": "Svinekjøttdeig",
+      "category": "Kjøtt",
+      "price_nok": 49.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "potato_2500": {
+      "name": "Poteter",
+      "category": "Frukt og grønt",
+      "price_nok": 39.9,
+      "package_size": 2500,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "rapeseed_oil_1000": {
+      "name": "Rapsolje",
+      "category": "Basisvarer",
+      "price_nok": 39.9,
+      "package_size": 1000,
+      "unit": "ml",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "red_curry_paste_110": {
+      "name": "Rød currypaste",
+      "category": "Saus og dressing",
+      "price_nok": 29.9,
+      "package_size": 110,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "red_lentils_400": {
+      "name": "Røde linser tørre",
+      "category": "Tørrvarer",
+      "price_nok": 29.9,
+      "package_size": 400,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "red_onion_500": {
+      "name": "Rødløk",
+      "category": "Frukt og grønt",
+      "price_nok": 22.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "rice_basmati_1000": {
+      "name": "Basmatiris",
+      "category": "Tørrvarer",
+      "price_nok": 36.8,
+      "package_size": 1000,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "rice_jasmin_1000": {
+      "name": "Jasminris",
+      "category": "Tørrvarer",
+      "price_nok": 36.9,
+      "package_size": 1000,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "salmon_fillet_500": {
+      "name": "Laksefilet naturell",
+      "category": "Fisk",
+      "price_nok": 109.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [
+        "fish"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "salsa_300": {
+      "name": "Tacosaus/salsa",
+      "category": "Saus og dressing",
+      "price_nok": 24.9,
+      "package_size": 300,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "salt_1000": {
+      "name": "Salt",
+      "category": "Basisvarer",
+      "price_nok": 14.9,
+      "package_size": 1000,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "sausage_600": {
+      "name": "Kjøttpølser/grillpølser",
+      "category": "Kjøtt",
+      "price_nok": 59.9,
+      "package_size": 600,
+      "unit": "g",
+      "allergens": [
+        "milk"
+      ],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "soy_sauce_150": {
+      "name": "Soyasaus",
+      "category": "Saus og dressing",
+      "price_nok": 24.9,
+      "package_size": 150,
+      "unit": "ml",
+      "allergens": [
+        "gluten",
+        "soy"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "spring_onion_100": {
+      "name": "Vårløk",
+      "category": "Frukt og grønt",
+      "price_nok": 19.9,
+      "package_size": 100,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "sweet_potato_700": {
+      "name": "Søtpotet",
+      "category": "Frukt og grønt",
+      "price_nok": 34.9,
+      "package_size": 700,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "taco_spice_30": {
+      "name": "Tacokrydder pose",
+      "category": "Krydder",
+      "price_nok": 11.9,
+      "package_size": 30,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "tomato_500": {
+      "name": "Tomater",
+      "category": "Frukt og grønt",
+      "price_nok": 29.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": true,
+      "cost_mode": "package"
+    },
+    "tomato_passata_500": {
+      "name": "Passata/tomatsaus naturell",
+      "category": "Hermetikk",
+      "price_nok": 19.9,
+      "package_size": 500,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "tomato_paste_200": {
+      "name": "Tomatpuré",
+      "category": "Hermetikk",
+      "price_nok": 18.9,
+      "package_size": 200,
+      "unit": "g",
+      "allergens": [],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    },
+    "tortilla_wraps_8": {
+      "name": "Tortillalefser medium 8 stk",
+      "category": "Tørrvarer",
+      "price_nok": 28.9,
+      "package_size": 8,
+      "unit": "stk",
+      "allergens": [
+        "gluten"
+      ],
+      "is_basic": false,
+      "is_fresh": false,
+      "cost_mode": "package"
+    },
+    "vegetable_stock_10": {
+      "name": "Grønnsaksbuljong terninger",
+      "category": "Basisvarer",
+      "price_nok": 22.9,
+      "package_size": 10,
+      "unit": "stk",
+      "allergens": [
+        "celery"
+      ],
+      "is_basic": true,
+      "is_fresh": false,
+      "cost_mode": "pantry_prorated"
+    }
   }
 }

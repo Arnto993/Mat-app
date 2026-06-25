@@ -1,13 +1,28 @@
 from src.menu_generator import generate_menu_with_budget
 
 
+def format_amount(amount):
+    if amount == int(amount):
+        return str(int(amount))
+    return f"{amount:.1f}"
+
+
 def calculate_average_calories(menu):
+    recipes_with_calories = [
+        recipe
+        for recipe in menu.values()
+        if "calories_per_portion" in recipe
+    ]
+
+    if not recipes_with_calories:
+        return None
+
     total_calories = 0
 
-    for recipe in menu.values():
+    for recipe in recipes_with_calories:
         total_calories += recipe["calories_per_portion"]
 
-    return total_calories / len(menu)
+    return total_calories / len(recipes_with_calories)
 
 
 def main():
@@ -51,13 +66,14 @@ def main():
     for item in shopping_list.values():
         print(
             f"{item['display_name']}: "
-            f"{item['packages_needed']} {item['package_unit']} "
+            f"{format_amount(item['packages_needed'])} {item['package_unit']} "
             f"(trenger {item['needed_amount']:.1f} {item['unit']}) "
             f"- ca. {item['estimated_total_price']} kr"
         )
 
     print(f"\nAnslått totalpris: {total_price:.0f} kr")
-    print(f"Snitt kalorier per person per middag: {average_calories:.0f} kcal")
+    if average_calories is not None:
+        print(f"Snitt kalorier per person per middag: {average_calories:.0f} kcal")
 
 
 if __name__ == "__main__":

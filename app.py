@@ -45,16 +45,16 @@ def format_package_unit(amount, unit):
 
 def get_product_display_options(products):
     return {
-        product["display_name"]: product_key
+        product.get("display_name", product["name"]): product_key
         for product_key, product in sorted(
             products.items(),
-            key=lambda item: item[1]["display_name"]
+            key=lambda item: item[1].get("display_name", item[1]["name"])
         )
     }
 
 
 def get_pantry_amount_step(product):
-    if product["unit"] == "g":
+    if product["unit"] in {"g", "ml"}:
         return 50.0
 
     return 1.0
@@ -194,8 +194,8 @@ if generate_menu and not errors:
                 recipe = menu[day]
                 with st.expander(f"**{day}:** {recipe['name']}"):
                     st.write(f"Tid: {recipe['time_minutes']} minutter")
-                    st.write(f"Kalorier: {recipe['calories_per_portion']} kcal per porsjon")
-                    st.write(f"Kategori: {recipe['category']}")
+                    st.write(f"Vanskelighetsgrad: {recipe['difficulty']}")
+                    st.write(f"Tags: {', '.join(recipe.get('tags', []))}")
 
         st.subheader("Handleliste")
 
@@ -205,7 +205,7 @@ if generate_menu and not errors:
             for item in shopping_list.values():
                 st.write(
                     f"- **{item['display_name']}**: "
-                    f"{item['packages_needed']} {format_package_unit(item['packages_needed'], item['package_unit'])} "
+                    f"{format_amount(item['packages_needed'])} {format_package_unit(item['packages_needed'], item['package_unit'])} "
                     f"(trenger {format_amount(item['needed_amount'])} {format_package_unit(item['needed_amount'], item['unit'])}) "
                     f"– ca. {item['estimated_total_price']} kr"
                 )

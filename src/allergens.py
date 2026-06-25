@@ -1,12 +1,13 @@
 from src.products import get_products
+from src.shopping_list import iter_recipe_ingredients
 
 
 def get_recipe_allergens(recipe):
     products = get_products()
-    allergens = set()
+    allergens = set(recipe.get("allergens", []))
 
-    for ingredient in recipe["ingredients"]:
-        product = products.get(ingredient)
+    for product_id, _amount, _unit in iter_recipe_ingredients(recipe):
+        product = products.get(product_id)
 
         if product is None:
             continue

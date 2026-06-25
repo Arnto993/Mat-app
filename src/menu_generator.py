@@ -1,7 +1,8 @@
 import random
 
+from src.products import get_products
 from src.recipes import get_recipes
-from src.shopping_list import create_rounded_shopping_list
+from src.shopping_list import create_rounded_shopping_list, iter_recipe_ingredients
 from src.price_calculator import calculate_total_price_from_shopping_list
 from src.allergens import recipe_has_excluded_allergens
 
@@ -36,8 +37,71 @@ def find_recipe_by_name(recipes, name):
     return None
 
 
+def find_taco_recipe(recipes):
+    exact_match = find_recipe_by_name(recipes, "Taco")
+
+    if exact_match is not None:
+        return exact_match
+
+    for recipe in recipes:
+        recipe_id = recipe.get("id", "").lower()
+        recipe_name = recipe.get("name", "").lower()
+
+        if "taco" in recipe_id or "taco" in recipe_name:
+            return recipe
+
+    return None
+
+
+def get_recipe_ingredient_ids(recipe):
+    return [
+        product_id
+        for product_id, _amount, _unit in iter_recipe_ingredients(recipe)
+    ]
+
+
+def get_recipe_product_categories(recipe):
+    products = get_products()
+    categories = set()
+
+    for product_id in get_recipe_ingredient_ids(recipe):
+        product = products.get(product_id)
+
+        if product is not None:
+            categories.add(product.get("category"))
+
+    return categories
+
+
 def recipe_contains_fish(recipe):
-    return recipe.get("contains_fish", False) or recipe.get("category") == "fisk"
+    tags = get_recipe_tags(recipe)
+
+    return (
+        recipe.get("contains_fish", False)
+        or recipe.get("category") == "fisk"
+        or "fish" in recipe.get("allergens", [])
+        or "fisk" in tags
+        or "Fisk" in get_recipe_product_categories(recipe)
+    )
+
+
+def recipe_is_vegetarian(recipe):
+    tags = get_recipe_tags(recipe)
+
+    if recipe.get("vegetarian") is not None:
+        return recipe["vegetarian"]
+
+    if "vegetar" in tags:
+        return True
+
+    non_vegetarian_tags = {"kjøtt", "kylling", "fisk"}
+    non_vegetarian_categories = {"Kjøtt", "Fisk"}
+
+    return (
+        tags.isdisjoint(non_vegetarian_tags)
+        and get_recipe_product_categories(recipe).isdisjoint(non_vegetarian_categories)
+    )
+
 
 
 def has_fish(menu):
@@ -66,14 +130,32 @@ def calculate_menu_health_score(menu):
 
 def calculate_menu_calories(menu):
     return sum(
-        recipe.get("calories_per_portion", 999)
+        recipe.get("calories_per_portion", 0)
         for recipe in menu.values()
     )
 
 
+def estimate_recipe_price(recipe):
+    if "estimated_price" in recipe:
+        return recipe["estimated_price"]
+
+    products = get_products()
+    total_price = 0
+
+    for product_id, amount, _unit in iter_recipe_ingredients(recipe):
+        product = products.get(product_id)
+
+        if product is None:
+            continue
+
+        total_price += amount / product["package_size"] * product["price_nok"]
+
+    return total_price
+
+
 def calculate_menu_recipe_price(menu):
     return sum(
-        recipe.get("estimated_price", 999)
+        estimate_recipe_price(recipe)
         for recipe in menu.values()
     )
 
@@ -89,7 +171,7 @@ def get_recipe_priority_score(recipe, priority):
     tags = get_recipe_tags(recipe)
 
     if priority == MENU_PRIORITY_CHEAPEST:
-        score = -recipe.get("estimated_price", 999)
+        score = -estimate_recipe_price(recipe)
 
         if "billig" in tags:
             score += 25
@@ -110,10 +192,16 @@ def get_recipe_priority_score(recipe, priority):
 
     if priority == MENU_PRIORITY_HEALTHIER:
         score = recipe.get("healthy_score", 0) * 100
-        score -= recipe.get("calories_per_portion", 999) / 20
 
-        if "sunn" in tags:
+        if "calories_per_portion" in recipe:
+            score -= recipe["calories_per_portion"] / 20
+
+        if "sunn" in tags or "sunnere" in tags:
             score += 25
+        if "vegetar" in tags:
+            score += 10
+        if "fisk" in tags:
+            score += 8
         if "protein" in tags:
             score += 8
 
@@ -175,7 +263,7 @@ def filter_recipes(recipes, preferences):
         if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
             continue
 
-        if preferences.get("vegetarian_only") and not recipe.get("vegetarian", False):
+        if preferences.get("vegetarian_only") and not recipe_is_vegetarian(recipe):
             continue
 
         max_time = preferences.get("max_time_minutes")
@@ -183,7 +271,10 @@ def filter_recipes(recipes, preferences):
             continue
 
         avoid_categories = preferences.get("avoid_categories", [])
-        if recipe.get("category") in avoid_categories:
+        if (
+            recipe.get("category") in avoid_categories
+            or not get_recipe_product_categories(recipe).isdisjoint(avoid_categories)
+        ):
             continue
 
         excluded_allergens = preferences.get("excluded_allergens", [])
@@ -212,7 +303,7 @@ def generate_week_menu(recipes, taco_friday=True, priority=MENU_PRIORITY_NONE):
     available_recipes = recipes.copy()
 
     if taco_friday:
-        taco = find_recipe_by_name(available_recipes, "Taco")
+        taco = find_taco_recipe(available_recipes)
 
         if taco is None:
             return None

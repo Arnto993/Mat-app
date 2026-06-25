@@ -7,39 +7,39 @@ def test_create_raw_shopping_list_scales_with_number_of_people():
         "Mandag": {
             "name": "Testrett",
             "servings": 4,
-            "ingredients": {
-                "ris": 400,
-                "kjottdeig": 600
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 400, "unit": "g"},
+                {"product_id": "ground_beef_400", "amount": 600, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_raw_shopping_list(menu, number_of_people=2)
 
-    assert shopping_list["ris"] == 200
-    assert shopping_list["kjottdeig"] == 300
+    assert shopping_list["rice_jasmin_1000"] == 200
+    assert shopping_list["ground_beef_400"] == 300
 
 def test_create_raw_shopping_list_combines_same_ingredients():
     menu = {
         "Mandag": {
             "name": "Rett 1",
             "servings": 4,
-            "ingredients": {
-                "ris": 400
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 400, "unit": "g"}
+            ]
         },
         "Tirsdag": {
             "name": "Rett 2",
             "servings": 4,
-            "ingredients": {
-                "ris": 300
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 300, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_raw_shopping_list(menu, number_of_people=4)
 
-    assert shopping_list["ris"] == 700
+    assert shopping_list["rice_jasmin_1000"] == 700
 
 
 def test_create_raw_shopping_list_skips_pantry_items():
@@ -47,21 +47,21 @@ def test_create_raw_shopping_list_skips_pantry_items():
         "Mandag": {
             "name": "Testrett",
             "servings": 4,
-            "ingredients": {
-                "ris": 400,
-                "kjottdeig": 600
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 400, "unit": "g"},
+                {"product_id": "ground_beef_400", "amount": 600, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_raw_shopping_list(
         menu,
         number_of_people=4,
-        pantry_items={"ris"}
+        pantry_items={"rice_jasmin_1000"}
     )
 
-    assert "ris" not in shopping_list
-    assert shopping_list["kjottdeig"] == 600
+    assert "rice_jasmin_1000" not in shopping_list
+    assert shopping_list["ground_beef_400"] == 600
 
 
 def test_create_raw_shopping_list_subtracts_pantry_amounts():
@@ -69,21 +69,21 @@ def test_create_raw_shopping_list_subtracts_pantry_amounts():
         "Mandag": {
             "name": "Testrett",
             "servings": 4,
-            "ingredients": {
-                "ris": 1200,
-                "kjottdeig": 600
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 1200, "unit": "g"},
+                {"product_id": "ground_beef_400", "amount": 600, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_raw_shopping_list(
         menu,
         number_of_people=4,
-        pantry_items={"ris": 500}
+        pantry_items={"rice_jasmin_1000": 500}
     )
 
-    assert shopping_list["ris"] == 700
-    assert shopping_list["kjottdeig"] == 600
+    assert shopping_list["rice_jasmin_1000"] == 700
+    assert shopping_list["ground_beef_400"] == 600
 
 
 def test_create_rounded_shopping_list_rounds_up_packages():
@@ -91,15 +91,15 @@ def test_create_rounded_shopping_list_rounds_up_packages():
         "Mandag": {
             "name": "Testrett",
             "servings": 4,
-            "ingredients": {
-                "ris": 1200
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 1200, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_rounded_shopping_list(menu, number_of_people=4)
 
-    assert shopping_list["ris"]["packages_needed"] == 2
+    assert shopping_list["rice_jasmin_1000"]["packages_needed"] == 2
 
 
 def test_create_rounded_shopping_list_skips_pantry_items():
@@ -107,21 +107,21 @@ def test_create_rounded_shopping_list_skips_pantry_items():
         "Mandag": {
             "name": "Testrett",
             "servings": 4,
-            "ingredients": {
-                "ris": 1200,
-                "kjottdeig": 600
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 1200, "unit": "g"},
+                {"product_id": "ground_beef_400", "amount": 600, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_rounded_shopping_list(
         menu,
         number_of_people=4,
-        pantry_items={"ris"}
+        pantry_items={"rice_jasmin_1000"}
     )
 
-    assert "ris" not in shopping_list
-    assert "kjottdeig" in shopping_list
+    assert "rice_jasmin_1000" not in shopping_list
+    assert "ground_beef_400" in shopping_list
 
 
 def test_create_rounded_shopping_list_rounds_after_subtracting_pantry_amounts():
@@ -129,17 +129,34 @@ def test_create_rounded_shopping_list_rounds_after_subtracting_pantry_amounts():
         "Mandag": {
             "name": "Testrett",
             "servings": 4,
-            "ingredients": {
-                "ris": 1200
-            }
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 1200, "unit": "g"}
+            ]
         }
     }
 
     shopping_list = create_rounded_shopping_list(
         menu,
         number_of_people=4,
-        pantry_items={"ris": 500}
+        pantry_items={"rice_jasmin_1000": 500}
     )
 
-    assert shopping_list["ris"]["needed_amount"] == 700
-    assert shopping_list["ris"]["packages_needed"] == 1
+    assert shopping_list["rice_jasmin_1000"]["needed_amount"] == 700
+    assert shopping_list["rice_jasmin_1000"]["packages_needed"] == 1
+
+
+def test_create_rounded_shopping_list_prorates_pantry_cost_mode():
+    menu = {
+        "Mandag": {
+            "name": "Testrett",
+            "servings": 4,
+            "ingredients": [
+                {"product_id": "rapeseed_oil_1000", "amount": 100, "unit": "ml"}
+            ]
+        }
+    }
+
+    shopping_list = create_rounded_shopping_list(menu, number_of_people=4)
+
+    assert shopping_list["rapeseed_oil_1000"]["packages_needed"] == 0.1
+    assert shopping_list["rapeseed_oil_1000"]["estimated_total_price"] == 3.99

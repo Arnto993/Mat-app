@@ -2,6 +2,22 @@ import math
 from src.products import get_products
 
 
+PACKAGE_COST_MODE = "package"
+PANTRY_PRORATED_COST_MODE = "pantry_prorated"
+
+
+def iter_recipe_ingredients(recipe):
+    ingredients = recipe["ingredients"]
+
+    if hasattr(ingredients, "items"):
+        for product_id, amount in ingredients.items():
+            yield product_id, amount, None
+        return
+
+    for ingredient in ingredients:
+        yield ingredient["product_id"], ingredient["amount"], ingredient.get("unit")
+
+
 def normalize_pantry_items(pantry_items):
     if pantry_items is None:
         return {}
@@ -28,7 +44,7 @@ def create_raw_shopping_list(menu, number_of_people, pantry_items=None):
         base_servings = recipe.get("servings", 4)
         scale_factor = number_of_people / base_servings
 
-        for ingredient, amount in recipe["ingredients"].items():
+        for ingredient, amount, _unit in iter_recipe_ingredients(recipe):
             scaled_amount = amount * scale_factor
 
             if ingredient in shopping_list:
@@ -58,18 +74,25 @@ def create_rounded_shopping_list(menu, number_of_people, pantry_items=None):
         product = products[ingredient]
 
         package_size = product["package_size"]
-        packages_needed = math.ceil(needed_amount / package_size)
+        price = product.get("price_nok", product.get("estimated_package_price", 0))
+        cost_mode = product.get("cost_mode", PACKAGE_COST_MODE)
 
-        estimated_total_price = packages_needed * product["estimated_package_price"]
+        if cost_mode == PANTRY_PRORATED_COST_MODE:
+            packages_needed = needed_amount / package_size
+        else:
+            packages_needed = math.ceil(needed_amount / package_size)
+
+        estimated_total_price = round(packages_needed * price, 2)
 
         rounded_list[ingredient] = {
-            "display_name": product["display_name"],
+            "display_name": product.get("display_name", product["name"]),
             "needed_amount": needed_amount,
             "unit": product["unit"],
             "packages_needed": packages_needed,
             "package_size": package_size,
-            "package_unit": product["package_unit"],
-            "estimated_total_price": estimated_total_price
+            "package_unit": product.get("package_unit", "pakke"),
+            "estimated_total_price": estimated_total_price,
+            "cost_mode": cost_mode
         }
 
     return rounded_list

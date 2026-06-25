@@ -1,877 +1,2579 @@
-[
-  {
-    "name": "Taco",
-    "servings": 4,
-    "category": "texmex",
-    "tags": ["fredag", "student", "kjott", "populaer"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 800,
-    "estimated_price": 180,
-    "ingredients": {
-      "tacolefser": 1,
-      "kjottdeig": 600,
-      "mais": 1,
-      "ost": 200,
-      "romme": 1,
-      "tacokrydder": 1,
-      "salat": 1
+{
+  "schema_version": "2.0",
+  "default_servings": 4,
+  "recipes": [
+    {
+      "id": "spaghetti_bolognese",
+      "name": "Spaghetti bolognese",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "kjøtt",
+        "pasta",
+        "hverdagsmiddag",
+        "barnevennlig"
+      ],
+      "allergens": [
+        "celery",
+        "gluten"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pasta_spaghetti_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "ground_beef_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "beef_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "taco_med_svinekjottdeig",
+      "name": "Taco med svinekjøttdeig",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "kjøtt",
+        "fredag",
+        "rask",
+        "studentfavoritt"
+      ],
+      "allergens": [
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "tortilla_wraps_8",
+          "amount": 8,
+          "unit": "stk"
+        },
+        {
+          "product_id": "pork_mince_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "taco_spice_30",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "product_id": "corn_340",
+          "amount": 340,
+          "unit": "g"
+        },
+        {
+          "product_id": "salsa_300",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "light_sour_cream_300",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "lettuce_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "cucumber_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "red_onion_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 10,
+          "unit": "ml"
+        }
+      ]
+    },
+    {
+      "id": "kylling_fajitas",
+      "name": "Kyllingfajitas",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "kylling",
+        "rask",
+        "texmex"
+      ],
+      "allergens": [
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "tortilla_wraps_8",
+          "amount": 8,
+          "unit": "stk"
+        },
+        {
+          "product_id": "chicken_fillet_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "bell_pepper_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "cumin_50",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 4,
+          "unit": "g"
+        },
+        {
+          "product_id": "fresh_chili_50",
+          "amount": 10,
+          "unit": "g"
+        },
+        {
+          "product_id": "light_sour_cream_300",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "salsa_300",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 20,
+          "unit": "ml"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kremet_kyllingpasta",
+      "name": "Kremet kyllingpasta med brokkoli",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "kylling",
+        "pasta",
+        "rask",
+        "mettende"
+      ],
+      "allergens": [
+        "celery",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pasta_penne_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "chicken_fillet_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "broccoli_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "cream_300",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "chicken_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "laks_ris_brokkoli",
+      "name": "Ovnsbakt laks med ris, brokkoli og rømmedressing",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "fisk",
+        "sunnere",
+        "hverdagsmiddag"
+      ],
+      "allergens": [
+        "fish",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "salmon_fillet_500",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "broccoli_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "light_sour_cream_300",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "cucumber_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "olive_oil_500",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 4,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "fiskekaker_poteter_gulrot",
+      "name": "Fiskekaker med poteter, gulrot og brunsaus",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "fisk",
+        "billig",
+        "norsk",
+        "hverdagsmiddag"
+      ],
+      "allergens": [
+        "fish",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "fish_cakes_800",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 900,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "brown_sauce_mix_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "milk_1000",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 20,
+          "unit": "g"
+        },
+        {
+          "product_id": "leek_300",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 4,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "chili_con_carne",
+      "name": "Chili con carne",
+      "servings": 5,
+      "time_minutes": 40,
+      "difficulty": "easy",
+      "tags": [
+        "kjøtt",
+        "gryte",
+        "billig",
+        "mealprep"
+      ],
+      "allergens": [],
+      "ingredients": [
+        {
+          "product_id": "ground_beef_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "kidney_beans_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_beans_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "bell_pepper_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "cumin_50",
+          "amount": 4,
+          "unit": "g"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 4,
+          "unit": "g"
+        },
+        {
+          "product_id": "chili_flakes_30",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 400,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "linse_bolognese",
+      "name": "Linsebolognese med spaghetti",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "billig",
+        "pasta",
+        "sunnere"
+      ],
+      "allergens": [
+        "celery",
+        "gluten"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pasta_spaghetti_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "red_lentils_400",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "basil_10",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kikertkarri_ris",
+      "name": "Kikertkarri med ris",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "gryte",
+        "billig",
+        "rask"
+      ],
+      "allergens": [],
+      "ingredients": [
+        {
+          "product_id": "chickpeas_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_basmati_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "coconut_milk_400",
+          "amount": 400,
+          "unit": "ml"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "ginger_100",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "product_id": "curry_powder_65",
+          "amount": 8,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_spinach_450",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 4,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "polse_potet_form",
+      "name": "Pølse- og potetform med grønnsaker",
+      "servings": 4,
+      "time_minutes": 45,
+      "difficulty": "easy",
+      "tags": [
+        "billig",
+        "ovnsrett",
+        "kjøtt",
+        "barnevennlig"
+      ],
+      "allergens": [
+        "milk",
+        "mustard"
+      ],
+      "ingredients": [
+        {
+          "product_id": "sausage_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 1000,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "cream_300",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "mustard_275",
+          "amount": 25,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 4,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "tunfiskpasta_tomat",
+      "name": "Tunfiskpasta med tomat og mais",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "fisk",
+        "pasta",
+        "rask",
+        "billig"
+      ],
+      "allergens": [
+        "fish",
+        "gluten"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pasta_penne_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "canned_tuna_170",
+          "amount": 340,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "corn_340",
+          "amount": 340,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "olive_oil_500",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kjottboller_tomatsaus",
+      "name": "Enkle kjøttboller i tomatsaus med pasta",
+      "servings": 4,
+      "time_minutes": 40,
+      "difficulty": "medium",
+      "tags": [
+        "kjøtt",
+        "pasta",
+        "hverdagsmiddag"
+      ],
+      "allergens": [
+        "egg",
+        "gluten"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pork_mince_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "breadcrumbs_400",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "pasta_spaghetti_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 20,
+          "unit": "ml"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kylling_stekt_ris",
+      "name": "Stekt ris med kylling og grønnsaker",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "kylling",
+        "rask",
+        "restemat",
+        "sunnere"
+      ],
+      "allergens": [
+        "egg",
+        "gluten",
+        "soy"
+      ],
+      "ingredients": [
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "chicken_fillet_600",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 3,
+          "unit": "stk"
+        },
+        {
+          "product_id": "frozen_peas_600",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "spring_onion_100",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "soy_sauce_150",
+          "amount": 40,
+          "unit": "ml"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 25,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "enkel_lasagne",
+      "name": "Enkel lasagne",
+      "servings": 6,
+      "time_minutes": 60,
+      "difficulty": "medium",
+      "tags": [
+        "kjøtt",
+        "ovnsrett",
+        "mealprep",
+        "pasta"
+      ],
+      "allergens": [
+        "celery",
+        "egg",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "ground_beef_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "lasagne_sheets_500",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "milk_1000",
+          "amount": 700,
+          "unit": "ml"
+        },
+        {
+          "product_id": "flour_wheat_1000",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "beef_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        }
+      ]
+    },
+    {
+      "id": "makaronigrateng_skinke",
+      "name": "Makaronigrateng med skinke og grønnsaker",
+      "servings": 5,
+      "time_minutes": 45,
+      "difficulty": "easy",
+      "tags": [
+        "ovnsrett",
+        "billig",
+        "barnevennlig",
+        "mealprep"
+      ],
+      "allergens": [
+        "egg",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pasta_makaroni_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "ham_diced_200",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 4,
+          "unit": "stk"
+        },
+        {
+          "product_id": "milk_1000",
+          "amount": 600,
+          "unit": "ml"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_peas_600",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "leek_300",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 20,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "vegetar_tacobolle",
+      "name": "Vegetarisk tacobolle med ris og bønner",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "texmex",
+        "billig",
+        "sunnere"
+      ],
+      "allergens": [
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_beans_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "kidney_beans_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "corn_340",
+          "amount": 340,
+          "unit": "g"
+        },
+        {
+          "product_id": "taco_spice_30",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "product_id": "salsa_300",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "light_sour_cream_300",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "lettuce_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "red_onion_500",
+          "amount": 100,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "fiskegrateng_torsk",
+      "name": "Fiskegrateng med torsk og makaroni",
+      "servings": 5,
+      "time_minutes": 55,
+      "difficulty": "medium",
+      "tags": [
+        "fisk",
+        "ovnsrett",
+        "norsk",
+        "mealprep"
+      ],
+      "allergens": [
+        "egg",
+        "fish",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "cod_fillet_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "pasta_makaroni_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "milk_1000",
+          "amount": 700,
+          "unit": "ml"
+        },
+        {
+          "product_id": "flour_wheat_1000",
+          "amount": 60,
+          "unit": "g"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 3,
+          "unit": "stk"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "breadcrumbs_400",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "svinewok_nudler",
+      "name": "Svinewok med nudler",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "kjøtt",
+        "rask",
+        "wok"
+      ],
+      "allergens": [
+        "egg",
+        "gluten",
+        "soy"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pork_mince_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "egg_noodles_250",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_wok_500",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "soy_sauce_150",
+          "amount": 50,
+          "unit": "ml"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "ginger_100",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "product_id": "fresh_chili_50",
+          "amount": 10,
+          "unit": "g"
+        },
+        {
+          "product_id": "spring_onion_100",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 25,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kyllingkarri_kokos",
+      "name": "Kyllingkarri med kokosmelk og ris",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "kylling",
+        "gryte",
+        "rask"
+      ],
+      "allergens": [
+        "gluten",
+        "soy"
+      ],
+      "ingredients": [
+        {
+          "product_id": "chicken_thigh_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_basmati_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "coconut_milk_400",
+          "amount": 400,
+          "unit": "ml"
+        },
+        {
+          "product_id": "frozen_wok_500",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "ginger_100",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "product_id": "red_curry_paste_110",
+          "amount": 35,
+          "unit": "g"
+        },
+        {
+          "product_id": "soy_sauce_150",
+          "amount": 20,
+          "unit": "ml"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 20,
+          "unit": "ml"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "studentpizza_kjottdeig",
+      "name": "Studentpizza med kjøttdeig, mais og paprika",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "pizza",
+        "kjøtt",
+        "helg",
+        "rask"
+      ],
+      "allergens": [
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pizza_bases_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "pork_mince_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_passata_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "corn_340",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "bell_pepper_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 10,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "fylte_paprika",
+      "name": "Fylte paprika med kjøttdeig og ris",
+      "servings": 4,
+      "time_minutes": 50,
+      "difficulty": "medium",
+      "tags": [
+        "kjøtt",
+        "ovnsrett",
+        "sunnere"
+      ],
+      "allergens": [
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "bell_pepper_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "ground_beef_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "cumin_50",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        }
+      ]
+    },
+    {
+      "id": "potet_polsegryte",
+      "name": "Potet- og pølsegryte",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "billig",
+        "gryte",
+        "kjøtt",
+        "norsk"
+      ],
+      "allergens": [
+        "celery",
+        "milk",
+        "mustard"
+      ],
+      "ingredients": [
+        {
+          "product_id": "sausage_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 1000,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "leek_300",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "cream_300",
+          "amount": 200,
+          "unit": "ml"
+        },
+        {
+          "product_id": "mustard_275",
+          "amount": 20,
+          "unit": "g"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 20,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "laksepasta_spinat",
+      "name": "Laksepasta med spinat og fløte",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "fisk",
+        "pasta",
+        "rask"
+      ],
+      "allergens": [
+        "celery",
+        "fish",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "salmon_fillet_500",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "pasta_penne_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_spinach_450",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "cream_300",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "olive_oil_500",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "tomatsuppe_egg_makaroni",
+      "name": "Hjemmelaget tomatsuppe med egg og makaroni",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "billig",
+        "rask",
+        "barnevennlig"
+      ],
+      "allergens": [
+        "celery",
+        "egg",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "pasta_makaroni_500",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 4,
+          "unit": "stk"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "milk_1000",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "basil_10",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kjottdeig_potetmosform",
+      "name": "Kjøttdeigform med potetmos",
+      "servings": 5,
+      "time_minutes": 55,
+      "difficulty": "medium",
+      "tags": [
+        "kjøtt",
+        "ovnsrett",
+        "mettende",
+        "mealprep"
+      ],
+      "allergens": [
+        "celery",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "ground_beef_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 1200,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_peas_600",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 40,
+          "unit": "g"
+        },
+        {
+          "product_id": "beef_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "milk_1000",
+          "amount": 250,
+          "unit": "ml"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kylling_couscous_salat",
+      "name": "Kylling med couscous, grønnsaker og yoghurtdressing",
+      "servings": 4,
+      "time_minutes": 30,
+      "difficulty": "easy",
+      "tags": [
+        "kylling",
+        "sunnere",
+        "rask"
+      ],
+      "allergens": [
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "chicken_fillet_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "couscous_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "tomato_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "cucumber_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "red_onion_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "feta_200",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "plain_yogurt_500",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "olive_oil_500",
+          "amount": 20,
+          "unit": "ml"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "vegetar_stekt_ris",
+      "name": "Vegetarisk stekt ris med egg",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "rask",
+        "billig",
+        "restemat"
+      ],
+      "allergens": [
+        "egg",
+        "gluten",
+        "soy"
+      ],
+      "ingredients": [
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 4,
+          "unit": "stk"
+        },
+        {
+          "product_id": "frozen_peas_600",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "spring_onion_100",
+          "amount": 50,
+          "unit": "g"
+        },
+        {
+          "product_id": "soy_sauce_150",
+          "amount": 45,
+          "unit": "ml"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 25,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "falafelwraps",
+      "name": "Falafelwraps med salat og yoghurtdressing",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "rask",
+        "wraps"
+      ],
+      "allergens": [
+        "gluten",
+        "milk",
+        "sesame"
+      ],
+      "ingredients": [
+        {
+          "product_id": "tortilla_wraps_8",
+          "amount": 8,
+          "unit": "stk"
+        },
+        {
+          "product_id": "frozen_falafel_450",
+          "amount": 450,
+          "unit": "g"
+        },
+        {
+          "product_id": "lettuce_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_500",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "cucumber_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "red_onion_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "plain_yogurt_500",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "fresh_chili_50",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 2,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "ovnsbakt_kylling_poteter",
+      "name": "Ovnsbakt kylling med poteter og rotgrønnsaker",
+      "servings": 4,
+      "time_minutes": 55,
+      "difficulty": "easy",
+      "tags": [
+        "kylling",
+        "ovnsrett",
+        "sunnere",
+        "hverdagsmiddag"
+      ],
+      "allergens": [
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "chicken_thigh_600",
+          "amount": 600,
+          "unit": "g"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 1000,
+          "unit": "g"
+        },
+        {
+          "product_id": "carrot_1000",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "olive_oil_500",
+          "amount": 30,
+          "unit": "ml"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 4,
+          "unit": "g"
+        },
+        {
+          "product_id": "oregano_10",
+          "amount": 2,
+          "unit": "g"
+        },
+        {
+          "product_id": "light_sour_cream_300",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "linsegryte_sotpotet",
+      "name": "Linsegryte med søtpotet og kokosmelk",
+      "servings": 5,
+      "time_minutes": 40,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "gryte",
+        "sunnere",
+        "mealprep"
+      ],
+      "allergens": [
+        "celery"
+      ],
+      "ingredients": [
+        {
+          "product_id": "red_lentils_400",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "product_id": "sweet_potato_700",
+          "amount": 700,
+          "unit": "g"
+        },
+        {
+          "product_id": "coconut_milk_400",
+          "amount": 400,
+          "unit": "ml"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "ginger_100",
+          "amount": 15,
+          "unit": "g"
+        },
+        {
+          "product_id": "curry_powder_65",
+          "amount": 8,
+          "unit": "g"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "frozen_spinach_450",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "rice_basmati_1000",
+          "amount": 350,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "blomkal_potet_karri",
+      "name": "Blomkål- og potetkarri",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "vegetar",
+        "billig",
+        "gryte"
+      ],
+      "allergens": [
+        "celery"
+      ],
+      "ingredients": [
+        {
+          "product_id": "cauliflower_1",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 700,
+          "unit": "g"
+        },
+        {
+          "product_id": "chickpeas_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "coconut_milk_400",
+          "amount": 400,
+          "unit": "ml"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "curry_powder_65",
+          "amount": 8,
+          "unit": "g"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "rice_basmati_1000",
+          "amount": 300,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "bacon_eggepanne_potet",
+      "name": "Bacon- og eggepanne med poteter",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "rask",
+        "billig",
+        "panne",
+        "restemat"
+      ],
+      "allergens": [
+        "egg",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "bacon_diced_200",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "eggs_12",
+          "amount": 6,
+          "unit": "stk"
+        },
+        {
+          "product_id": "potato_2500",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_peas_600",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "paprika_spice_60",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "torsk_tomatgryte_ris",
+      "name": "Torsk i tomatgryte med ris",
+      "servings": 4,
+      "time_minutes": 35,
+      "difficulty": "easy",
+      "tags": [
+        "fisk",
+        "sunnere",
+        "gryte"
+      ],
+      "allergens": [
+        "celery",
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "product_id": "cod_fillet_400",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "chopped_tomatoes_400",
+          "amount": 800,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "bell_pepper_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "tomato_paste_200",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "olive_oil_500",
+          "amount": 15,
+          "unit": "ml"
+        },
+        {
+          "product_id": "basil_10",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kremet_sopprisotto_kylling",
+      "name": "Kremet risotto-inspirert kyllingris med sopp",
+      "servings": 4,
+      "time_minutes": 40,
+      "difficulty": "medium",
+      "tags": [
+        "kylling",
+        "ris",
+        "mettende"
+      ],
+      "allergens": [
+        "celery",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "chicken_fillet_600",
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "product_id": "rice_jasmin_1000",
+          "amount": 350,
+          "unit": "g"
+        },
+        {
+          "product_id": "mushroom_250",
+          "amount": 250,
+          "unit": "g"
+        },
+        {
+          "product_id": "onion_1000",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "cream_300",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "chicken_stock_10",
+          "amount": 2,
+          "unit": "stk"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "product_id": "butter_500",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 3,
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "id": "kalkunskinke_ostesmelt_pasta",
+      "name": "Ostesmeltet skinke- og grønnsakspasta",
+      "servings": 4,
+      "time_minutes": 25,
+      "difficulty": "easy",
+      "tags": [
+        "rask",
+        "pasta",
+        "billig"
+      ],
+      "allergens": [
+        "celery",
+        "gluten",
+        "milk"
+      ],
+      "ingredients": [
+        {
+          "product_id": "pasta_penne_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "ham_diced_200",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "product_id": "frozen_wok_500",
+          "amount": 400,
+          "unit": "g"
+        },
+        {
+          "product_id": "cream_300",
+          "amount": 300,
+          "unit": "ml"
+        },
+        {
+          "product_id": "grated_cheese_500",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "product_id": "garlic_2",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "vegetable_stock_10",
+          "amount": 1,
+          "unit": "stk"
+        },
+        {
+          "product_id": "rapeseed_oil_1000",
+          "amount": 10,
+          "unit": "ml"
+        },
+        {
+          "product_id": "black_pepper_50",
+          "amount": 1,
+          "unit": "g"
+        },
+        {
+          "product_id": "salt_1000",
+          "amount": 2,
+          "unit": "g"
+        }
+      ]
     }
-  },
-  {
-    "name": "Kyllingwok med ris",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["rask", "sunn", "student", "ris"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 650,
-    "estimated_price": 140,
-    "ingredients": {
-      "kyllingfilet": 600,
-      "ris": 400,
-      "wokgronnsaker": 1,
-      "soyasaus": 1
-    }
-  },
-  {
-    "name": "Pasta bolognese",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["student", "kjott", "mettende"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 700,
-    "estimated_price": 110,
-    "ingredients": {
-      "pasta": 500,
-      "kjottdeig": 400,
-      "hakkede_tomater": 2,
-      "lok": 1,
-      "gulrot": 2,
-      "ost": 100
-    }
-  },
-  {
-    "name": "Spaghetti med kjøttsaus",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["billig", "student", "kjott"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 720,
-    "estimated_price": 100,
-    "ingredients": {
-      "spaghetti": 500,
-      "kjottdeig": 400,
-      "pastasaus": 1,
-      "ost": 100
-    }
-  },
-  {
-    "name": "Fiskekaker med potet og gulrot",
-    "servings": 4,
-    "category": "fisk",
-    "tags": ["fisk", "norsk", "billig", "enkel"],
-    "contains_fish": true,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 550,
-    "estimated_price": 120,
-    "ingredients": {
-      "fiskekaker": 800,
-      "poteter": 1000,
-      "gulrot": 4,
-      "brunsaus": 1
-    }
-  },
-  {
-    "name": "Laks med ris og brokkoli",
-    "servings": 4,
-    "category": "fisk",
-    "tags": ["fisk", "sunn", "dyrere", "ris"],
-    "contains_fish": true,
-    "vegetarian": false,
-    "healthy_score": 5,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 700,
-    "estimated_price": 190,
-    "ingredients": {
-      "laks": 600,
-      "ris": 400,
-      "brokkoli": 1,
-      "gulrot": 3
-    }
-  },
-  {
-    "name": "Laks med poteter og grønnsaker",
-    "servings": 4,
-    "category": "fisk",
-    "tags": ["fisk", "sunn", "norsk"],
-    "contains_fish": true,
-    "vegetarian": false,
-    "healthy_score": 5,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 680,
-    "estimated_price": 190,
-    "ingredients": {
-      "laks": 600,
-      "poteter": 1000,
-      "brokkoli": 1,
-      "gulrot": 4
-    }
-  },
-  {
-    "name": "Kyllinggryte med ris",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["mettende", "gryte", "student"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "middels",
-    "time_minutes": 40,
-    "calories_per_portion": 750,
-    "estimated_price": 150,
-    "ingredients": {
-      "kyllingfilet": 600,
-      "ris": 400,
-      "flote": 1,
-      "paprika": 2,
-      "lok": 1,
-      "buljong": 1
-    }
-  },
-  {
-    "name": "Kremet kyllingpasta",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["kylling", "pasta", "mettende"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 780,
-    "estimated_price": 150,
-    "ingredients": {
-      "pasta": 500,
-      "kyllingfilet": 600,
-      "flote": 1,
-      "paprika": 1,
-      "ost": 150,
-      "buljong": 1
-    }
-  },
-  {
-    "name": "Kyllingwraps",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["rask", "wraps", "student"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 680,
-    "estimated_price": 150,
-    "ingredients": {
-      "tortillalefser": 1,
-      "kyllingfilet": 600,
-      "salat": 1,
-      "mais": 1,
-      "romme": 1,
-      "ost": 150
-    }
-  },
-  {
-    "name": "Omelett med brød",
-    "servings": 4,
-    "category": "egg",
-    "tags": ["billig", "rask", "vegetar", "enkel"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 20,
-    "calories_per_portion": 500,
-    "estimated_price": 80,
-    "ingredients": {
-      "egg": 8,
-      "ost": 150,
-      "brod": 1,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Potetomelett",
-    "servings": 4,
-    "category": "egg",
-    "tags": ["billig", "vegetar", "mettende"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 600,
-    "estimated_price": 90,
-    "ingredients": {
-      "egg": 8,
-      "poteter": 800,
-      "lok": 1,
-      "ost": 150,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Tomatsuppe med makaroni og egg",
-    "servings": 4,
-    "category": "suppe",
-    "tags": ["billig", "rask", "vegetar", "student"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 20,
-    "calories_per_portion": 500,
-    "estimated_price": 70,
-    "ingredients": {
-      "tomatsuppe": 2,
-      "makaroni": 300,
-      "egg": 6,
-      "brod": 1
-    }
-  },
-  {
-    "name": "Grønnsakspasta med tomatsaus",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["vegetar", "billig", "sunn"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 620,
-    "estimated_price": 90,
-    "ingredients": {
-      "pasta": 500,
-      "hakkede_tomater": 2,
-      "lok": 1,
-      "gulrot": 3,
-      "paprika": 1,
-      "ost": 100
-    }
-  },
-  {
-    "name": "Riswok med egg",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "rask", "sunn", "billig"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 600,
-    "estimated_price": 85,
-    "ingredients": {
-      "ris": 400,
-      "egg": 6,
-      "wokgronnsaker": 1,
-      "soyasaus": 1
-    }
-  },
-  {
-    "name": "Pølsegrateng",
-    "servings": 4,
-    "category": "grateng",
-    "tags": ["student", "mettende", "billig"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 2,
-    "difficulty": "lett",
-    "time_minutes": 40,
-    "calories_per_portion": 750,
-    "estimated_price": 110,
-    "ingredients": {
-      "makaroni": 500,
-      "polse": 600,
-      "ost": 200,
-      "melk": 1,
-      "egg": 3
-    }
-  },
-  {
-    "name": "Pytt i panne med egg",
-    "servings": 4,
-    "category": "potet",
-    "tags": ["billig", "student", "mettende"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 2,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 650,
-    "estimated_price": 90,
-    "ingredients": {
-      "poteter": 1000,
-      "polse": 500,
-      "egg": 6,
-      "lok": 1
-    }
-  },
-  {
-    "name": "Pølser med potetmos og gulrot",
-    "servings": 4,
-    "category": "potet",
-    "tags": ["billig", "enkel", "student"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 2,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 680,
-    "estimated_price": 100,
-    "ingredients": {
-      "polse": 600,
-      "poteter": 1200,
-      "melk": 1,
-      "gulrot": 4,
-      "brunsaus": 1
-    }
-  },
-  {
-    "name": "Makaroniform med skinke og ost",
-    "servings": 4,
-    "category": "grateng",
-    "tags": ["student", "mettende", "enkel"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 2,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 720,
-    "estimated_price": 110,
-    "ingredients": {
-      "makaroni": 500,
-      "skinke": 1,
-      "ost": 250,
-      "melk": 1,
-      "egg": 3
-    }
-  },
-  {
-    "name": "Eggesmørbrød med salat",
-    "servings": 4,
-    "category": "egg",
-    "tags": ["rask", "billig", "vegetar", "lett"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 15,
-    "calories_per_portion": 480,
-    "estimated_price": 75,
-    "ingredients": {
-      "brod": 1,
-      "egg": 8,
-      "salat": 1,
-      "ost": 100,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Fiskekaker i wraps",
-    "servings": 4,
-    "category": "fisk",
-    "tags": ["fisk", "rask", "wraps"],
-    "contains_fish": true,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 20,
-    "calories_per_portion": 620,
-    "estimated_price": 130,
-    "ingredients": {
-      "fiskekaker": 800,
-      "tortillalefser": 1,
-      "salat": 1,
-      "romme": 1,
-      "mais": 1
-    }
-  },
-  {
-    "name": "Kylling med poteter og brokkoli",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["sunn", "norsk", "protein"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 5,
-    "difficulty": "lett",
-    "time_minutes": 40,
-    "calories_per_portion": 650,
-    "estimated_price": 150,
-    "ingredients": {
-      "kyllingfilet": 600,
-      "poteter": 1000,
-      "brokkoli": 1,
-      "gulrot": 4,
-      "brunsaus": 1
-    }
-  },
-  {
-    "name": "Rask kyllingris",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["rask", "kylling", "student"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 670,
-    "estimated_price": 130,
-    "ingredients": {
-      "kyllingfilet": 600,
-      "ris": 400,
-      "mais": 1,
-      "paprika": 1,
-      "soyasaus": 1
-    }
-  },
-  {
-    "name": "Pasta med skinke og ostesaus",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["student", "rask", "mettende"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 2,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 760,
-    "estimated_price": 100,
-    "ingredients": {
-      "pasta": 500,
-      "skinke": 1,
-      "ost": 200,
-      "melk": 1,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Vegetargrateng med makaroni",
-    "servings": 4,
-    "category": "grateng",
-    "tags": ["vegetar", "mettende", "student"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 40,
-    "calories_per_portion": 700,
-    "estimated_price": 100,
-    "ingredients": {
-      "makaroni": 500,
-      "ost": 250,
-      "melk": 1,
-      "egg": 4,
-      "brokkoli": 1,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Potetform med egg og ost",
-    "servings": 4,
-    "category": "potet",
-    "tags": ["vegetar", "billig", "mettende"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 3,
-    "difficulty": "middels",
-    "time_minutes": 45,
-    "calories_per_portion": 650,
-    "estimated_price": 95,
-    "ingredients": {
-      "poteter": 1200,
-      "egg": 6,
-      "ost": 200,
-      "melk": 1,
-      "lok": 1
-    }
-  },
-  {
-    "name": "Tomatpasta med egg",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["vegetar", "billig", "protein"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 640,
-    "estimated_price": 90,
-    "ingredients": {
-      "pasta": 500,
-      "hakkede_tomater": 2,
-      "egg": 6,
-      "lok": 1,
-      "gulrot": 2
-    }
-  },
-  {
-    "name": "Chili sin carne med ris",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "billig", "glutenfri", "laktosefri", "mettende"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 620,
-    "estimated_price": 110,
-    "ingredients": {
-      "ris": 400,
-      "kidneybonner": 2,
-      "svarte_bonner": 1,
-      "hakkede_tomater": 2,
-      "mais": 1,
-      "lok": 1,
-      "paprika": 1,
-      "tacokrydder": 1
-    }
-  },
-  {
-    "name": "Kikertecurry med ris",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "glutenfri", "laktosefri", "sunn", "billig"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 650,
-    "estimated_price": 120,
-    "ingredients": {
-      "ris": 400,
-      "kikerter": 2,
-      "kokosmelk": 1,
-      "currypaste": 1,
-      "gulrot": 3,
-      "lok": 1,
-      "paprika": 1
-    }
-  },
-  {
-    "name": "Linsegryte med tomat og ris",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "billig", "glutenfri", "laktosefri", "mettende"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 5,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 600,
-    "estimated_price": 95,
-    "ingredients": {
-      "ris": 400,
-      "rode_linser": 400,
-      "hakkede_tomater": 2,
-      "tomatpure": 1,
-      "gulrot": 3,
-      "lok": 1,
-      "buljong": 1
-    }
-  },
-  {
-    "name": "Torsk med poteter og gulrot",
-    "servings": 4,
-    "category": "fisk",
-    "tags": ["fisk", "glutenfri", "laktosefri", "sunn", "norsk"],
-    "contains_fish": true,
-    "vegetarian": false,
-    "healthy_score": 5,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 550,
-    "estimated_price": 150,
-    "ingredients": {
-      "torsk": 600,
-      "poteter": 1000,
-      "gulrot": 4,
-      "brokkoli": 1
-    }
-  },
-  {
-    "name": "Tunfiskris med mais og paprika",
-    "servings": 4,
-    "category": "fisk",
-    "tags": ["fisk", "billig", "rask", "glutenfri", "laktosefri"],
-    "contains_fish": true,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 20,
-    "calories_per_portion": 600,
-    "estimated_price": 95,
-    "ingredients": {
-      "ris": 400,
-      "tunfisk": 2,
-      "mais": 1,
-      "paprika": 2,
-      "lok": 1
-    }
-  },
-  {
-    "name": "Risnudler med kylling og grønnsaker",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["rask", "glutenfri", "laktosefri", "asiatisk"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 640,
-    "estimated_price": 145,
-    "ingredients": {
-      "risnudler": 400,
-      "kyllingfilet": 600,
-      "wokgronnsaker": 1,
-      "tamari_glutenfri": 1,
-      "sweet_chili_saus": 1
-    }
-  },
-  {
-    "name": "Stekt ris med egg og erter",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "rask", "billig", "glutenfri"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 590,
-    "estimated_price": 90,
-    "ingredients": {
-      "ris": 400,
-      "egg": 6,
-      "frosne_erter": 1,
-      "gulrot": 3,
-      "lok": 1,
-      "tamari_glutenfri": 1
-    }
-  },
-  {
-    "name": "Tofuwok med ris",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "sunn", "glutenfri", "laktosefri", "asiatisk"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 620,
-    "estimated_price": 130,
-    "ingredients": {
-      "tofu": 400,
-      "ris": 400,
-      "wokgronnsaker": 1,
-      "tamari_glutenfri": 1,
-      "sweet_chili_saus": 1
-    }
-  },
-  {
-    "name": "Kyllinggryte med kokosmelk",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["kylling", "glutenfri", "laktosefri", "sunn", "gryte"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 700,
-    "estimated_price": 150,
-    "ingredients": {
-      "kyllingfilet": 600,
-      "kokosmelk": 1,
-      "ris": 400,
-      "gulrot": 3,
-      "paprika": 1,
-      "currypaste": 1
-    }
-  },
-  {
-    "name": "Glutenfri taco",
-    "servings": 4,
-    "category": "texmex",
-    "tags": ["glutenfri", "fredag", "student", "populaer"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 800,
-    "estimated_price": 210,
-    "ingredients": {
-      "glutenfrie_tortillalefser": 1,
-      "kjottdeig": 600,
-      "mais": 1,
-      "salsa": 1,
-      "salat": 1,
-      "tacokrydder": 1,
-      "ost": 200,
-      "romme": 1
-    }
-  },
-  {
-    "name": "Taco uten melk",
-    "servings": 4,
-    "category": "texmex",
-    "tags": ["laktosefri", "melkefri", "fredag", "student"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 3,
-    "difficulty": "lett",
-    "time_minutes": 25,
-    "calories_per_portion": 690,
-    "estimated_price": 160,
-    "ingredients": {
-      "tacolefser": 1,
-      "kjottdeig": 600,
-      "mais": 1,
-      "salsa": 1,
-      "salat": 1,
-      "paprika": 1,
-      "tacokrydder": 1
-    }
-  },
-  {
-    "name": "Kikertwraps uten melk",
-    "servings": 4,
-    "category": "texmex",
-    "tags": ["vegetar", "laktosefri", "melkefri", "rask", "billig"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 20,
-    "calories_per_portion": 600,
-    "estimated_price": 100,
-    "ingredients": {
-      "tortillalefser": 1,
-      "kikerter": 2,
-      "salat": 1,
-      "mais": 1,
-      "paprika": 1,
-      "salsa": 1
-    }
-  },
-  {
-    "name": "Potetpanne med kikerter",
-    "servings": 4,
-    "category": "potet",
-    "tags": ["vegetar", "billig", "glutenfri", "laktosefri", "mettende"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 620,
-    "estimated_price": 90,
-    "ingredients": {
-      "poteter": 1000,
-      "kikerter": 2,
-      "lok": 1,
-      "paprika": 2,
-      "frosne_erter": 1
-    }
-  },
-  {
-    "name": "Pasta med linser og tomatsaus",
-    "servings": 4,
-    "category": "pasta",
-    "tags": ["vegetar", "billig", "protein", "mettende"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 680,
-    "estimated_price": 95,
-    "ingredients": {
-      "pasta": 500,
-      "rode_linser": 300,
-      "hakkede_tomater": 2,
-      "tomatpure": 1,
-      "gulrot": 2,
-      "lok": 1
-    }
-  },
-  {
-    "name": "Glutenfri pastagryte med kylling",
-    "servings": 4,
-    "category": "kylling",
-    "tags": ["glutenfri", "laktosefri", "kylling", "rask"],
-    "contains_fish": false,
-    "vegetarian": false,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 30,
-    "calories_per_portion": 660,
-    "estimated_price": 160,
-    "ingredients": {
-      "glutenfri_pasta": 500,
-      "kyllingfilet": 600,
-      "hakkede_tomater": 2,
-      "paprika": 1,
-      "lok": 1
-    }
-  },
-  {
-    "name": "Soppgryte med ris og kokosmelk",
-    "servings": 4,
-    "category": "ris",
-    "tags": ["vegetar", "glutenfri", "laktosefri", "sunn"],
-    "contains_fish": false,
-    "vegetarian": true,
-    "healthy_score": 4,
-    "difficulty": "lett",
-    "time_minutes": 35,
-    "calories_per_portion": 610,
-    "estimated_price": 120,
-    "ingredients": {
-      "ris": 400,
-      "sopp": 400,
-      "kokosmelk": 1,
-      "lok": 1,
-      "gulrot": 2,
-      "buljong": 1
-    }
-  }
-]
+  ]
+}
