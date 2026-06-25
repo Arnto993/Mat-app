@@ -262,5 +262,149 @@
     "package_unit": "pakke",
     "estimated_package_price": 25,
     "allergens": []
+  },
+  "kidneybonner": {
+    "display_name": "Kidneybønner",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 15,
+    "allergens": []
+  },
+  "svarte_bonner": {
+    "display_name": "Svarte bønner",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 15,
+    "allergens": []
+  },
+  "kikerter": {
+    "display_name": "Kikerter",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 15,
+    "allergens": []
+  },
+  "rode_linser": {
+    "display_name": "Røde linser",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pose",
+    "estimated_package_price": 35,
+    "allergens": []
+  },
+  "kokosmelk": {
+    "display_name": "Kokosmelk",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 25,
+    "allergens": []
+  },
+  "currypaste": {
+    "display_name": "Currypaste",
+    "unit": "glass",
+    "package_size": 1,
+    "package_unit": "glass",
+    "estimated_package_price": 35,
+    "allergens": []
+  },
+  "torsk": {
+    "display_name": "Torsk",
+    "unit": "g",
+    "package_size": 600,
+    "package_unit": "pakke",
+    "estimated_package_price": 100,
+    "allergens": ["fish"]
+  },
+  "tunfisk": {
+    "display_name": "Tunfisk",
+    "unit": "boks",
+    "package_size": 1,
+    "package_unit": "boks",
+    "estimated_package_price": 20,
+    "allergens": ["fish"]
+  },
+  "risnudler": {
+    "display_name": "Risnudler",
+    "unit": "g",
+    "package_size": 400,
+    "package_unit": "pakke",
+    "estimated_package_price": 35,
+    "allergens": []
+  },
+  "sweet_chili_saus": {
+    "display_name": "Sweet chili-saus",
+    "unit": "flaske",
+    "package_size": 1,
+    "package_unit": "flaske",
+    "estimated_package_price": 30,
+    "allergens": []
+  },
+  "tamari_glutenfri": {
+    "display_name": "Glutenfri soyasaus/tamari",
+    "unit": "flaske",
+    "package_size": 1,
+    "package_unit": "flaske",
+    "estimated_package_price": 45,
+    "allergens": ["soy"]
+  },
+  "tofu": {
+    "display_name": "Tofu",
+    "unit": "g",
+    "package_size": 400,
+    "package_unit": "pakke",
+    "estimated_package_price": 45,
+    "allergens": ["soy"]
+  },
+  "frosne_erter": {
+    "display_name": "Frosne erter",
+    "unit": "pose",
+    "package_size": 1,
+    "package_unit": "pose",
+    "estimated_package_price": 25,
+    "allergens": []
+  },
+  "tomatpure": {
+    "display_name": "Tomatpuré",
+    "unit": "tube",
+    "package_size": 1,
+    "package_unit": "tube",
+    "estimated_package_price": 20,
+    "allergens": []
+  },
+  "salsa": {
+    "display_name": "Salsa",
+    "unit": "glass",
+    "package_size": 1,
+    "package_unit": "glass",
+    "estimated_package_price": 25,
+    "allergens": []
+  },
+  "glutenfrie_tortillalefser": {
+    "display_name": "Glutenfrie tortillalefser",
+    "unit": "pakke",
+    "package_size": 1,
+    "package_unit": "pakke",
+    "estimated_package_price": 45,
+    "allergens": []
+  },
+  "glutenfri_pasta": {
+    "display_name": "Glutenfri pasta",
+    "unit": "g",
+    "package_size": 500,
+    "package_unit": "pakke",
+    "estimated_package_price": 45,
+    "allergens": []
+  },
+  "sopp": {
+    "display_name": "Sopp",
+    "unit": "g",
+    "package_size": 250,
+    "package_unit": "pakke",
+    "estimated_package_price": 25,
+    "allergens": []
   }
 }

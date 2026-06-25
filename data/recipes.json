@@ -537,5 +537,341 @@
       "lok": 1,
       "gulrot": 2
     }
+  },
+  {
+    "name": "Chili sin carne med ris",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "billig", "glutenfri", "laktosefri", "mettende"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 620,
+    "estimated_price": 110,
+    "ingredients": {
+      "ris": 400,
+      "kidneybonner": 2,
+      "svarte_bonner": 1,
+      "hakkede_tomater": 2,
+      "mais": 1,
+      "lok": 1,
+      "paprika": 1,
+      "tacokrydder": 1
+    }
+  },
+  {
+    "name": "Kikertecurry med ris",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "glutenfri", "laktosefri", "sunn", "billig"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 650,
+    "estimated_price": 120,
+    "ingredients": {
+      "ris": 400,
+      "kikerter": 2,
+      "kokosmelk": 1,
+      "currypaste": 1,
+      "gulrot": 3,
+      "lok": 1,
+      "paprika": 1
+    }
+  },
+  {
+    "name": "Linsegryte med tomat og ris",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "billig", "glutenfri", "laktosefri", "mettende"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 5,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 600,
+    "estimated_price": 95,
+    "ingredients": {
+      "ris": 400,
+      "rode_linser": 400,
+      "hakkede_tomater": 2,
+      "tomatpure": 1,
+      "gulrot": 3,
+      "lok": 1,
+      "buljong": 1
+    }
+  },
+  {
+    "name": "Torsk med poteter og gulrot",
+    "servings": 4,
+    "category": "fisk",
+    "tags": ["fisk", "glutenfri", "laktosefri", "sunn", "norsk"],
+    "contains_fish": true,
+    "vegetarian": false,
+    "healthy_score": 5,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 550,
+    "estimated_price": 150,
+    "ingredients": {
+      "torsk": 600,
+      "poteter": 1000,
+      "gulrot": 4,
+      "brokkoli": 1
+    }
+  },
+  {
+    "name": "Tunfiskris med mais og paprika",
+    "servings": 4,
+    "category": "fisk",
+    "tags": ["fisk", "billig", "rask", "glutenfri", "laktosefri"],
+    "contains_fish": true,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 20,
+    "calories_per_portion": 600,
+    "estimated_price": 95,
+    "ingredients": {
+      "ris": 400,
+      "tunfisk": 2,
+      "mais": 1,
+      "paprika": 2,
+      "lok": 1
+    }
+  },
+  {
+    "name": "Risnudler med kylling og grønnsaker",
+    "servings": 4,
+    "category": "kylling",
+    "tags": ["rask", "glutenfri", "laktosefri", "asiatisk"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 640,
+    "estimated_price": 145,
+    "ingredients": {
+      "risnudler": 400,
+      "kyllingfilet": 600,
+      "wokgronnsaker": 1,
+      "tamari_glutenfri": 1,
+      "sweet_chili_saus": 1
+    }
+  },
+  {
+    "name": "Stekt ris med egg og erter",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "rask", "billig", "glutenfri"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 590,
+    "estimated_price": 90,
+    "ingredients": {
+      "ris": 400,
+      "egg": 6,
+      "frosne_erter": 1,
+      "gulrot": 3,
+      "lok": 1,
+      "tamari_glutenfri": 1
+    }
+  },
+  {
+    "name": "Tofuwok med ris",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "sunn", "glutenfri", "laktosefri", "asiatisk"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 620,
+    "estimated_price": 130,
+    "ingredients": {
+      "tofu": 400,
+      "ris": 400,
+      "wokgronnsaker": 1,
+      "tamari_glutenfri": 1,
+      "sweet_chili_saus": 1
+    }
+  },
+  {
+    "name": "Kyllinggryte med kokosmelk",
+    "servings": 4,
+    "category": "kylling",
+    "tags": ["kylling", "glutenfri", "laktosefri", "sunn", "gryte"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 700,
+    "estimated_price": 150,
+    "ingredients": {
+      "kyllingfilet": 600,
+      "kokosmelk": 1,
+      "ris": 400,
+      "gulrot": 3,
+      "paprika": 1,
+      "currypaste": 1
+    }
+  },
+  {
+    "name": "Glutenfri taco",
+    "servings": 4,
+    "category": "texmex",
+    "tags": ["glutenfri", "fredag", "student", "populaer"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 800,
+    "estimated_price": 210,
+    "ingredients": {
+      "glutenfrie_tortillalefser": 1,
+      "kjottdeig": 600,
+      "mais": 1,
+      "salsa": 1,
+      "salat": 1,
+      "tacokrydder": 1,
+      "ost": 200,
+      "romme": 1
+    }
+  },
+  {
+    "name": "Taco uten melk",
+    "servings": 4,
+    "category": "texmex",
+    "tags": ["laktosefri", "melkefri", "fredag", "student"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 3,
+    "difficulty": "lett",
+    "time_minutes": 25,
+    "calories_per_portion": 690,
+    "estimated_price": 160,
+    "ingredients": {
+      "tacolefser": 1,
+      "kjottdeig": 600,
+      "mais": 1,
+      "salsa": 1,
+      "salat": 1,
+      "paprika": 1,
+      "tacokrydder": 1
+    }
+  },
+  {
+    "name": "Kikertwraps uten melk",
+    "servings": 4,
+    "category": "texmex",
+    "tags": ["vegetar", "laktosefri", "melkefri", "rask", "billig"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 20,
+    "calories_per_portion": 600,
+    "estimated_price": 100,
+    "ingredients": {
+      "tortillalefser": 1,
+      "kikerter": 2,
+      "salat": 1,
+      "mais": 1,
+      "paprika": 1,
+      "salsa": 1
+    }
+  },
+  {
+    "name": "Potetpanne med kikerter",
+    "servings": 4,
+    "category": "potet",
+    "tags": ["vegetar", "billig", "glutenfri", "laktosefri", "mettende"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 620,
+    "estimated_price": 90,
+    "ingredients": {
+      "poteter": 1000,
+      "kikerter": 2,
+      "lok": 1,
+      "paprika": 2,
+      "frosne_erter": 1
+    }
+  },
+  {
+    "name": "Pasta med linser og tomatsaus",
+    "servings": 4,
+    "category": "pasta",
+    "tags": ["vegetar", "billig", "protein", "mettende"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 680,
+    "estimated_price": 95,
+    "ingredients": {
+      "pasta": 500,
+      "rode_linser": 300,
+      "hakkede_tomater": 2,
+      "tomatpure": 1,
+      "gulrot": 2,
+      "lok": 1
+    }
+  },
+  {
+    "name": "Glutenfri pastagryte med kylling",
+    "servings": 4,
+    "category": "kylling",
+    "tags": ["glutenfri", "laktosefri", "kylling", "rask"],
+    "contains_fish": false,
+    "vegetarian": false,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 30,
+    "calories_per_portion": 660,
+    "estimated_price": 160,
+    "ingredients": {
+      "glutenfri_pasta": 500,
+      "kyllingfilet": 600,
+      "hakkede_tomater": 2,
+      "paprika": 1,
+      "lok": 1
+    }
+  },
+  {
+    "name": "Soppgryte med ris og kokosmelk",
+    "servings": 4,
+    "category": "ris",
+    "tags": ["vegetar", "glutenfri", "laktosefri", "sunn"],
+    "contains_fish": false,
+    "vegetarian": true,
+    "healthy_score": 4,
+    "difficulty": "lett",
+    "time_minutes": 35,
+    "calories_per_portion": 610,
+    "estimated_price": 120,
+    "ingredients": {
+      "ris": 400,
+      "sopp": 400,
+      "kokosmelk": 1,
+      "lok": 1,
+      "gulrot": 2,
+      "buljong": 1
+    }
   }
 ]
