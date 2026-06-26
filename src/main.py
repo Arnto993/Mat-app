@@ -1,4 +1,5 @@
 from src.menu_generator import generate_menu_with_budget
+from src.shopping_list import group_shopping_list_by_category
 
 
 def format_amount(amount):
@@ -63,13 +64,16 @@ def main():
         print(f"{day}: {recipe['name']}")
 
     print("\nHandleliste:")
-    for item in shopping_list.values():
-        print(
-            f"{item['display_name']}: "
-            f"{format_amount(item['packages_needed'])} {item['package_unit']} "
-            f"(trenger {item['needed_amount']:.1f} {item['unit']}) "
-            f"- ca. {item['estimated_total_price']} kr"
-        )
+    for category, items in group_shopping_list_by_category(shopping_list):
+        print(f"\n{category}:")
+
+        for item in items:
+            print(
+                f"- {item['display_name']}: "
+                f"{format_amount(item['packages_needed'])} {item['package_unit']} "
+                f"(trenger {item['needed_amount']:.1f} {item['unit']}) "
+                f"- ca. {item['estimated_total_price']} kr"
+            )
 
     print(f"\nAnslått totalpris: {total_price:.0f} kr")
     if average_calories is not None:
