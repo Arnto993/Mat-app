@@ -180,6 +180,7 @@ def create_rounded_shopping_list(menu, number_of_people, pantry_items=None):
         estimated_total_price = round(packages_needed * price, 2)
 
         rounded_list[ingredient] = {
+            "product_id": ingredient,
             "display_name": product.get("display_name", product["name"]),
             "shopping_category": get_shopping_category(ingredient, product),
             "needed_amount": needed_amount,

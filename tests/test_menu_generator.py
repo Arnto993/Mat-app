@@ -2,9 +2,14 @@ from src.menu_generator import (
     MENU_PRIORITY_CHEAPEST,
     MENU_PRIORITY_FASTEST,
     MENU_PRIORITY_HEALTHIER,
+    MENU_PRIORITY_NONE,
+    filter_recipes,
     get_prioritized_recipe_pool,
+    get_recipe_pantry_usage_score,
     get_recipe_priority_score,
     has_fish,
+    has_vegetarian,
+    menu_matches_preferences,
     recipe_is_vegetarian
 )
 
@@ -45,6 +50,21 @@ def test_has_fish_returns_false_when_menu_has_no_fish():
     }
 
     assert has_fish(menu) is False
+
+
+def test_has_vegetarian_returns_true_when_menu_contains_vegetarian_recipe():
+    menu = {
+        "Mandag": {
+            "name": "Vegetarrett",
+            "tags": ["vegetar"]
+        },
+        "Tirsdag": {
+            "name": "Kylling",
+            "vegetarian": False
+        }
+    }
+
+    assert has_vegetarian(menu) is True
 
 
 def test_recipe_priority_score_uses_price_and_cheap_tag():
@@ -126,6 +146,66 @@ def test_prioritized_recipe_pool_keeps_more_than_only_the_top_recipes():
     assert recipe_pool[0]["name"] == "Rett 1"
 
 
+def test_recipe_pantry_usage_score_rewards_pantry_ingredients():
+    pantry_recipe = {
+        "name": "Risrett",
+        "servings": 4,
+        "ingredients": [
+            {"product_id": "rice_jasmin_1000", "amount": 200, "unit": "g"}
+        ]
+    }
+    other_recipe = {
+        "name": "Pastarett",
+        "servings": 4,
+        "ingredients": [
+            {"product_id": "pasta_spaghetti_500", "amount": 200, "unit": "g"}
+        ]
+    }
+
+    pantry_items = {"rice_jasmin_1000": 200}
+
+    assert (
+        get_recipe_pantry_usage_score(pantry_recipe, pantry_items, 4)
+        > get_recipe_pantry_usage_score(other_recipe, pantry_items, 4)
+    )
+
+
+def test_prioritized_recipe_pool_uses_pantry_when_no_priority_is_selected():
+    recipes = [
+        {
+            "name": "Pastarett",
+            "servings": 4,
+            "ingredients": [
+                {"product_id": "pasta_spaghetti_500", "amount": 200, "unit": "g"}
+            ]
+        },
+        {
+            "name": "Risrett",
+            "servings": 4,
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 200, "unit": "g"}
+            ]
+        },
+        {
+            "name": "Linserett",
+            "servings": 4,
+            "ingredients": [
+                {"product_id": "red_lentils_400", "amount": 200, "unit": "g"}
+            ]
+        }
+    ]
+
+    recipe_pool = get_prioritized_recipe_pool(
+        recipes,
+        MENU_PRIORITY_NONE,
+        count=2,
+        pantry_items={"rice_jasmin_1000": 200},
+        number_of_people=4
+    )
+
+    assert recipe_pool[0]["name"] == "Risrett"
+
+
 def test_recipe_is_vegetarian_uses_new_tags():
     recipe = {
         "name": "Vegetarrett",
@@ -136,3 +216,43 @@ def test_recipe_is_vegetarian_uses_new_tags():
     }
 
     assert recipe_is_vegetarian(recipe) is True
+
+
+def test_filter_recipes_excludes_vegetarian_when_requested():
+    recipes = [
+        {
+            "name": "Vegetarrett",
+            "vegetarian": True,
+            "ingredients": []
+        },
+        {
+            "name": "Kjottrett",
+            "vegetarian": False,
+            "ingredients": []
+        }
+    ]
+    preferences = {
+        "exclude_vegetarian": True
+    }
+
+    filtered_recipes = filter_recipes(recipes, preferences)
+
+    assert [recipe["name"] for recipe in filtered_recipes] == ["Kjottrett"]
+
+
+def test_menu_does_not_match_when_vegetarian_is_excluded_but_menu_has_vegetarian():
+    menu = {
+        "Mandag": {
+            "name": "Vegetarrett",
+            "vegetarian": True
+        },
+        "Tirsdag": {
+            "name": "Kjottrett",
+            "vegetarian": False
+        }
+    }
+    preferences = {
+        "exclude_vegetarian": True
+    }
+
+    assert menu_matches_preferences(menu, preferences) is False

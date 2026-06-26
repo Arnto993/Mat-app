@@ -1,8 +1,13 @@
+import math
 import random
 
 from src.products import get_products
 from src.recipes import get_recipes
-from src.shopping_list import create_rounded_shopping_list, iter_recipe_ingredients
+from src.shopping_list import (
+    create_rounded_shopping_list,
+    iter_recipe_ingredients,
+    normalize_pantry_items
+)
 from src.price_calculator import calculate_total_price_from_shopping_list
 from src.allergens import recipe_has_excluded_allergens
 
@@ -14,6 +19,8 @@ MENU_PRIORITY_FASTEST = "fastest"
 MENU_PRIORITY_HEALTHIER = "healthier"
 PRIORITIZED_POOL_MIN_EXTRA = 3
 PRIORITIZED_POOL_SHARE = 0.4
+PANTRY_MATCH_SCORE = 25
+PANTRY_USED_SHARE_SCORE = 10
 
 
 def normalize_recipes(recipes):
@@ -125,6 +132,13 @@ def has_fish(menu):
     )
 
 
+def has_vegetarian(menu):
+    return any(
+        recipe_is_vegetarian(recipe)
+        for recipe in menu.values()
+    )
+
+
 def calculate_menu_time(menu):
     return sum(
         recipe.get("time_minutes", 999)
@@ -165,6 +179,53 @@ def estimate_recipe_price(recipe):
         total_price += amount / product["package_size"] * product["price_nok"]
 
     return total_price
+
+
+def get_product_unit_price(product):
+    package_size = product.get("package_size", 0)
+
+    if package_size <= 0:
+        return 0
+
+    price = product.get("price_nok", product.get("estimated_package_price", 0))
+
+    return price / package_size
+
+
+def get_recipe_pantry_usage_score(recipe, pantry_items=None, number_of_people=1):
+    pantry_items = normalize_pantry_items(pantry_items)
+
+    if not pantry_items or "ingredients" not in recipe:
+        return 0
+
+    products = get_products()
+    base_servings = recipe.get("servings", 4)
+    scale_factor = number_of_people / base_servings
+    score = 0
+
+    for product_id, amount, _unit in iter_recipe_ingredients(recipe):
+        pantry_amount = pantry_items.get(product_id, 0)
+
+        if pantry_amount <= 0:
+            continue
+
+        needed_amount = amount * scale_factor
+        used_amount = needed_amount
+
+        if not math.isinf(pantry_amount):
+            used_amount = min(needed_amount, pantry_amount)
+
+        if used_amount <= 0:
+            continue
+
+        product = products.get(product_id, {})
+        score += PANTRY_MATCH_SCORE
+        score += used_amount * get_product_unit_price(product)
+
+        if not math.isinf(pantry_amount):
+            score += min(used_amount / pantry_amount, 1) * PANTRY_USED_SHARE_SCORE
+
+    return score
 
 
 def calculate_menu_recipe_price(menu):
@@ -224,15 +285,39 @@ def get_recipe_priority_score(recipe, priority):
     return 0
 
 
-def get_prioritized_recipe_pool(recipes, priority, count):
-    recipes = normalize_recipes(recipes)
+def get_recipe_selection_score(
+    recipe,
+    priority,
+    pantry_items=None,
+    number_of_people=1
+):
+    return (
+        get_recipe_priority_score(recipe, priority)
+        + get_recipe_pantry_usage_score(recipe, pantry_items, number_of_people)
+    )
 
-    if priority is MENU_PRIORITY_NONE:
+
+def get_prioritized_recipe_pool(
+    recipes,
+    priority,
+    count,
+    pantry_items=None,
+    number_of_people=1
+):
+    recipes = normalize_recipes(recipes)
+    pantry_items = normalize_pantry_items(pantry_items)
+
+    if priority is MENU_PRIORITY_NONE and not pantry_items:
         return recipes.copy()
 
     sorted_recipes = sorted(
         recipes,
-        key=lambda recipe: get_recipe_priority_score(recipe, priority),
+        key=lambda recipe: get_recipe_selection_score(
+            recipe,
+            priority,
+            pantry_items,
+            number_of_people
+        ),
         reverse=True
     )
     pool_size = max(
@@ -243,35 +328,92 @@ def get_prioritized_recipe_pool(recipes, priority, count):
     return sorted_recipes[:min(len(sorted_recipes), pool_size)]
 
 
-def weighted_sample_without_replacement(recipes, count):
+def remove_recipe_ingredients_from_pantry(recipe, pantry_items, number_of_people=1):
+    base_servings = recipe.get("servings", 4)
+    scale_factor = number_of_people / base_servings
+
+    for product_id, amount, _unit in iter_recipe_ingredients(recipe):
+        if product_id not in pantry_items or math.isinf(pantry_items[product_id]):
+            continue
+
+        pantry_items[product_id] = max(
+            0,
+            pantry_items[product_id] - amount * scale_factor
+        )
+
+
+def weighted_sample_without_replacement(
+    recipes,
+    count,
+    priority=MENU_PRIORITY_NONE,
+    pantry_items=None,
+    number_of_people=1
+):
     selected_recipes = []
     available_recipes = normalize_recipes(recipes).copy()
+    pantry_items = normalize_pantry_items(pantry_items)
 
     for _ in range(count):
+        if pantry_items:
+            available_recipes = sorted(
+                available_recipes,
+                key=lambda recipe: get_recipe_selection_score(
+                    recipe,
+                    priority,
+                    pantry_items,
+                    number_of_people
+                ),
+                reverse=True
+            )
+
         weights = list(range(len(available_recipes), 0, -1))
         selected_recipe = random.choices(available_recipes, weights=weights, k=1)[0]
 
         selected_recipes.append(selected_recipe)
         available_recipes.remove(selected_recipe)
+        remove_recipe_ingredients_from_pantry(
+            selected_recipe,
+            pantry_items,
+            number_of_people
+        )
 
     return selected_recipes
 
 
-def select_recipes_for_menu(recipes, count, priority):
+def select_recipes_for_menu(
+    recipes,
+    count,
+    priority,
+    pantry_items=None,
+    number_of_people=1
+):
     recipes = normalize_recipes(recipes)
+    pantry_items = normalize_pantry_items(pantry_items)
 
     if len(recipes) < count:
         return None
 
-    if priority is MENU_PRIORITY_NONE:
+    if priority is MENU_PRIORITY_NONE and not pantry_items:
         return random.sample(recipes, count)
 
-    recipe_pool = get_prioritized_recipe_pool(recipes, priority, count)
+    recipe_pool = get_prioritized_recipe_pool(
+        recipes,
+        priority,
+        count,
+        pantry_items,
+        number_of_people
+    )
 
     if len(recipe_pool) < count:
         return None
 
-    return weighted_sample_without_replacement(recipe_pool, count)
+    return weighted_sample_without_replacement(
+        recipe_pool,
+        count,
+        priority,
+        pantry_items,
+        number_of_people
+    )
 
 
 def filter_recipes(recipes, preferences):
@@ -283,6 +425,9 @@ def filter_recipes(recipes, preferences):
             continue
 
         if preferences.get("vegetarian_only") and not recipe_is_vegetarian(recipe):
+            continue
+
+        if preferences.get("exclude_vegetarian") and recipe_is_vegetarian(recipe):
             continue
 
         max_time = preferences.get("max_time_minutes")
@@ -314,12 +459,28 @@ def menu_matches_preferences(menu, preferences):
     if preferences.get("wants_fish") is False and has_fish(menu):
         return False
 
+    if preferences.get("vegetarian_only") and not all(
+        recipe_is_vegetarian(recipe)
+        for recipe in menu.values()
+    ):
+        return False
+
+    if preferences.get("exclude_vegetarian") and has_vegetarian(menu):
+        return False
+
     return True
 
 
-def generate_week_menu(recipes, taco_friday=True, priority=MENU_PRIORITY_NONE):
+def generate_week_menu(
+    recipes,
+    taco_friday=True,
+    priority=MENU_PRIORITY_NONE,
+    pantry_items=None,
+    number_of_people=1
+):
     menu = {}
     available_recipes = normalize_recipes(recipes).copy()
+    pantry_items = normalize_pantry_items(pantry_items)
 
     if taco_friday:
         taco = find_taco_recipe(available_recipes)
@@ -329,6 +490,7 @@ def generate_week_menu(recipes, taco_friday=True, priority=MENU_PRIORITY_NONE):
 
         menu["Fredag"] = taco
         available_recipes.remove(taco)
+        remove_recipe_ingredients_from_pantry(taco, pantry_items, number_of_people)
 
     days_to_fill = [day for day in DAYS if day not in menu]
 
@@ -338,7 +500,9 @@ def generate_week_menu(recipes, taco_friday=True, priority=MENU_PRIORITY_NONE):
     selected_recipes = select_recipes_for_menu(
         available_recipes,
         len(days_to_fill),
-        priority
+        priority,
+        pantry_items,
+        number_of_people
     )
 
     if selected_recipes is None:
@@ -363,7 +527,13 @@ def generate_menu_with_budget(
     menu_priority = get_menu_priority(preferences)
 
     for attempt in range(max_attempts):
-        menu = generate_week_menu(available_recipes, taco_friday, menu_priority)
+        menu = generate_week_menu(
+            available_recipes,
+            taco_friday,
+            menu_priority,
+            pantry_items,
+            number_of_people
+        )
 
         if menu is None:
             return None, None, None
