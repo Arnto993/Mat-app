@@ -18,9 +18,13 @@ PRIORITIZED_POOL_SHARE = 0.4
 
 def normalize_recipes(recipes):
     if isinstance(recipes, dict):
-        return recipes.get("recipes", [])
+        recipes = recipes.get("recipes", [])
 
-    return recipes
+    return [
+        recipe
+        for recipe in recipes
+        if isinstance(recipe, dict)
+    ]
 
 
 def get_menu_priority(preferences):
@@ -37,6 +41,8 @@ def get_menu_priority(preferences):
 
 
 def find_recipe_by_name(recipes, name):
+    recipes = normalize_recipes(recipes)
+
     for recipe in recipes:
         if recipe["name"].lower() == name.lower():
             return recipe
@@ -45,6 +51,7 @@ def find_recipe_by_name(recipes, name):
 
 
 def find_taco_recipe(recipes):
+    recipes = normalize_recipes(recipes)
     exact_match = find_recipe_by_name(recipes, "Taco")
 
     if exact_match is not None:
@@ -218,6 +225,8 @@ def get_recipe_priority_score(recipe, priority):
 
 
 def get_prioritized_recipe_pool(recipes, priority, count):
+    recipes = normalize_recipes(recipes)
+
     if priority is MENU_PRIORITY_NONE:
         return recipes.copy()
 
@@ -236,7 +245,7 @@ def get_prioritized_recipe_pool(recipes, priority, count):
 
 def weighted_sample_without_replacement(recipes, count):
     selected_recipes = []
-    available_recipes = recipes.copy()
+    available_recipes = normalize_recipes(recipes).copy()
 
     for _ in range(count):
         weights = list(range(len(available_recipes), 0, -1))
@@ -249,6 +258,8 @@ def weighted_sample_without_replacement(recipes, count):
 
 
 def select_recipes_for_menu(recipes, count, priority):
+    recipes = normalize_recipes(recipes)
+
     if len(recipes) < count:
         return None
 
@@ -268,9 +279,6 @@ def filter_recipes(recipes, preferences):
     recipes = normalize_recipes(recipes)
 
     for recipe in recipes:
-        if not isinstance(recipe, dict):
-            continue
-
         if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
             continue
 
@@ -311,7 +319,7 @@ def menu_matches_preferences(menu, preferences):
 
 def generate_week_menu(recipes, taco_friday=True, priority=MENU_PRIORITY_NONE):
     menu = {}
-    available_recipes = recipes.copy()
+    available_recipes = normalize_recipes(recipes).copy()
 
     if taco_friday:
         taco = find_taco_recipe(available_recipes)
