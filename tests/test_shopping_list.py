@@ -100,6 +100,7 @@ def test_create_rounded_shopping_list_rounds_up_packages():
 
     shopping_list = create_rounded_shopping_list(menu, number_of_people=4)
 
+    assert shopping_list["rice_jasmin_1000"]["product_id"] == "rice_jasmin_1000"
     assert shopping_list["rice_jasmin_1000"]["packages_needed"] == 2
 
 

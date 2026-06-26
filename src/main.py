@@ -35,13 +35,19 @@ def main():
     wants_fish = input("Vil du ha fisk i ukesmenyen? ja/nei: ").lower() == "ja"
     max_time_minutes = int(input("Hva er maks tid du vil bruke på middag? (i minutter): "))
     vegetarian_only = input("Vil du ha kun vegetariske retter? ja/nei: ").lower() == "ja"
+    exclude_vegetarian = input("Vil du unngå vegetariske retter helt? ja/nei: ").lower() == "ja"
 
     preferences = {
         "wants_fish": wants_fish,
         "vegetarian_only": vegetarian_only,
+        "exclude_vegetarian": exclude_vegetarian,
         "max_time_minutes": max_time_minutes,
         "avoid_categories": []
     }
+
+    if vegetarian_only and exclude_vegetarian:
+        print("Du kan ikke velge både bare vegetarmat og ingen vegetarretter.")
+        return
 
     if taco_friday and vegetarian_only:
         print("Vanlig taco fredag passer ikke med bare vegetarmat ennå.")
