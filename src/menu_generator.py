@@ -9,7 +9,7 @@ from src.shopping_list import (
     normalize_pantry_items
 )
 from src.price_calculator import calculate_total_price_from_shopping_list
-from src.allergens import recipe_has_excluded_allergens
+from src.allergens import get_recipe_allergens
 
 
 DAYS = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"]
@@ -21,6 +21,15 @@ PRIORITIZED_POOL_MIN_EXTRA = 3
 PRIORITIZED_POOL_SHARE = 0.4
 PANTRY_MATCH_SCORE = 25
 PANTRY_USED_SHARE_SCORE = 10
+ALLERGEN_DISPLAY_NAMES = {
+    "gluten": "gluten",
+    "lactose": "laktose",
+    "milk": "melk",
+    "egg": "egg",
+    "fish": "fisk",
+    "soy": "soya",
+    "nuts": "nøtter"
+}
 
 
 def normalize_recipes(recipes):
@@ -280,6 +289,18 @@ def get_recipe_tags(recipe):
     }
 
 
+def format_list_for_message(values):
+    values = list(values)
+
+    if not values:
+        return ""
+
+    if len(values) == 1:
+        return values[0]
+
+    return f"{', '.join(values[:-1])} og {values[-1]}"
+
+
 def get_recipe_priority_score(recipe, priority):
     tags = get_recipe_tags(recipe)
 
@@ -507,6 +528,45 @@ def get_replacement_recipe_candidates(recipes, menu, day, preferences):
     return candidates
 
 
+def get_recipe_filter_blockers(recipe, preferences):
+    blockers = []
+
+    if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
+        blockers.append("inneholder fisk")
+
+    if preferences.get("vegetarian_only") and not recipe_is_vegetarian(recipe):
+        blockers.append("er ikke vegetarisk")
+
+    if preferences.get("exclude_vegetarian") and recipe_is_vegetarian(recipe):
+        blockers.append("er vegetarisk")
+
+    max_time = preferences.get("max_time_minutes")
+    if max_time is not None and recipe.get("time_minutes", 999) > max_time:
+        blockers.append(f"tar mer enn {max_time} minutter")
+
+    avoid_categories = preferences.get("avoid_categories", [])
+    if (
+        recipe.get("category") in avoid_categories
+        or not get_recipe_product_categories(recipe).isdisjoint(avoid_categories)
+    ):
+        blockers.append("treffer en kategori du har valgt bort")
+
+    excluded_allergens = preferences.get("excluded_allergens", [])
+    recipe_allergens = get_recipe_allergens(recipe)
+    blocked_allergens = sorted(set(excluded_allergens) & recipe_allergens)
+
+    if blocked_allergens:
+        blockers.append(
+            "inneholder "
+            + format_list_for_message(
+                ALLERGEN_DISPLAY_NAMES.get(allergen, allergen)
+                for allergen in blocked_allergens
+            )
+        )
+
+    return blockers
+
+
 def select_replacement_recipe(
     recipes,
     menu,
@@ -544,33 +604,154 @@ def filter_recipes(recipes, preferences):
     recipes = normalize_recipes(recipes)
 
     for recipe in recipes:
-        if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
-            continue
-
-        if preferences.get("vegetarian_only") and not recipe_is_vegetarian(recipe):
-            continue
-
-        if preferences.get("exclude_vegetarian") and recipe_is_vegetarian(recipe):
-            continue
-
-        max_time = preferences.get("max_time_minutes")
-        if max_time is not None and recipe.get("time_minutes", 999) > max_time:
-            continue
-
-        avoid_categories = preferences.get("avoid_categories", [])
-        if (
-            recipe.get("category") in avoid_categories
-            or not get_recipe_product_categories(recipe).isdisjoint(avoid_categories)
-        ):
-            continue
-
-        excluded_allergens = preferences.get("excluded_allergens", [])
-        if recipe_has_excluded_allergens(recipe, excluded_allergens):
+        if get_recipe_filter_blockers(recipe, preferences):
             continue
 
         filtered_recipes.append(recipe)
 
     return filtered_recipes
+
+
+def create_generation_diagnostics(
+    total_recipe_count,
+    available_recipes,
+    preferences,
+    taco_friday,
+    max_budget
+):
+    blocked_recipes = total_recipe_count - len(available_recipes)
+
+    return {
+        "messages": [],
+        "total_recipe_count": total_recipe_count,
+        "available_recipe_count": len(available_recipes),
+        "blocked_recipe_count": blocked_recipes,
+        "taco_friday": taco_friday,
+        "max_budget": max_budget,
+        "lowest_attempted_total_price": None,
+        "lowest_attempted_menu": None,
+        "attempted_menu_count": 0,
+        "preference_mismatch_count": 0,
+        "budget_mismatch_count": 0
+    }
+
+
+def add_generation_message(diagnostics, message):
+    if message and message not in diagnostics["messages"]:
+        diagnostics["messages"].append(message)
+
+
+def summarize_filter_blockers(recipes, preferences, limit=3):
+    blocker_counts = {}
+
+    for recipe in recipes:
+        for blocker in get_recipe_filter_blockers(recipe, preferences):
+            blocker_counts[blocker] = blocker_counts.get(blocker, 0) + 1
+
+    return sorted(
+        blocker_counts.items(),
+        key=lambda item: item[1],
+        reverse=True
+    )[:limit]
+
+
+def explain_taco_friday_failure(recipes, preferences):
+    taco = find_taco_recipe(recipes)
+
+    if taco is None:
+        return "Taco fredag er valgt, men oppskriftsbasen har ingen taco-oppskrift."
+
+    blockers = get_recipe_filter_blockers(taco, preferences)
+
+    if blockers:
+        return (
+            "Taco fredag er valgt, men taco-oppskriften kan ikke brukes fordi den "
+            f"{format_list_for_message(blockers)}."
+        )
+
+    return (
+        "Taco fredag er valgt, men taco-oppskriften ble ikke tilgjengelig "
+        "etter filtrering av preferansene."
+    )
+
+
+def explain_generation_failure(
+    diagnostics,
+    recipes,
+    available_recipes,
+    preferences,
+    taco_friday,
+    days_to_fill_count
+):
+    if not available_recipes:
+        add_generation_message(
+            diagnostics,
+            "Ingen oppskrifter passer alle valgene dine."
+        )
+    elif len(available_recipes) < days_to_fill_count:
+        add_generation_message(
+            diagnostics,
+            (
+                f"Bare {len(available_recipes)} oppskrifter passer valgene dine, "
+                f"men ukesmenyen trenger {days_to_fill_count} middager."
+            )
+        )
+
+    if taco_friday and find_taco_recipe(available_recipes) is None:
+        add_generation_message(
+            diagnostics,
+            explain_taco_friday_failure(recipes, preferences)
+        )
+
+    if diagnostics["blocked_recipe_count"] > 0:
+        blocker_summary = summarize_filter_blockers(recipes, preferences)
+        if blocker_summary:
+            blocker_text = ", ".join(
+                f"{blocker} ({count})"
+                for blocker, count in blocker_summary
+            )
+            add_generation_message(
+                diagnostics,
+                (
+                    f"{diagnostics['blocked_recipe_count']} oppskrifter ble filtrert "
+                    f"bort. Vanligste årsaker: {blocker_text}."
+                )
+            )
+
+    if diagnostics["budget_mismatch_count"] > 0:
+        lowest_price = diagnostics["lowest_attempted_total_price"]
+        if lowest_price is not None:
+            add_generation_message(
+                diagnostics,
+                (
+                    "Budsjettet ser for lavt ut for valgene dine: laveste meny "
+                    f"jeg prøvde kostet ca. {lowest_price:.0f} kr, mens budsjettet "
+                    f"er {diagnostics['max_budget']:.0f} kr."
+                )
+            )
+
+    if diagnostics["preference_mismatch_count"] > 0:
+        if preferences.get("wants_fish") is True:
+            add_generation_message(
+                diagnostics,
+                (
+                    "Jeg klarte ikke å sette sammen en uke som samtidig har minst "
+                    "én fiskemiddag og oppfyller resten av valgene."
+                )
+            )
+        else:
+            add_generation_message(
+                diagnostics,
+                "Jeg fant menyer, men de traff ikke alle ukeskravene dine."
+            )
+
+    if not diagnostics["messages"]:
+        add_generation_message(
+            diagnostics,
+            "Fant ingen meny som passer budsjettet og preferansene dine."
+        )
+
+    return diagnostics
 
 
 def menu_matches_preferences(menu, preferences):
@@ -643,11 +824,34 @@ def generate_menu_with_budget(
     max_budget,
     preferences,
     max_attempts=100,
-    pantry_items=None
+    pantry_items=None,
+    include_diagnostics=False
 ):
     recipes = normalize_recipes(get_recipes())
     available_recipes = filter_recipes(recipes, preferences)
     menu_priority = get_menu_priority(preferences)
+    diagnostics = create_generation_diagnostics(
+        len(recipes),
+        available_recipes,
+        preferences,
+        taco_friday,
+        max_budget
+    )
+
+    def failure_result():
+        explain_generation_failure(
+            diagnostics,
+            recipes,
+            available_recipes,
+            preferences,
+            taco_friday,
+            len(DAYS)
+        )
+
+        if include_diagnostics:
+            return None, None, None, diagnostics
+
+        return None, None, None
 
     for attempt in range(max_attempts):
         menu = generate_week_menu(
@@ -659,9 +863,10 @@ def generate_menu_with_budget(
         )
 
         if menu is None:
-            return None, None, None
+            return failure_result()
 
         if not menu_matches_preferences(menu, preferences):
+            diagnostics["preference_mismatch_count"] += 1
             continue
 
         shopping_list = create_rounded_shopping_list(
@@ -670,11 +875,23 @@ def generate_menu_with_budget(
             pantry_items
         )
         total_price = calculate_total_price_from_shopping_list(shopping_list)
+        diagnostics["attempted_menu_count"] += 1
+
+        if (
+            diagnostics["lowest_attempted_total_price"] is None
+            or total_price < diagnostics["lowest_attempted_total_price"]
+        ):
+            diagnostics["lowest_attempted_total_price"] = total_price
+            diagnostics["lowest_attempted_menu"] = menu
 
         if total_price <= max_budget:
-            return menu, shopping_list, total_price
+            if include_diagnostics:
+                return menu, shopping_list, total_price, diagnostics
 
-    return None, None, None
+            return menu, shopping_list, total_price
+        diagnostics["budget_mismatch_count"] += 1
+
+    return failure_result()
 
 
 def replace_menu_day_with_budget(

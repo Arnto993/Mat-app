@@ -322,17 +322,21 @@ if generate_menu and errors:
         st.warning(error)
 
 if generate_menu and not errors:
-    menu, shopping_list, total_price = generate_menu_with_budget(
+    menu, shopping_list, total_price, diagnostics = generate_menu_with_budget(
         number_of_people,
         taco_friday,
         max_budget,
         preferences,
-        pantry_items=pantry_items
+        pantry_items=pantry_items,
+        include_diagnostics=True
     )
 
     if menu is None:
         st.session_state.pop(GENERATED_MENU_STATE_KEY, None)
-        st.error("Fant ingen meny som passer budsjettet og preferansene dine.")
+        st.error("Kunne ikke lage ukesmeny med disse valgene.")
+
+        for message in diagnostics.get("messages", []):
+            st.warning(message)
     else:
         st.session_state[GENERATED_MENU_STATE_KEY] = {
             "menu": menu,

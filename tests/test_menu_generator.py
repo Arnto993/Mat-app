@@ -8,6 +8,7 @@ from src.menu_generator import (
     get_prioritized_recipe_pool,
     get_recipe_pantry_usage_score,
     get_recipe_priority_score,
+    generate_menu_with_budget,
     has_fish,
     has_vegetarian,
     menu_matches_preferences,
@@ -340,3 +341,81 @@ def test_replacement_candidates_keep_fish_when_replacing_only_fish_day():
     )
 
     assert [recipe["name"] for recipe in candidates] == ["Torsk"]
+
+
+def test_generation_diagnostics_explain_when_gluten_blocks_taco_friday(monkeypatch):
+    recipes = [
+        {
+            "id": "taco",
+            "name": "Taco",
+            "time_minutes": 25,
+            "allergens": ["gluten"],
+            "ingredients": []
+        },
+        *[
+            {
+                "id": f"safe_{number}",
+                "name": f"Trygg rett {number}",
+                "time_minutes": 25,
+                "allergens": [],
+                "ingredients": []
+            }
+            for number in range(4)
+        ]
+    ]
+    preferences = {
+        "excluded_allergens": ["gluten"],
+        "max_time_minutes": 40
+    }
+
+    monkeypatch.setattr("src.menu_generator.get_recipes", lambda: recipes)
+
+    menu, _shopping_list, _total_price, diagnostics = generate_menu_with_budget(
+        4,
+        taco_friday=True,
+        max_budget=1000,
+        preferences=preferences,
+        include_diagnostics=True
+    )
+
+    assert menu is None
+    assert any(
+        "Taco fredag" in message and "gluten" in message
+        for message in diagnostics["messages"]
+    )
+
+
+def test_generation_diagnostics_explain_when_budget_is_too_low(monkeypatch):
+    recipes = [
+        {
+            "id": f"rice_{number}",
+            "name": f"Risrett {number}",
+            "time_minutes": 25,
+            "allergens": [],
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 200, "unit": "g"}
+            ]
+        }
+        for number in range(5)
+    ]
+    preferences = {
+        "max_time_minutes": 40
+    }
+
+    monkeypatch.setattr("src.menu_generator.get_recipes", lambda: recipes)
+
+    menu, _shopping_list, _total_price, diagnostics = generate_menu_with_budget(
+        4,
+        taco_friday=False,
+        max_budget=1,
+        preferences=preferences,
+        max_attempts=3,
+        include_diagnostics=True
+    )
+
+    assert menu is None
+    assert diagnostics["lowest_attempted_total_price"] > 1
+    assert any(
+        "Budsjettet" in message and "1 kr" in message
+        for message in diagnostics["messages"]
+    )
