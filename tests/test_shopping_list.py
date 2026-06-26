@@ -1,5 +1,6 @@
 from src.shopping_list import create_raw_shopping_list
 from src.shopping_list import create_rounded_shopping_list
+from src.shopping_list import group_shopping_list_by_category
 
 
 def test_create_raw_shopping_list_scales_with_number_of_people():
@@ -160,3 +161,55 @@ def test_create_rounded_shopping_list_prorates_pantry_cost_mode():
 
     assert shopping_list["rapeseed_oil_1000"]["packages_needed"] == 0.1
     assert shopping_list["rapeseed_oil_1000"]["estimated_total_price"] == 3.99
+
+
+def test_create_rounded_shopping_list_sorts_by_norwegian_store_order():
+    menu = {
+        "Mandag": {
+            "name": "Testrett",
+            "servings": 4,
+            "ingredients": [
+                {"product_id": "rice_jasmin_1000", "amount": 400, "unit": "g"},
+                {"product_id": "frozen_peas_600", "amount": 300, "unit": "g"},
+                {"product_id": "ground_beef_400", "amount": 400, "unit": "g"},
+                {"product_id": "broccoli_400", "amount": 400, "unit": "g"},
+                {"product_id": "chopped_tomatoes_400", "amount": 400, "unit": "g"},
+                {"product_id": "milk_1000", "amount": 1000, "unit": "ml"}
+            ]
+        }
+    }
+
+    shopping_list = create_rounded_shopping_list(menu, number_of_people=4)
+
+    assert list(shopping_list.keys()) == [
+        "broccoli_400",
+        "ground_beef_400",
+        "milk_1000",
+        "rice_jasmin_1000",
+        "chopped_tomatoes_400",
+        "frozen_peas_600"
+    ]
+
+
+def test_group_shopping_list_by_category_uses_headings_and_frozen_category():
+    menu = {
+        "Mandag": {
+            "name": "Testrett",
+            "servings": 4,
+            "ingredients": [
+                {"product_id": "frozen_peas_600", "amount": 300, "unit": "g"},
+                {"product_id": "broccoli_400", "amount": 400, "unit": "g"},
+                {"product_id": "rice_jasmin_1000", "amount": 400, "unit": "g"}
+            ]
+        }
+    }
+
+    shopping_list = create_rounded_shopping_list(menu, number_of_people=4)
+    grouped_list = group_shopping_list_by_category(shopping_list)
+
+    assert [category for category, _items in grouped_list] == [
+        "Frukt og grønt",
+        "Tørrvarer",
+        "Frysevarer"
+    ]
+    assert grouped_list[-1][1][0]["display_name"] == "Erter fryst"

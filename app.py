@@ -8,6 +8,7 @@ from src.menu_generator import (
     generate_menu_with_budget
 )
 from src.products import get_products
+from src.shopping_list import group_shopping_list_by_category
 
 def validate_preferences(preferences, taco_friday):
     errors = []
@@ -211,13 +212,16 @@ if generate_menu and not errors:
         if not shopping_list:
             st.info("Du har allerede alle varene som trengs til denne menyen.")
         else:
-            for item in shopping_list.values():
-                st.write(
-                    f"- **{item['display_name']}**: "
-                    f"{format_amount(item['packages_needed'])} {format_package_unit(item['packages_needed'], item['package_unit'])} "
-                    f"(trenger {format_amount(item['needed_amount'])} {format_package_unit(item['needed_amount'], item['unit'])}) "
-                    f"– ca. {item['estimated_total_price']} kr"
-                )
+            for category, items in group_shopping_list_by_category(shopping_list):
+                st.markdown(f"#### {category}")
+
+                for item in items:
+                    st.write(
+                        f"- **{item['display_name']}**: "
+                        f"{format_amount(item['packages_needed'])} {format_package_unit(item['packages_needed'], item['package_unit'])} "
+                        f"(trenger {format_amount(item['needed_amount'])} {format_package_unit(item['needed_amount'], item['unit'])}) "
+                        f"– ca. {item['estimated_total_price']} kr"
+                    )
 
         st.subheader("Pris")
         st.success(f"Anslått handlepris: {total_price:.0f} kr")

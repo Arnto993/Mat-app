@@ -4,6 +4,35 @@ from src.products import get_products
 
 PACKAGE_COST_MODE = "package"
 PANTRY_PRORATED_COST_MODE = "pantry_prorated"
+OTHER_SHOPPING_CATEGORY = "Annet"
+
+SHOPPING_CATEGORY_ORDER = [
+    "Frukt og grønt",
+    "Brød og bakervarer",
+    "Kjøtt, fisk og pålegg",
+    "Meieri og egg",
+    "Tørrvarer",
+    "Hermetikk og glass",
+    "Saus, krydder og basisvarer",
+    "Frysevarer",
+    "Drikke",
+    "Snacks og søtsaker",
+    "Husholdning og hygiene",
+    OTHER_SHOPPING_CATEGORY
+]
+
+PRODUCT_CATEGORY_TO_SHOPPING_CATEGORY = {
+    "Frukt og grønt": "Frukt og grønt",
+    "Kjøtt": "Kjøtt, fisk og pålegg",
+    "Fisk": "Kjøtt, fisk og pålegg",
+    "Vegetarprotein": "Kjøtt, fisk og pålegg",
+    "Meieri og egg": "Meieri og egg",
+    "Tørrvarer": "Tørrvarer",
+    "Hermetikk": "Hermetikk og glass",
+    "Saus og dressing": "Saus, krydder og basisvarer",
+    "Krydder": "Saus, krydder og basisvarer",
+    "Basisvarer": "Saus, krydder og basisvarer"
+}
 
 
 def iter_recipe_ingredients(recipe):
@@ -34,6 +63,72 @@ def normalize_pantry_items(pantry_items):
         for item in pantry_items
         if item
     }
+
+
+def product_is_frozen(product_id, product):
+    name = product.get("name", "").lower()
+    display_name = product.get("display_name", "").lower()
+
+    return (
+        "frozen" in product_id
+        or "fryst" in name
+        or "fryst" in display_name
+    )
+
+
+def get_shopping_category(product_id, product):
+    if product_is_frozen(product_id, product):
+        return "Frysevarer"
+
+    return PRODUCT_CATEGORY_TO_SHOPPING_CATEGORY.get(
+        product.get("category"),
+        product.get("category", OTHER_SHOPPING_CATEGORY)
+    )
+
+
+def get_shopping_category_sort_key(category):
+    try:
+        return SHOPPING_CATEGORY_ORDER.index(category)
+    except ValueError:
+        return SHOPPING_CATEGORY_ORDER.index(OTHER_SHOPPING_CATEGORY)
+
+
+def sort_shopping_list(shopping_list):
+    return dict(
+        sorted(
+            shopping_list.items(),
+            key=lambda item: (
+                get_shopping_category_sort_key(
+                    item[1].get("shopping_category", OTHER_SHOPPING_CATEGORY)
+                ),
+                item[1].get("shopping_category", OTHER_SHOPPING_CATEGORY).lower(),
+                item[1].get("display_name", item[0]).lower()
+            )
+        )
+    )
+
+
+def group_shopping_list_by_category(shopping_list):
+    grouped_list = []
+    current_category = None
+    current_items = []
+
+    for item in sort_shopping_list(shopping_list).values():
+        category = item.get("shopping_category", OTHER_SHOPPING_CATEGORY)
+
+        if category != current_category:
+            if current_items:
+                grouped_list.append((current_category, current_items))
+
+            current_category = category
+            current_items = []
+
+        current_items.append(item)
+
+    if current_items:
+        grouped_list.append((current_category, current_items))
+
+    return grouped_list
 
 
 def create_raw_shopping_list(menu, number_of_people, pantry_items=None):
@@ -86,6 +181,7 @@ def create_rounded_shopping_list(menu, number_of_people, pantry_items=None):
 
         rounded_list[ingredient] = {
             "display_name": product.get("display_name", product["name"]),
+            "shopping_category": get_shopping_category(ingredient, product),
             "needed_amount": needed_amount,
             "unit": product["unit"],
             "packages_needed": packages_needed,
@@ -95,7 +191,7 @@ def create_rounded_shopping_list(menu, number_of_people, pantry_items=None):
             "cost_mode": cost_mode
         }
 
-    return rounded_list
+    return sort_shopping_list(rounded_list)
 
 def calculate_total_price_from_shopping_list(shopping_list):
     total_price = 0
