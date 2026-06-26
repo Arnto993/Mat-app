@@ -7,7 +7,8 @@ from src.menu_generator import (
     MENU_PRIORITY_FASTEST,
     MENU_PRIORITY_HEALTHIER,
     MENU_PRIORITY_NONE,
-    generate_menu_with_budget
+    generate_menu_with_budget,
+    replace_menu_day_with_budget
 )
 from src.products import get_products
 from src.shopping_list import (
@@ -75,6 +76,14 @@ def get_pantry_amount_step(product):
         return 50.0
 
     return 1.0
+
+
+def rerun_app():
+    if hasattr(st, "rerun"):
+        st.rerun()
+        return
+
+    st.experimental_rerun()
 
 
 GENERATED_MENU_STATE_KEY = "generated_menu_result"
@@ -332,7 +341,9 @@ if generate_menu and not errors:
             "pantry_items": pantry_items.copy(),
             "excluded_allergens": excluded_allergens.copy(),
             "number_of_people": number_of_people,
-            "taco_friday": taco_friday
+            "taco_friday": taco_friday,
+            "max_budget": max_budget,
+            "preferences": preferences.copy()
         }
         reset_shopping_item_checkboxes(shopping_list)
 
@@ -349,6 +360,8 @@ if generated_menu_result is not None:
         number_of_people
     )
     generated_taco_friday = generated_menu_result.get("taco_friday", taco_friday)
+    generated_max_budget = generated_menu_result.get("max_budget", max_budget)
+    generated_preferences = generated_menu_result.get("preferences", preferences)
     pantry_usage_by_day = get_menu_pantry_usage_by_day(
         menu,
         generated_pantry_items,
@@ -374,6 +387,32 @@ if generated_menu_result is not None:
                 )
                 st.write(f"Vanskelighetsgrad: {recipe['difficulty']}")
                 st.write(f"Tags: {', '.join(recipe.get('tags', []))}")
+                if generated_taco_friday and day == "Fredag":
+                    st.caption("Fredag er låst til taco fordi Taco på fredag var valgt.")
+                elif st.button("Generer ny dag", key=f"replace_day_{day}"):
+                    new_menu, new_shopping_list, new_total_price = replace_menu_day_with_budget(
+                        menu,
+                        day,
+                        generated_number_of_people,
+                        generated_max_budget,
+                        generated_preferences,
+                        pantry_items=generated_pantry_items
+                    )
+
+                    if new_menu is None:
+                        st.warning(
+                            "Fant ingen ny rett for denne dagen som passer budsjettet "
+                            "og preferansene dine."
+                        )
+                    else:
+                        st.session_state[GENERATED_MENU_STATE_KEY] = {
+                            **generated_menu_result,
+                            "menu": new_menu,
+                            "shopping_list": new_shopping_list,
+                            "total_price": new_total_price
+                        }
+                        reset_shopping_item_checkboxes(new_shopping_list)
+                        rerun_app()
 
     st.subheader("Handleliste")
 

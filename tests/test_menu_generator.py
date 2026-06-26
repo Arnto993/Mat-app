@@ -4,6 +4,7 @@ from src.menu_generator import (
     MENU_PRIORITY_HEALTHIER,
     MENU_PRIORITY_NONE,
     filter_recipes,
+    get_replacement_recipe_candidates,
     get_prioritized_recipe_pool,
     get_recipe_pantry_usage_score,
     get_recipe_priority_score,
@@ -256,3 +257,86 @@ def test_menu_does_not_match_when_vegetarian_is_excluded_but_menu_has_vegetarian
     }
 
     assert menu_matches_preferences(menu, preferences) is False
+
+
+def test_replacement_candidates_avoid_fish_next_to_fish():
+    recipes = [
+        {
+            "id": "laks",
+            "name": "Laks",
+            "tags": ["fisk"],
+            "ingredients": []
+        },
+        {
+            "id": "torsk",
+            "name": "Torsk",
+            "tags": ["fisk"],
+            "ingredients": []
+        },
+        {
+            "id": "kylling",
+            "name": "Kylling",
+            "tags": ["kylling"],
+            "ingredients": []
+        },
+        {
+            "id": "pasta",
+            "name": "Pasta",
+            "tags": ["vegetar"],
+            "ingredients": []
+        }
+    ]
+    menu = {
+        "Mandag": recipes[0],
+        "Tirsdag": recipes[3],
+        "Onsdag": recipes[1]
+    }
+    preferences = {
+        "wants_fish": True
+    }
+
+    candidates = get_replacement_recipe_candidates(
+        recipes,
+        menu,
+        "Tirsdag",
+        preferences
+    )
+
+    assert [recipe["name"] for recipe in candidates] == ["Kylling"]
+
+
+def test_replacement_candidates_keep_fish_when_replacing_only_fish_day():
+    fish_recipe = {
+        "id": "laks",
+        "name": "Laks",
+        "tags": ["fisk"],
+        "ingredients": []
+    }
+    other_fish_recipe = {
+        "id": "torsk",
+        "name": "Torsk",
+        "tags": ["fisk"],
+        "ingredients": []
+    }
+    chicken_recipe = {
+        "id": "kylling",
+        "name": "Kylling",
+        "tags": ["kylling"],
+        "ingredients": []
+    }
+    menu = {
+        "Mandag": fish_recipe,
+        "Tirsdag": chicken_recipe
+    }
+    preferences = {
+        "wants_fish": True
+    }
+
+    candidates = get_replacement_recipe_candidates(
+        [fish_recipe, other_fish_recipe, chicken_recipe],
+        menu,
+        "Mandag",
+        preferences
+    )
+
+    assert [recipe["name"] for recipe in candidates] == ["Torsk"]

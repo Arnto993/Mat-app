@@ -139,6 +139,44 @@ def has_vegetarian(menu):
     )
 
 
+def get_recipe_identity(recipe):
+    return recipe.get("id", recipe.get("name", "")).lower()
+
+
+def get_adjacent_days(day):
+    if day not in DAYS:
+        return []
+
+    day_index = DAYS.index(day)
+    adjacent_days = []
+
+    if day_index > 0:
+        adjacent_days.append(DAYS[day_index - 1])
+
+    if day_index < len(DAYS) - 1:
+        adjacent_days.append(DAYS[day_index + 1])
+
+    return adjacent_days
+
+
+def get_adjacent_recipes(menu, day):
+    return [
+        menu[adjacent_day]
+        for adjacent_day in get_adjacent_days(day)
+        if adjacent_day in menu
+    ]
+
+
+def replacement_has_fish_conflict(recipe, menu, day):
+    return (
+        recipe_contains_fish(recipe)
+        and any(
+            recipe_contains_fish(adjacent_recipe)
+            for adjacent_recipe in get_adjacent_recipes(menu, day)
+        )
+    )
+
+
 def calculate_menu_time(menu):
     return sum(
         recipe.get("time_minutes", 999)
@@ -416,6 +454,91 @@ def select_recipes_for_menu(
     )
 
 
+def get_replacement_context_score(recipe, menu, day):
+    score = 0
+    recipe_category = recipe.get("category")
+    recipe_tags = get_recipe_tags(recipe)
+
+    for adjacent_recipe in get_adjacent_recipes(menu, day):
+        adjacent_category = adjacent_recipe.get("category")
+        adjacent_tags = get_recipe_tags(adjacent_recipe)
+
+        if recipe_category and recipe_category == adjacent_category:
+            score -= 20
+
+        shared_tags = recipe_tags & adjacent_tags
+        shared_tags -= {"hverdagsmiddag", "rask", "enkel", "billig", "student"}
+        score -= len(shared_tags) * 4
+
+        if recipe_is_vegetarian(recipe) == recipe_is_vegetarian(adjacent_recipe):
+            score -= 3
+
+    return score
+
+
+def get_replacement_recipe_candidates(recipes, menu, day, preferences):
+    recipes = normalize_recipes(recipes)
+    menu_without_day = {
+        menu_day: recipe
+        for menu_day, recipe in menu.items()
+        if menu_day != day
+    }
+    used_recipe_identities = {
+        get_recipe_identity(recipe)
+        for recipe in menu.values()
+    }
+    candidates = []
+
+    for recipe in filter_recipes(recipes, preferences):
+        if get_recipe_identity(recipe) in used_recipe_identities:
+            continue
+
+        if replacement_has_fish_conflict(recipe, menu_without_day, day):
+            continue
+
+        if preferences.get("wants_fish") is True:
+            menu_needs_fish_replacement = not has_fish(menu_without_day)
+
+            if menu_needs_fish_replacement and not recipe_contains_fish(recipe):
+                continue
+
+        candidates.append(recipe)
+
+    return candidates
+
+
+def select_replacement_recipe(
+    recipes,
+    menu,
+    day,
+    priority,
+    pantry_items=None,
+    number_of_people=1
+):
+    recipes = normalize_recipes(recipes)
+    pantry_items = normalize_pantry_items(pantry_items)
+
+    if not recipes:
+        return None
+
+    ranked_recipes = sorted(
+        recipes,
+        key=lambda recipe: (
+            get_recipe_selection_score(
+                recipe,
+                priority,
+                pantry_items,
+                number_of_people
+            )
+            + get_replacement_context_score(recipe, menu, day)
+        ),
+        reverse=True
+    )
+    weights = list(range(len(ranked_recipes), 0, -1))
+
+    return random.choices(ranked_recipes, weights=weights, k=1)[0]
+
+
 def filter_recipes(recipes, preferences):
     filtered_recipes = []
     recipes = normalize_recipes(recipes)
@@ -550,5 +673,58 @@ def generate_menu_with_budget(
 
         if total_price <= max_budget:
             return menu, shopping_list, total_price
+
+    return None, None, None
+
+
+def replace_menu_day_with_budget(
+    menu,
+    day,
+    number_of_people,
+    max_budget,
+    preferences,
+    max_attempts=100,
+    pantry_items=None
+):
+    recipes = normalize_recipes(get_recipes())
+    candidates = get_replacement_recipe_candidates(
+        recipes,
+        menu,
+        day,
+        preferences
+    )
+    menu_priority = get_menu_priority(preferences)
+
+    for _attempt in range(max_attempts):
+        replacement_recipe = select_replacement_recipe(
+            candidates,
+            menu,
+            day,
+            menu_priority,
+            pantry_items,
+            number_of_people
+        )
+
+        if replacement_recipe is None:
+            return None, None, None
+
+        new_menu = menu.copy()
+        new_menu[day] = replacement_recipe
+
+        if not menu_matches_preferences(new_menu, preferences):
+            candidates.remove(replacement_recipe)
+            continue
+
+        shopping_list = create_rounded_shopping_list(
+            new_menu,
+            number_of_people,
+            pantry_items
+        )
+        total_price = calculate_total_price_from_shopping_list(shopping_list)
+
+        if total_price <= max_budget:
+            return new_menu, shopping_list, total_price
+
+        candidates.remove(replacement_recipe)
 
     return None, None, None
