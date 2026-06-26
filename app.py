@@ -44,10 +44,17 @@ def format_package_unit(amount, unit):
 
 
 def get_product_display_options(products):
+    if "products" in products:
+        products = products["products"]
+
     return {
         product.get("display_name", product["name"]): product_key
         for product_key, product in sorted(
-            products.items(),
+            (
+                (product_key, product)
+                for product_key, product in products.items()
+                if isinstance(product, dict)
+            ),
             key=lambda item: item[1].get("display_name", item[1]["name"])
         )
     }
@@ -123,6 +130,8 @@ menu_style = st.selectbox(
 )
 
 products = get_products()
+if "products" in products:
+    products = products["products"]
 product_display_options = get_product_display_options(products)
 
 st.subheader("Varer hjemme")

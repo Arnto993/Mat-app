@@ -16,6 +16,13 @@ PRIORITIZED_POOL_MIN_EXTRA = 3
 PRIORITIZED_POOL_SHARE = 0.4
 
 
+def normalize_recipes(recipes):
+    if isinstance(recipes, dict):
+        return recipes.get("recipes", [])
+
+    return recipes
+
+
 def get_menu_priority(preferences):
     priority = preferences.get("menu_priority")
 
@@ -258,8 +265,12 @@ def select_recipes_for_menu(recipes, count, priority):
 
 def filter_recipes(recipes, preferences):
     filtered_recipes = []
+    recipes = normalize_recipes(recipes)
 
     for recipe in recipes:
+        if not isinstance(recipe, dict):
+            continue
+
         if preferences.get("wants_fish") is False and recipe_contains_fish(recipe):
             continue
 
@@ -339,7 +350,7 @@ def generate_menu_with_budget(
     max_attempts=100,
     pantry_items=None
 ):
-    recipes = get_recipes()
+    recipes = normalize_recipes(get_recipes())
     available_recipes = filter_recipes(recipes, preferences)
     menu_priority = get_menu_priority(preferences)
 
