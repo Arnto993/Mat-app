@@ -2,6 +2,8 @@ import math
 
 import streamlit as st
 
+from src.database import init_db
+from src.menu_storage import load_last_menu, save_last_menu
 from src.menu_generator import (
     MENU_PRIORITY_CHEAPEST,
     MENU_PRIORITY_FASTEST,
@@ -10,12 +12,14 @@ from src.menu_generator import (
     generate_menu_with_budget,
     replace_menu_day_with_budget
 )
+from src.pantry_storage import load_pantry_items, save_pantry_items
 from src.products import get_products
 from src.shopping_list import (
     group_shopping_list_by_category,
     iter_recipe_ingredients,
     normalize_pantry_items
 )
+from src.user_settings import load_user_settings, save_user_settings
 
 def validate_preferences(preferences, taco_friday):
     errors = []
@@ -87,8 +91,19 @@ def rerun_app():
 
 
 GENERATED_MENU_STATE_KEY = "generated_menu_result"
+SETTINGS_LOADED_STATE_KEY = "settings_loaded"
 SHOPPING_CHECKED_STATE_PREFIX = "shopping_item_checked_"
 DAYS = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"]
+NUMBER_OF_PEOPLE_STATE_KEY = "number_of_people"
+MAX_BUDGET_STATE_KEY = "max_budget"
+TACO_FRIDAY_STATE_KEY = "taco_friday"
+WANTS_FISH_STATE_KEY = "wants_fish"
+VEGETARIAN_ONLY_STATE_KEY = "vegetarian_only"
+EXCLUDE_VEGETARIAN_STATE_KEY = "exclude_vegetarian"
+SELECTED_ALLERGENS_STATE_KEY = "selected_allergens_display"
+MAX_TIME_MINUTES_STATE_KEY = "max_time_minutes"
+MENU_STYLE_STATE_KEY = "menu_style"
+SELECTED_PANTRY_STATE_KEY = "selected_pantry_display_names"
 
 
 def get_shopping_item_state_key(product_id):
@@ -102,6 +117,115 @@ def reset_shopping_item_checkboxes(shopping_list):
 
     for product_id in shopping_list:
         st.session_state[get_shopping_item_state_key(product_id)] = False
+
+
+def get_selected_allergen_display_names(excluded_allergens, allergen_options):
+    excluded_allergens = set(excluded_allergens)
+
+    return [
+        display_name
+        for display_name, allergen in allergen_options.items()
+        if allergen in excluded_allergens
+    ]
+
+
+def get_selected_pantry_display_names(product_keys, product_display_options):
+    product_keys = set(product_keys)
+
+    return [
+        display_name
+        for display_name, product_key in product_display_options.items()
+        if product_key in product_keys
+    ]
+
+
+def load_saved_state_once(
+    allergen_options,
+    menu_priority_options,
+    product_display_options
+):
+    if SETTINGS_LOADED_STATE_KEY in st.session_state:
+        return
+
+    settings = load_user_settings()
+    pantry_product_keys = load_pantry_items()
+
+    st.session_state[NUMBER_OF_PEOPLE_STATE_KEY] = settings["number_of_people"]
+    st.session_state[MAX_BUDGET_STATE_KEY] = settings["max_budget"]
+    st.session_state[TACO_FRIDAY_STATE_KEY] = settings["taco_friday"]
+    st.session_state[WANTS_FISH_STATE_KEY] = settings["wants_fish"]
+    st.session_state[VEGETARIAN_ONLY_STATE_KEY] = settings["vegetarian_only"]
+    st.session_state[EXCLUDE_VEGETARIAN_STATE_KEY] = settings["exclude_vegetarian"]
+    st.session_state[MAX_TIME_MINUTES_STATE_KEY] = settings["max_time_minutes"]
+    st.session_state[MENU_STYLE_STATE_KEY] = (
+        settings["menu_priority"]
+        if settings["menu_priority"] in menu_priority_options
+        else "Ingen spesiell prioritering"
+    )
+    st.session_state[SELECTED_ALLERGENS_STATE_KEY] = (
+        get_selected_allergen_display_names(
+            settings["excluded_allergens"],
+            allergen_options
+        )
+    )
+    st.session_state[SELECTED_PANTRY_STATE_KEY] = (
+        get_selected_pantry_display_names(
+            pantry_product_keys,
+            product_display_options
+        )
+    )
+    st.session_state[SETTINGS_LOADED_STATE_KEY] = True
+
+
+def build_user_settings_from_ui(
+    number_of_people,
+    max_budget,
+    taco_friday,
+    wants_fish,
+    vegetarian_only,
+    exclude_vegetarian,
+    max_time_minutes,
+    menu_style,
+    excluded_allergens
+):
+    return {
+        "number_of_people": number_of_people,
+        "max_budget": max_budget,
+        "taco_friday": taco_friday,
+        "wants_fish": wants_fish,
+        "vegetarian_only": vegetarian_only,
+        "exclude_vegetarian": exclude_vegetarian,
+        "max_time_minutes": max_time_minutes,
+        "menu_priority": menu_style,
+        "excluded_allergens": excluded_allergens
+    }
+
+
+def save_current_local_state(settings, pantry_items):
+    save_user_settings(settings)
+    save_pantry_items(list(pantry_items.keys()))
+
+
+def get_generated_menu_state(
+    saved_menu,
+    pantry_items,
+    excluded_allergens,
+    number_of_people,
+    taco_friday,
+    max_budget,
+    preferences
+):
+    return {
+        "menu": saved_menu["menu"],
+        "shopping_list": saved_menu["shopping_list"],
+        "total_price": saved_menu["total_price"],
+        "pantry_items": pantry_items.copy(),
+        "excluded_allergens": excluded_allergens.copy(),
+        "number_of_people": number_of_people,
+        "taco_friday": taco_friday,
+        "max_budget": max_budget,
+        "preferences": preferences.copy()
+    }
 
 
 def format_shopping_item_label(item):
@@ -198,25 +322,12 @@ def format_selected_allergen_status(recipe, excluded_allergens, allergen_display
 st.title("MatApp")
 st.write("Lag en enkel ukesmeny med handleliste og prisanslag.")
 
-number_of_people = st.number_input(
-    "Hvor mange personer skal spise middag?",
-    min_value=1,
-    max_value=10,
-    value=3
-)
+init_db()
 
-max_budget = st.number_input(
-    "Maksbudsjett for uka",
-    min_value=100,
-    max_value=3000,
-    value=900,
-    step=50
-)
-
-taco_friday = st.checkbox("Taco på fredag", value=True)
-wants_fish = st.checkbox("Minst én fiskemiddag", value=True)
-vegetarian_only = st.checkbox("Bare vegetarmat", value=False)
-exclude_vegetarian = st.checkbox("Ingen vegetarretter", value=False)
+products = get_products()
+if "products" in products:
+    products = products["products"]
+product_display_options = get_product_display_options(products)
 
 allergen_options = {
     "Gluten / cøliaki": "gluten",
@@ -232,9 +343,46 @@ allergen_display_names = {
     for display_name, allergen in allergen_options.items()
 }
 
+menu_priority_options = {
+    "Ingen spesiell prioritering": MENU_PRIORITY_NONE,
+    "Billigst mulig": MENU_PRIORITY_CHEAPEST,
+    "Raskest mulig": MENU_PRIORITY_FASTEST,
+    "Sunnere uke": MENU_PRIORITY_HEALTHIER
+}
+
+load_saved_state_once(
+    allergen_options,
+    menu_priority_options,
+    product_display_options
+)
+
+number_of_people = st.number_input(
+    "Hvor mange personer skal spise middag?",
+    min_value=1,
+    max_value=10,
+    key=NUMBER_OF_PEOPLE_STATE_KEY
+)
+
+max_budget = st.number_input(
+    "Maksbudsjett for uka",
+    min_value=100,
+    max_value=3000,
+    step=50,
+    key=MAX_BUDGET_STATE_KEY
+)
+
+taco_friday = st.checkbox("Taco på fredag", key=TACO_FRIDAY_STATE_KEY)
+wants_fish = st.checkbox("Minst én fiskemiddag", key=WANTS_FISH_STATE_KEY)
+vegetarian_only = st.checkbox("Bare vegetarmat", key=VEGETARIAN_ONLY_STATE_KEY)
+exclude_vegetarian = st.checkbox(
+    "Ingen vegetarretter",
+    key=EXCLUDE_VEGETARIAN_STATE_KEY
+)
+
 selected_allergens_display = st.multiselect(
     "Allergener eller matvarer som må unngås",
-    options=list(allergen_options.keys())
+    options=list(allergen_options.keys()),
+    key=SELECTED_ALLERGENS_STATE_KEY
 )
 
 excluded_allergens = [
@@ -246,31 +394,21 @@ max_time_minutes = st.slider(
     "Maks tid per middag",
     min_value=15,
     max_value=90,
-    value=40,
-    step=5
+    step=5,
+    key=MAX_TIME_MINUTES_STATE_KEY
 )
-
-menu_priority_options = {
-    "Ingen spesiell prioritering": MENU_PRIORITY_NONE,
-    "Billigst mulig": MENU_PRIORITY_CHEAPEST,
-    "Raskest mulig": MENU_PRIORITY_FASTEST,
-    "Sunnere uke": MENU_PRIORITY_HEALTHIER
-}
 
 menu_style = st.selectbox(
     "Hva ønsker du å prioritere?",
-    list(menu_priority_options.keys())
+    list(menu_priority_options.keys()),
+    key=MENU_STYLE_STATE_KEY
 )
-
-products = get_products()
-if "products" in products:
-    products = products["products"]
-product_display_options = get_product_display_options(products)
 
 st.subheader("Varer hjemme")
 selected_pantry_display_names = st.multiselect(
     "Velg varer du allerede har hjemme",
-    options=list(product_display_options.keys())
+    options=list(product_display_options.keys()),
+    key=SELECTED_PANTRY_STATE_KEY
 )
 
 pantry_items = {}
@@ -302,6 +440,40 @@ preferences = {
     "menu_priority": menu_priority_options[menu_style]
 }
 
+user_settings = build_user_settings_from_ui(
+    number_of_people,
+    max_budget,
+    taco_friday,
+    wants_fish,
+    vegetarian_only,
+    exclude_vegetarian,
+    max_time_minutes,
+    menu_style,
+    excluded_allergens
+)
+
+if st.button("Lagre innstillinger"):
+    save_current_local_state(user_settings, pantry_items)
+    st.success("Innstillingene er lagret.")
+
+if st.button("Last inn siste meny"):
+    saved_menu = load_last_menu()
+
+    if saved_menu is None:
+        st.info("Ingen lagret meny funnet.")
+    else:
+        st.session_state[GENERATED_MENU_STATE_KEY] = get_generated_menu_state(
+            saved_menu,
+            pantry_items,
+            excluded_allergens,
+            number_of_people,
+            taco_friday,
+            max_budget,
+            preferences
+        )
+        reset_shopping_item_checkboxes(saved_menu["shopping_list"])
+        st.success("Siste meny er lastet inn.")
+
 if taco_friday and vegetarian_only:
     st.warning("Vanlig taco fredag passer ikke med bare vegetarmat ennå.")
 
@@ -314,6 +486,9 @@ if wants_fish and "fish" in excluded_allergens:
 errors = validate_preferences(preferences, taco_friday)
 
 generate_menu = st.button("Generer ukesmeny")
+
+if generate_menu:
+    save_current_local_state(user_settings, pantry_items)
 
 if generate_menu and errors:
     st.session_state.pop(GENERATED_MENU_STATE_KEY, None)
@@ -349,6 +524,7 @@ if generate_menu and not errors:
             "max_budget": max_budget,
             "preferences": preferences.copy()
         }
+        save_last_menu(menu, shopping_list, total_price)
         reset_shopping_item_checkboxes(shopping_list)
 
 generated_menu_result = st.session_state.get(GENERATED_MENU_STATE_KEY)
@@ -409,6 +585,7 @@ if generated_menu_result is not None:
                             "og preferansene dine."
                         )
                     else:
+                        save_last_menu(new_menu, new_shopping_list, new_total_price)
                         st.session_state[GENERATED_MENU_STATE_KEY] = {
                             **generated_menu_result,
                             "menu": new_menu,
